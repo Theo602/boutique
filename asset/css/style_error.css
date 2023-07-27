@@ -1,0 +1,124 @@
+/* Style Css Page Error Front-End */
+
+/* Global */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Page Erreur */
+
+.section-1-error {
+    padding: 2% 6%;
+    background-color: #02010A;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.section-1-error h2 {
+    font-size: 35px;
+    text-align: center;
+    color: #fff;
+}
+
+.figure-pageError {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 3% 0;
+}
+
+.img-pageError {
+    width: 50%;
+    border-radius: 10px;
+}
+
+.text-pageError {
+    font-size: 30px;
+    text-align: center;
+}
+
+.btn-pageError {
+    text-align: center;
+    display: block;
+    padding: 20px 0px;
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.btn-pageError:hover {
+    cursor: pointer;
+    color: #0D00A4;
+    transition: 1s;
+}
+
+.text-pageError,
+.btn-pageError {
+    color: #fff;
+}
+
+/* Media queries - Responsive Design - Page error */
+
+@media screen and (max-width: 992px) {
+
+    .section-1-error {
+        padding: 4% 6%;
+    }
+
+    .figure-pageError {
+        padding: 4% 0;
+    }
+
+    .img-pageError {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .section-1-error {
+        padding: 7% 6%;
+    }
+
+    .figure-pageError {
+        padding: 4% 0;
+    }
+
+    .img-pageError {
+        width: 86%;
+    }
+
+}
+
+@media screen and (max-width: 576px) {
+
+    .section-1-error {
+        padding: 10% 6%;
+    }
+
+    .figure-pageError {
+        padding: 10% 0;
+    }
+
+    .img-pageError {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 412px) {
+
+    .section-1-error {
+        padding: 12% 6%;
+    }
+
+    .figure-pageError {
+        padding: 12% 0;
+    }
+
+}

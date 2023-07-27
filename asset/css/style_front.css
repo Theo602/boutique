@@ -1,0 +1,958 @@
+/* Styles Css Front-End */
+
+/* Global */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*Header*/
+
+/* 1. Header Top */
+
+header {
+    background: #000;
+    display: flex;
+    justify-content: space-around;
+    padding: 2% 0;
+}
+
+header>.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+header>.header-top>figure {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10%;
+}
+
+header>.header-top>h1 {
+    color: #fff;
+    font-size: 36px;
+
+}
+
+/* 2. Menu navigation */
+
+header .menu {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin: 0;
+}
+
+header .menu li {
+    list-style: none;
+    padding: 0 25px;
+}
+
+header .menu a {
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+}
+
+header .menu a:hover {
+    color: #0D00A4;
+    border-bottom: 4px solid #0D00A4;
+    transition: 1s;
+}
+
+/* 3. Modale - Menu Responsive */
+
+.btnOpen,
+.modal-menu,
+.btnClose,
+.modal-navigation {
+    display: none;
+}
+
+/* Page Accueil */
+
+/* 1. Section */
+
+.section-1-accueil,
+.section-2-accueil,
+.section-3-accueil,
+.section-4-accueil {
+    padding: 4% 0;
+}
+
+.section-1-accueil h2,
+.section-2-accueil h2,
+.section-3-accueil h2,
+.section-4-accueil h2 {
+    font-size: 2.6em;
+    text-align: center;
+}
+
+.section-2-accueil h2,
+.section-4-accueil h2 {
+    color: #fff;
+}
+
+/* 2. Carrousel */
+
+#carrousel {
+    width: 80vw;
+    max-width: 1200px;
+    height: calc(80vw * 9 / 16);
+    max-height: calc(1200px * 9 / 16);
+    margin: 50px auto 0;
+    border: 10px solid #fff;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+#reglette {
+    display: flex;
+    height: 100%;
+    position: relative;
+}
+
+#reglette figure {
+    height: 100%;
+    position: relative;
+}
+
+#reglette figure img {
+    height: 100%;
+    width: 100%;
+}
+
+#reglette figure figcaption {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+/* 3. Catégories - Produits */
+
+.section-2-accueil {
+    background-color: #04052E;
+}
+
+.block-categories,
+.block-produit-accueil {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 2%;
+}
+
+.fiche-categorie,
+.fiche-produit-accueil {
+    background-color: #fff;
+    box-shadow: #000 0px 0px 4px 4px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0 20px 0;
+    width: 22%;
+}
+
+.fiche-categorie figure,
+.fiche-produit-accueil figure {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fiche-categorie img,
+.fiche-produit-accueil img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.fiche-produit-accueil img {
+    width: 60%;
+}
+
+.titre_categorie,
+.titre_products {
+    text-align: center;
+    font-size: 1.8em;
+    color: #000;
+    margin: 10px 0;
+}
+
+.fiche-categorie a,
+.fiche-produit-accueil a {
+    background-color: #000;
+    border: 2px solid #0D00A4;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 2% 8%;
+    margin: 2% auto;
+}
+
+.fiche-categorie a:hover,
+.fiche-produit-accueil a:hover {
+    background-color: #0D00A4;
+    border: 2px solid #000;
+    transition: 1s;
+}
+
+.message-info-categorie,
+.message-info-produit {
+    text-align: center;
+    font-size: 1.2em;
+    color: #000;
+}
+
+.message-info-categorie {
+    color: #fff;
+}
+
+/* 4. Newsletter */
+
+.section-4-accueil {
+    background-color: #04052E;
+}
+
+.section-4-accueil>p {
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    padding: 2% 8%;
+}
+
+.section-4-accueil>form {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.section-4-accueil>form>.newsletter-email input {
+    padding: 16px;
+    border-radius: 5px;
+    width: 100%;
+    border: 2px solid #02010A;
+}
+
+.section-4-accueil>form>.newsletter-validation {
+    margin: 4% auto;
+    text-align: center;
+}
+
+.section-4-accueil>form>.newsletter-validation input {
+    background-color: #000;
+    border: none;
+    padding: 2% 6%;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 5px;
+    border: 2px solid #fff;
+}
+
+.section-4-accueil>form>.newsletter-validation input:hover {
+    background-color: #0D00A4;
+    cursor: pointer;
+    transition: 2s;
+}
+
+/* Page Profil */
+
+.section-1-profil h2 {
+    font-size: 2.6em;
+    text-align: center;
+    margin: 0 auto 50px;
+}
+
+.profil-information p {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.profil-information a {
+    background-color: #000;
+    border: 3px solid #0D00A4;
+    color: #fff;
+    display: block;
+    width: 20%;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: navajowhite;
+    margin: 20px auto;
+    font-size: 18px;
+}
+
+.profil-information a:hover {
+    background-color: #0D00A4;
+    transition: 1s;
+}
+
+/* Page Boutique */
+
+/* 1. Global */
+
+.title-product {
+    text-align: center;
+    font-size: 2.6em;
+}
+
+/* 2. Catégories */
+
+.container-left-right {
+    display: flex;
+    margin: 20px 0;
+}
+
+.section-front-right {
+    width: 80%;
+}
+
+.section-front-left {
+    width: 20%;
+    margin: 40px 0;
+}
+
+.section-front-left h3 {
+    text-align: center;
+    font-size: 2em;
+}
+
+.menu-categorie {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.menu-categorie ul {
+    width: 80%;
+}
+
+.menu-categorie li {
+    list-style: none;
+}
+
+.menu-categorie li {
+    border: 1px solid black;
+    padding: 6% 0;
+    text-align: center;
+    background: #fff;
+}
+
+.menu-categorie a {
+    display: block;
+    color: #000;
+    font-size: 25px;
+    text-decoration: none;
+
+}
+
+.menu-categorie li:hover {
+    background: #000;
+    transition: 1s;
+}
+
+.menu-categorie a:hover {
+    color: #fff;
+    transition: 1s;
+}
+
+/* 3. Produit */
+
+.block-produit-boutique {
+    padding: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.fiche-produit-boutique {
+    background-color: #fff;
+    box-shadow: #000 0px 0px 4px 4px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2%;
+    width: 20%;
+    padding: 20px;
+}
+
+.fiche-produit-boutique figure {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fiche-produit-boutique img {
+    width: 120px;
+    border-radius: 10px;
+}
+
+.fiche-produit-boutique h3 {
+    font-size: 25px;
+}
+
+.fiche-produit-boutique a {
+    background-color: #000;
+    border: 2px solid #0D00A4;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 2% 8%;
+    margin: 2% auto;
+}
+
+.fiche-produit-boutique a:hover {
+    background-color: #0D00A4;
+    border: 2px solid #000;
+    transition: 1s;
+}
+
+/* Page Produit  */
+
+.fiche-produit {
+    width: 80%;
+    margin: 4% auto;
+    background: #fff;
+    padding: 2%;
+    box-shadow: #000 0px 0px 4px 4px;
+    border-radius: 5px;
+}
+
+.produit-global {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.produit-global figure {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.produit-global img {
+    width: 60%;
+}
+
+.produit-infos {
+    width: 50%;
+}
+
+.produit-infos h2 {
+    font-size: 2.2em;
+    padding: 20px 0;
+}
+
+.produit-text,
+.produit-rupture {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.produit-text {
+    margin: 10px 0;
+}
+
+.produit-rupture {
+    background-color: #000;
+    border: 2px solid #0D00A4;
+    border-radius: 5px;
+    color: #fff;
+    padding: 2% 4%;
+    text-align: center;
+    width: 60%;
+    margin: 30px 0;
+}
+
+.produit-infos form {
+    padding-top: 2%;
+}
+
+.produit-select {
+    padding: 2% 4%;
+    background-color: #000;
+    color: #fff;
+    border: 2px solid #0D00A4;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.produit-submit {
+    background-color: #000;
+    border: 2px solid #0D00A4;
+    border-radius: 5px;
+    color: #fff;
+    padding: 2% 4%;
+}
+
+.produit-submit:hover {
+    background-color: #0D00A4;
+    transition: 1s;
+    cursor: pointer;
+}
+
+/* Page Accueil - Page Boutique - Page inscription - Page connexion - Page Profil - Page Produit  */
+
+/* 1. Hr */
+
+.inscription-form hr,
+.connexion-form hr,
+.profil-information hr,
+.section-2-accueil hr,
+.section-1-boutique hr,
+.section-3-accueil hr,
+.section-4-accueil hr {
+    margin: 20px auto;
+    padding: 1px;
+    background-color: #000;
+}
+
+.section-2-accueil hr,
+.section-3-accueil hr,
+.section-4-accueil hr {
+    width: 40%;
+}
+
+.section-front-left hr {
+    width: 60%;
+}
+
+.section-2-accueil hr,
+.section-4-accueil hr {
+    background-color: #fff;
+}
+
+/* 2. Section */
+
+.section-1-inscription,
+.section-1-connexion,
+.section-1-profil,
+.section-1-boutique,
+.section-1-produit {
+    padding: 4% 0px;
+}
+
+/* Page Accueil - Page Boutique */
+
+.fiche-produit-accueil p,
+.fiche-produit-boutique p {
+    font-size: 20px;
+    margin: 2% 0px;
+}
+
+/* Page inscription - Page connexion */
+
+/* 1. Formulaire */
+
+.inscription-form div,
+.connexion-form div {
+    margin: 20px auto;
+}
+
+.inscription-form .inputForm,
+.connexion-form .inputForm {
+    border: 1px black solid;
+    border-radius: 5px;
+    display: block;
+    font-size: 1em;
+    margin: 10px auto;
+    padding: 10px;
+    width: 100%;
+}
+
+
+.inscription-form .submit,
+.connexion-form .submit {
+    background-color: #000;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.inscription-form .connect,
+.connexion-form .connect {
+    margin: 20px 0 0 0;
+    text-align: center;
+    font-size: 18px;
+}
+
+.inscription-form a,
+.connexion-form a {
+    text-decoration: none;
+    color: #000;
+}
+
+.inscription-form a:hover,
+.connexion-form a:hover {
+    color: #11006c;
+    transition: 1s;
+}
+
+.inscription-form .submit:hover,
+.connexion-form .submit:hover {
+    background-color: #11006c;
+    transition: 1s;
+}
+
+.civilite,
+.civilite p {
+    margin: 10px 0;
+}
+
+/* Page inscription - Page connexion - Page Profil */
+
+.section-1-inscription .inscription-form,
+.section-1-connexion .connexion-form,
+.section-1-profil .profil-information {
+    border: 2px solid #000;
+    border-radius: 10px;
+    width: 50%;
+    margin: auto;
+    padding: 2%;
+}
+
+.section-1-connexion .connexion-form {
+    width: 40%;
+}
+
+.inscription-form h3,
+.connexion-form h3,
+.profil-information h3 {
+    font-size: 30px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Footer */
+
+footer {
+    background: #000;
+    padding: 2% 0;
+}
+
+.text-copyright {
+    color: #fff;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+/* Message Erreur - Message Succès */
+
+.message-succes,
+.message-error,
+.message-error-input {
+    width: 80%;
+    margin: 10px auto;
+    font-size: 16px;
+    border-radius: 5px;
+    color: black;
+    text-align: center;
+    padding: 10px;
+}
+
+.message-error-input {
+    width: 100%;
+}
+
+.message-succes {
+    border: 2px solid #119d15;
+    background: rgba(71, 173, 74, 0.2);
+}
+
+.message-error,
+.message-error-input {
+    border: 2px solid red;
+    background: rgba(255, 0, 0, 0.2);
+}
+
+.border-error {
+    border: 2px solid red !important;
+}
+
+.border-succes {
+    border: 2px solid #119d15 !important;
+}
+
+.active-message {
+    display: none;
+}
+
+/* MouseOver Mouseout - Block - fiche-shop*/
+
+.activeBlock {
+    box-shadow: #FF5A09 0px 0px 4px 4px !important;
+    transition: 1s;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 992px) {
+
+    /* Header */
+
+    header {
+        padding: 4% 0;
+    }
+
+    /* 2. Menu navigation */
+
+    header>nav>.menu {
+        display: none;
+    }
+
+
+    /* 3. Modale - Menu Responsive */
+
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .menu li {
+        margin: 3% 0;
+    }
+
+    .menu a {
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    .btnOpen {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        border: 1px solid #fff;
+    }
+
+    .btnOpen .fa-bars {
+        color: #fff;
+        font-size: 2em;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .modal-menu,
+    .modal-navigation {
+        display: block;
+    }
+
+    .modal-navigation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100%;
+        background-color: #000;
+        opacity: 0.9;
+        transform: translateY(-100%);
+        transition: transform 0.9s ease-in-out;
+        z-index: 10;
+    }
+
+    .btnClose {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        border: 1px solid #fff;
+    }
+
+    .btnClose .fa-times {
+
+        color: #fff;
+        font-size: 2em;
+        padding: 10px 14px;
+        cursor: pointer;
+    }
+
+    .active-menu {
+        transform: translateY(0);
+    }
+
+    /* Page Accueil */
+
+    /* 3. Catégories - Produits */
+
+    .fiche-categorie,
+    .fiche-produit-accueil {
+        width: 45%;
+        margin: 2% 0%;
+    }
+
+    /* Page Profil */
+
+    .profil-information a {
+        width: 30%;
+    }
+
+
+    /* Page Boutique */
+
+    .container-left-right {
+        flex-direction: column;
+    }
+
+    .section-front-left,
+    .section-front-right {
+        width: 100%;
+    }
+
+    .fiche-produit-boutique {
+        width: 40%;
+    }
+
+    .menu-categorie ul {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+    }
+
+    .menu-categorie li {
+        padding: 2% 0;
+    }
+
+    /* Page Produit  */
+
+    .produit-global {
+        flex-direction: column;
+    }
+
+    .produit-global figure {
+
+        width: 100%;
+    }
+
+    .produit-infos {
+
+        width: 100%;
+    }
+
+    /* Page inscription - Page connexion */
+
+    .section-1-inscription .inscription-form,
+    .section-1-profil .profil-information {
+        width: 70%;
+    }
+
+    .section-1-connexion .connexion-form {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    /* Page Profil */
+
+    .profil-information a {
+        width: 40%;
+    }
+
+    /* Page Boutique */
+
+    .menu-categorie li {
+        padding: 4% 0;
+    }
+
+    /* Page inscription - Page connexion */
+
+    .section-1-inscription .inscription-form,
+    .section-1-connexion .connexion-form,
+    .section-1-profil .profil-information {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 516px) {
+
+    /* Header */
+
+    header {
+        padding: 6% 0;
+    }
+
+    header>.header-top>h1 {
+        font-size: 25px;
+    }
+
+    /* 3. Modale - Menu Responsive */
+
+    .btnOpen .fa-bars {
+        font-size: 1.4em;
+    }
+
+    /* Page Accueil */
+
+    /* 2. Carrousel */
+
+    #carrousel {
+        width: 90vw;
+        height: calc(90vw * 9 / 16);
+    }
+
+    /* 3. Catégories - Produits*/
+
+    .fiche-categorie,
+    .fiche-produit-accueil {
+        width: 70%;
+        margin: 4% 0%;
+    }
+
+    .fiche-produit-accueil img {
+        width: 80%;
+    }
+
+    /* 3. Newsletter */
+
+    .section-4-accueil>form {
+        margin: 4% auto;
+        width: 80%;
+    }
+
+    /* Page Profil */
+
+    .profil-information a {
+        width: 50%;
+    }
+
+    /* Page Boutique */
+
+    .fiche-produit-boutique {
+        width: 60%;
+    }
+
+    /* Page Produit  */
+
+    .produit-select,
+    .produit-submit {
+        padding: 4% 10%;
+        margin: 2% 0;
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* Page inscription - Page connexion */
+
+    .section-1-inscription .inscription-form,
+    .section-1-connexion .connexion-form,
+    .section-1-profil .profil-information {
+        width: 90%;
+    }
+}
