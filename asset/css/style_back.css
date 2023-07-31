@@ -1,6 +1,6 @@
 /* Style Css Dashboard Back-End */
 
-/* Global */
+/* Dashboard  Global */
 
 * {
     box-sizing: border-box;
@@ -8,15 +8,177 @@
     padding: 0;
 }
 
-/* Page dashboard */
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    flex: 1 0 auto;
+}
 
 .dashboard-container {
     display: flex;
+    height: 100%;
 }
 
-/* Page Gestion Produit */
+/* 1. Section Right */
 
-.produit-form {
+.section-right {
+    width: 80%;
+    height: 100%;
+    background-color: #04052E;
+}
+
+/* 2. Section Left */
+
+.section-left {
+    background-color: #FF5A09;
+    width: 20%;
+}
+
+/* 3. Menu Navigation */
+
+.menu-dashboard {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    margin-top: 10%;
+}
+
+.menu-dashboard li {
+    list-style: none;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+.menu-dashboard img {
+    width: 30px;
+}
+
+.menu-dashboard a {
+    color: #fff;
+    font-size: 25px;
+    border-bottom: 2px solid transparent;
+    margin-left: 20px;
+}
+
+.menu-dashboard a:hover {
+    color: #000;
+    border-bottom: 2px solid #000;
+    transition: 1s;
+}
+
+/* 4. Modale - Menu Responsive */
+
+.modal-menu,
+.btnDashboard {
+    display: none;
+}
+
+/* Header */
+
+header {
+    background: #000;
+    border-bottom: 1px solid #fff;
+    padding: 2% 0;
+}
+
+/* 1. Header Top */
+
+.back-header-top {
+    display: flex;
+    align-items: center;
+}
+
+.header-return,
+.back-header-top h1,
+.icone-header {
+    text-align: center;
+    width: calc(100%/3);
+}
+
+.back-header-top img {
+    width: 30px;
+}
+
+/* 2. Lien retour sur le site */
+
+.header-return a {
+    color: #fff;
+    font-size: 20px;
+    border-bottom: 2px solid transparent;
+}
+
+.header-return a:hover {
+    color: #0D00A4;
+    border-bottom: 2px solid #0D00A4;
+    transition: 1s;
+}
+
+/* 2. Titre du header */
+
+.back-header-top h1 {
+    color: #fff;
+    font-size: 35px;
+}
+
+/* 2. Icone du header */
+
+.icone-header a {
+    margin: 0 6px;
+}
+
+/* Page dashboard */
+
+/* 1. Block indication */
+
+.block-indication {
+    display: flex;
+    justify-content: center;
+}
+
+.fiche-indication {
+    background: #fff;
+    box-shadow: #000 0px 0px 4px 4px;
+    border-radius: 5px;
+    margin: 20px 20px;
+    text-align: center;
+    width: calc(100% / 3);
+    padding: 10px 0;
+}
+
+.fiche-indication h3 {
+    font-size: 30px;
+}
+
+.fiche-indication p {
+    font-size: 25px;
+    margin: 4% 0px;
+    font-weight: bold;
+}
+
+/* Page Profil */
+
+.section-1-profil-admin h2 {
+    color: #fff;
+    font-size: 2.6em;
+    text-align: center;
+    margin: 0 auto 50px;
+}
+
+.profil-information-admin {
+    background-color: #fff;
     border: 2px solid #000;
     border-radius: 10px;
     width: 60%;
@@ -24,13 +186,68 @@
     padding: 2%;
 }
 
-.produit-form div {
+.profil-information-admin h3 {
+    font-size: 30px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.profil-information-admin hr {
+    margin: 20px auto;
+    padding: 1px;
+    background-color: #000;
+}
+
+.profil-information-admin p {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+/* Page dashboard - Page Gestion Produit - Page Boutique - Page Compte - Page Gestion Membre */
+
+.section-1-produit,
+.section-1-dashboard,
+.section-2-dashboard,
+.section-1-boutique,
+.section-1-compte,
+.section-1-commande,
+.section-1-membre,
+.section-1-profil-admin {
+    padding: 4% 0;
+}
+
+.gestion-form hr,
+.table-list hr {
+    margin: 20px auto;
+    padding: 1px;
+    background-color: #000;
+}
+
+.gestion-form h3,
+.table-list h3 {
+    font-size: 30px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Page Gestion Produit - Page Gestion Membre */
+
+.gestion-form {
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 10px;
+    width: 60%;
+    margin: auto;
+    padding: 2%;
+}
+
+.gestion-form div {
     margin: 20px auto;
 }
 
-.produit-form .inputForm,
-.produit-form textarea,
-.produit-form select {
+.gestion-form .inputForm,
+.gestion-form textarea,
+.gestion-form select {
     border: 1px black solid;
     border-radius: 5px;
     display: block;
@@ -40,27 +257,31 @@
     width: 100%;
 }
 
-.produit-form .submit {
+.gestion-form .submit {
     background-color: #000;
     border-radius: 5px;
     color: #fff;
     cursor: pointer;
 }
 
-.produit-form .submit:hover {
+.gestion-form .submit:hover {
     background-color: #11006c;
     transition: 1s;
 }
 
-.produit-form .photo figure {
+.gestion-form .photo figure {
     margin: 20px 0;
 }
 
-.produit-form .photo img {
+.gestion-form .photo img {
     width: 200px;
 }
 
-.produit-list {
+/* Page dashboard - Page Boutique - Page Compte */
+
+.table-list {
+    background: white;
+    box-shadow: #000 0px 0px 4px 4px;
     border: 2px solid #000;
     border-radius: 10px;
     width: 94%;
@@ -68,74 +289,100 @@
     padding: 2%;
 }
 
-.produit-list table {
+.table-list table {
     border-collapse: collapse;
     width: 100%;
     margin: 20px 0;
 }
 
-.produit-list table tr {
-    text-align: center;
-    border-bottom: 2px solid #000;
-}
-
-.produit-list table th {
+.table-top th,
+.table-top-commande th,
+.table-top-user th {
     font-size: 20px;
-    padding: 5px;
-    width: calc(100% /12);
 }
 
-.produit-list table td {
-    font-size: 18px;
-    padding: 5px;
-    width: calc(100% /12);
-}
-
-.produit-list table img {
-    width: 80px;
-}
-
-.produit-list table a {
+.table-link {
+    display: block;
     color: #000;
-    margin: 0 5px;
+    font-size: 18px;
+    margin: 10px auto;
+    text-align: end;
 }
 
-.produit-list table a:hover {
+.table-link:hover {
     color: #0D00A4;
     transition: 1s;
 }
 
-/* Page dashboard - Page Gestion Produit */
-
-.section-right {
-    width: 80%;
-}
-
-.section-left {
-    width: 20%;
-}
-
-.section-left {
-    background-color: #FF5A09;
-}
-
-.section-1-produit,
-.section-1-dashboard {
-    padding: 4% 0px;
-}
-
-.produit-form hr,
-.produit-list hr {
-    margin: 20px auto;
-    padding: 1px;
-    background-color: #000;
-}
-
-.produit-form h3,
-.produit-list h3 {
-    font-size: 30px;
-    margin: 20px 0;
+.table-details,
+.table-details-commande,
+.table-details-user {
     text-align: center;
+    border-bottom: 2px solid #000;
+}
+
+.table-details td,
+.table-details-commande td,
+.table-details-user td {
+    font-size: 18px;
+}
+
+.table-details img {
+    width: 80px;
+}
+
+.table-details a,
+.table-details-commande a,
+.table-details-user a {
+    color: #000;
+    margin: 0 5px;
+}
+
+.table-details a:hover,
+.table-details-commande a:hover,
+.table-details-user a:hover {
+    color: #0D00A4;
+    transition: 1s;
+}
+
+.table-top th,
+.table-top-commande th,
+.table-top-user th,
+.table-details td,
+.table-details-commande td,
+.table-details-user td {
+    padding: 10px;
+}
+
+.table-top-user th,
+.table-details-user td {
+    width: calc(100% / 6);
+}
+
+.table-top-commande th,
+.table-details-commande td {
+    width: calc(100% / 7);
+}
+
+.table-top th,
+.table-details td {
+    width: calc(100% / 11);
+}
+
+.table-responsive {
+    display: none;
+}
+
+.td-empty {
+    text-align: center;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+.td-empty td {
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 /* Footer */
@@ -143,6 +390,7 @@
 footer {
     background: #000;
     padding: 2% 0;
+    margin-top: auto;
 }
 
 .text-copyright {
@@ -151,65 +399,11 @@ footer {
     font-size: 1.2em;
 }
 
-/* Menu - Dashboard */
-
-.menu-dashboard {
-    display: flex;
-    justify-content: center;
-    height: 100%;
-}
-
-.menu-dashboard {
-    margin-top: 10%;
-}
-
-.menu-dashboard {
-    margin-top: 10%;
-}
-
-.menu-dashboard li {
-    list-style: none;
-}
-
-.menu-dashboard li {
-    margin: 20px 0;
-}
-
-.menu-dashboard a {
-    color: #fff;
-    font-size: 25px;
-    text-decoration: none;
-
-}
-
-.menu-dashboard a {
-    border-bottom: 2px solid transparent;
-}
-
-.menu-dashboard a:hover {
-    color: #000;
-    transition: 1s;
-}
-
-.menu-dashboard a:hover {
-    border-bottom: 4px solid #000;
-    transition: 1s;
-}
-
-/* 1. Modale -  Menu - Dashboard */
-
-.btnOpenDashboard,
-.modal-menu-left,
-.btnCloseDashboard,
-.modal-dashboard-left {
-    display: none;
-}
-
-
 /* Message Erreur - Message Succès */
 
 .message-succes,
-.message-error {
+.message-error,
+.message-error-input {
     width: 80%;
     margin: 10px auto;
     font-size: 16px;
@@ -219,70 +413,136 @@ footer {
     padding: 10px;
 }
 
+.message-error-input {
+    width: 100%;
+}
+
 .message-succes {
-    border: 1px solid #119d15;
+    border: 2px solid #119d15;
     background: rgba(71, 173, 74, 0.2);
 }
 
-.message-error {
-    border: 1px solid red;
+.message-error,
+.message-error-input {
+    border: 2px solid red;
     background: rgba(255, 0, 0, 0.2);
 }
 
+.border-error {
+    border: 2px solid red !important;
+}
+
+.border-succes {
+    border: 2px solid #119d15 !important;
+}
+
+@media screen and (max-width: 1250px) {
+
+    /* Page dashboard - Page Boutique */
+
+    .table-list thead {
+        display: none;
+    }
+
+    .table-details,
+    .table-details-commande,
+    .table-details-user {
+        display: none;
+        border: 2px solid #000;
+    }
+
+    .table-details img {
+        margin: auto;
+    }
+
+    .table-details a,
+    .table-details-commande a,
+    .table-details-user a {
+        margin: 5px;
+    }
+
+    .table-details td::before,
+    .table-details-commande::before,
+    .table-details-user::before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    .table-details td,
+    .table-details-commande td,
+    .table-details-user td {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-bottom: 2px solid #000;
+        padding: 10px;
+    }
+
+    .table-responsive {
+        display: flex;
+        border: 2px solid #000;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 0;
+    }
+
+    .table-responsive td {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .table-responsive:hover {
+        background-color: #0D00A4;
+        color: #fff;
+        cursor: pointer;
+        transition: 1s;
+    }
+
+    .active-liste {
+        background-color: #0D00A4;
+        color: #fff;
+    }
+
+    .active-details {
+        display: block !important;
+    }
+}
 
 @media screen and (max-width: 992px) {
-    /* Dashboard */
+
+    /* Dashboard  Global */
 
     .dashboard-container {
         flex-direction: column;
     }
+
+    /* 1. Section Right - 2. Section Left*/
 
     .section-right,
     .section-left {
         width: 100%;
     }
 
-    /* Page Gestion Produit */
-
-    .produit-list table thead {
-        display: none;
+    .section-right {
+        padding-top: 20px;
     }
 
-    .produit-list table tbody tr {
-        display: block;
-        margin: 20px 0;
-        border: 2px solid #000;
-    }
-
-    .produit-list table tbody td {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        border-bottom: 2px solid #000;
-        padding: 10px;
-    }
-
-    .produit-list table tbody td::before {
-        content: attr(data-label);
-        font-weight: bold;
-    }
-
-    /* Menu - Dashboard */
+    /* 3. Menu Navigation */
 
     .menu-dashboard {
         display: none;
     }
 
-    /* 1. Modale - Menu Responsive */
-
-    .modal-mobile-left li {
+    .menu li {
         list-style: none;
-        margin: 20px 0;
+        margin: 20px 40px;
         display: flex;
         align-items: center;
+        justify-content: center;
     }
 
-    .modal-mobile-left a {
+    .menu a {
         color: #fff;
         font-size: 25px;
         border-bottom: 2px solid transparent;
@@ -290,69 +550,126 @@ footer {
         text-decoration: none;
     }
 
-    .btnOpenDashboard {
-        display: block;
-        text-align: end;
-        padding-right: 4%;
-        background-color: #04052E;
+    .menu a:hover {
+        color: #0D00A4;
+        border-bottom: 2px solid #0D00A4;
+        transition: 1s;
     }
 
-    .btnOpenDashboard .fa-bars {
+    .menu img {
+        width: 30px;
+    }
+
+    .btnDashboard {
+        display: block;
+        text-align: center;
+        border-bottom: 1px solid #fff;
+    }
+
+    .btnOpen {
+        display: block;
+    }
+
+    .btnClose {
+        display: none;
+    }
+
+    .btnOpen .fa-bars,
+    .btnClose .fa-times {
         color: #fff;
         font-size: 2em;
         padding: 10px;
         cursor: pointer;
     }
 
-    .modal-menu-left,
-    .modal-dashboard-left {
+    .modal-menu {
+        display: none;
+        transition: height 0.6s ease-in-out;
+        overflow: hidden;
+    }
+
+    .active-menu {
         display: block;
     }
 
-    .modal-dashboard-left {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        background-color: #000;
-        transform: translateX(-100%);
-        transition: transform 0.9s ease-in-out;
-        z-index: 1;
-        width: 85%;
+    /* Page dashboard */
+
+    /* 1. Block indication */
+
+    .block-indication {
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    .btnCloseDashboard {
-        position: fixed;
-        top: 12px;
-        right: 20px;
+    .fiche-indication {
+        width: calc(80%/2);
     }
 
-    .btnCloseDashboard .fa-times {
-        color: #fff;
-        font-size: 2em;
-        padding: 10px 14px;
-        cursor: pointer;
+    /* Page Profile Admin */
+
+    .profil-information-admin {
+        width: 70%;
     }
 
-    .active-menu-left {
-        transform: translateY(0);
-    }
 }
 
 @media screen and (max-width: 768px) {
 
-    /* Page Gestion Produit */
+    /* Header */
 
-    .section-1-produit .produit-form {
+    /* 1. Header Top */
+
+    .back-header-top {
+        flex-direction: column;
+    }
+
+    .header-return,
+    .back-header-top h1,
+    .icone-header {
+        width: 100%;
+        margin: 20px auto;
+    }
+
+    /* Page dashboard */
+
+    /* 1. Block indication */
+
+    .fiche-indication {
+        width: calc(85% / 2);
+    }
+
+    /* Page Gestion Produit - Page Gestion Membre */
+
+    .gestion-form {
+        width: 80%;
+    }
+
+    /* Page Profile Admin */
+
+    .profil-information-admin {
         width: 80%;
     }
 }
 
 @media screen and (max-width: 576px) {
 
-    /* Page Gestion Produit */
+    /* Page dashboard */
 
-    .section-1-produit .produit-form {
+    /* 1. Block indication */
+
+    .fiche-indication {
+        width: 90%;
+    }
+
+    /* Page Gestion Produit - Page Gestion Membre */
+
+    .gestion-form {
+        width: 90%;
+    }
+
+    /* Page Profile Admin */
+
+    .profil-information-admin {
         width: 90%;
     }
 }

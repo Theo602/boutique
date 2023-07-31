@@ -6,21 +6,21 @@ require_once('config/init.php');
 
 if (isset($_GET['id_produit']) && !empty($_GET['id_produit'])) {
 
-    $dataProduit = $bdd->prepare('SELECT * FROM produit WHERE id_produit = :id_produit');
-    $dataProduit->bindParam(':id_produit', $_GET['id_produit'], PDO::PARAM_STR);
+    $requestProduit = $bdd->prepare('SELECT * FROM produit WHERE id_produit = :id_produit');
+    $requestProduit->bindParam(':id_produit', $_GET['id_produit'], PDO::PARAM_INT);
 
     try {
-        $dataProduit->execute();
+        $requestProduit->execute();
     } catch (PDOException $exception) {
         header('Location: errors/error500.php');
         exit();
     }
 
-    if ($dataProduit->rowCount() == 0) {
+    if ($requestProduit->rowCount() == 0) {
         header('Location: errors/error404.php');
         exit();
     } else {
-        $produit = $dataProduit->fetch(PDO::FETCH_ASSOC);
+        $produit = $requestProduit->fetch(PDO::FETCH_ASSOC);
         extract($produit);
     }
 } else {
@@ -30,7 +30,7 @@ if (isset($_GET['id_produit']) && !empty($_GET['id_produit'])) {
 
 $pageTitle = 'Produit: ' . $titre;
 $pageMetaDesc = 'Découvrez les caractéristique et les informations du produit.';
-$bodyId = BOUTIQUE_PAGE;
+$bodyId = PRODUIT_PAGE;
 
 require_once('inc/header.inc.php');
 

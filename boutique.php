@@ -24,26 +24,26 @@ $categories = $dataCategorie->fetchAll();
 
 if (isset($_GET['categorie']) && !empty($_GET['categorie'])) {
 
-    $dataProduit = $bdd->prepare('SELECT * FROM produit WHERE categorie = :categorie');
-    $dataProduit->bindParam(':categorie', $_GET['categorie'], PDO::PARAM_STR);
+    $requestProduit = $bdd->prepare('SELECT * FROM produit WHERE categorie = :categorie');
+    $requestProduit->bindParam(':categorie', $_GET['categorie'], PDO::PARAM_STR);
 
     try {
-        $dataProduit->execute();
+        $requestProduit->execute();
     } catch (PDOException $exception) {
         header('Location: errors/error500.php');
         exit();
     }
 
-    if ($dataProduit->rowCount() == 0) {
+    if ($requestProduit->rowCount() == 0) {
         header('Location: errors/error404.php');
         exit();
     }
 } else {
 
-    $dataProduit = $bdd->prepare('SELECT * FROM produit');
+    $requestProduit = $bdd->prepare('SELECT * FROM produit');
 
     try {
-        $dataProduit->execute();
+        $requestProduit->execute();
     } catch (PDOException $exception) {
         header('Location: errors/error500.php');
         exit();
@@ -88,22 +88,22 @@ require_once('inc/header.inc.php');
 
             <section class="section-1-produit">
 
-                <?php if (!empty($dataProduit)) : ?>
+                <?php if (!empty($requestProduit)) : ?>
 
                     <div class="block-produit-boutique">
 
-                        <?php while ($product = $dataProduit->fetch(PDO::FETCH_ASSOC)) : ?>
+                        <?php while ($produit = $requestProduit->fetch(PDO::FETCH_ASSOC)) : extract($produit) ?>
 
                             <div class="fiche-produit-boutique">
 
                                 <figure>
-                                    <img src="<?= $product['photo'] ?>" alt="<?= $product['titre'] ?>">
+                                    <img src="<?= $photo ?>" alt="<?= $titre ?>">
                                 </figure>
 
-                                <h3 class="titre_produit"><?= ucfirst($product['titre']) ?></h3>
-                                <p><?= ucfirst($product['public']) ?></p>
-                                <p><?= $product['prix'] ?>€</p>
-                                <a href="<?= "produit.php?id_produit=" . $product['id_produit'] ?>">Voir le produit</a>
+                                <h3 class="titre_produit"><?= ucfirst($titre) ?></h3>
+                                <p><?= ucfirst($public) ?></p>
+                                <p><?= $prix ?>€</p>
+                                <a href="<?= "fiche-produit.php?id_produit=" . $id_produit ?>">Voir le produit</a>
 
                             </div>
 

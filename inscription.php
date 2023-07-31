@@ -11,6 +11,8 @@ if (userConnected()) {
     exit();
 }
 
+// Création du profil d'un membre
+
 $error = [];
 
 if ($_POST) {
@@ -41,7 +43,7 @@ if ($_POST) {
     $emailFind = $bdd->query("SELECT * FROM user WHERE email = '$email'");
 
     if ($emailFind->rowCount() >= 1) {
-        $error['email'] = "L'email est indisponible";
+        $error['email'] = "L'email existe déjà";
     }
 
     // Vérifier si les mots de passes sont identiques 
@@ -69,8 +71,11 @@ if ($_POST) {
 
         $status = 0;
 
+        $date_creation = new DateTime('now', new DateTimeZone('Europe/Paris'));
+        $date_creation = $date_creation->format('Y-m-d H:i:s');
+
         $query =  $bdd->prepare("INSERT INTO user(password, nom, prenom, email, civilite, ville, code_postal, adresse, status, created_at)
-        VALUES(:password, :nom, :prenom, :email, :civilite, :ville, :code_postal, :adresse, :status, NOW())");
+        VALUES(:password, :nom, :prenom, :email, :civilite, :ville, :code_postal, :adresse, :status, :created_at)");
 
         $query->bindParam(":password", $password, PDO::PARAM_STR);
         $query->bindParam(":nom", $nom, PDO::PARAM_STR);
@@ -81,13 +86,14 @@ if ($_POST) {
         $query->bindParam(":code_postal", $code_postal, PDO::PARAM_INT);
         $query->bindParam(":adresse", $adresse, PDO::PARAM_STR);
         $query->bindParam(":status", $status, PDO::PARAM_INT);
+        $query->bindParam(":created_at", $date_creation, PDO::PARAM_STR);
 
         try {
             $query->execute();
             header('Location: connexion.php?send=success#messageForm');
             exit();
         } catch (PDOException $exception) {
-            header('Location:inscription.php?send=error#messageForm');
+            header('Location: inscription.php?send=error#messageForm');
             exit();
         }
     }
@@ -124,8 +130,9 @@ require_once('inc/header.inc.php');
             </div>
 
             <div class="prenom">
+
                 <label for="prenom">Prenom :</label>
-                <input class="inputForm <?= isset($error['prenom']) ? 'border-error' : '' ?>" type="text" name="prenom" id="prenom" value="<?= ($_POST['prenom']) ??  '';  ?>">
+                <input class="inputForm <?= isset($error['prenom']) ? 'border-error' : '' ?>" type="text" name="prenom" id="prenom" value="<?= ($prenom) ??  '';  ?>">
 
                 <div class="message-error-input active-message"></div>
 
@@ -136,8 +143,9 @@ require_once('inc/header.inc.php');
             </div>
 
             <div class="nom">
+
                 <label for="nom">Nom :</label>
-                <input class="inputForm <?= isset($error['nom']) ? 'border-error' : '' ?>" type="text" name="nom" id="nom" value="<?= ($_POST['nom']) ??  '';  ?>">
+                <input class="inputForm <?= isset($error['nom']) ? 'border-error' : '' ?>" type="text" name="nom" id="nom" value="<?= ($nom) ??  '';  ?>">
 
                 <div class="message-error-input active-message"></div>
 
@@ -148,8 +156,9 @@ require_once('inc/header.inc.php');
             </div>
 
             <div class="email">
+
                 <label for="email">Email :</label>
-                <input class="inputForm <?= isset($error['email']) ? 'border-error' : '' ?>" type="email" name="email" id="email" value="<?= ($_POST['email']) ??  '';  ?>">
+                <input class="inputForm <?= isset($error['email']) ? 'border-error' : '' ?>" type="email" name="email" id="email" value="<?= ($email) ??  '';  ?>">
 
                 <div class="message-error-input active-message"></div>
 
@@ -160,6 +169,7 @@ require_once('inc/header.inc.php');
             </div>
 
             <div class="password">
+
                 <label for="password">Mot de passe :</label>
                 <input class="inputForm <?= isset($error['password']) ? 'border-error' : '' ?>" type="password" name="password" id="password">
 
@@ -179,13 +189,14 @@ require_once('inc/header.inc.php');
 
             <div class="ville">
                 <label for="ville">Ville :</label>
-                <input class="inputForm" type="text" name="ville" id="ville" value="<?= ($_POST['ville']) ??  '';  ?>">
+                <input class="inputForm" type="text" name="ville" id="ville" value="<?= ($ville) ??  '';  ?>">
                 <div class="message-error-input active-message"></div>
             </div>
 
             <div class="code-postal">
+
                 <label for="code-postal">Code postal :</label>
-                <input class="inputForm <?= isset($error['code_postal']) ? 'border-error' : '' ?>" type="text" name="code_postal" id="code_postal" value="<?= ($_POST['code_postal']) ??  '';  ?>">
+                <input class="inputForm <?= isset($error['code_postal']) ? 'border-error' : '' ?>" type="text" name="code_postal" id="code_postal" value="<?= ($code_postal) ??  '';  ?>">
 
                 <div class="message-error-input active-message"></div>
 
@@ -197,7 +208,7 @@ require_once('inc/header.inc.php');
 
             <div class="adresse">
                 <label for="adresse">Adresse :</label>
-                <input class="inputForm" type="text" name="adresse" id="adresse" value="<?= ($_POST['adresse']) ??  '';  ?>">
+                <input class="inputForm" type="text" name="adresse" id="adresse" value="<?= ($adresse) ??  '';  ?>">
                 <div class="message-error-input active-message"></div>
             </div>
 

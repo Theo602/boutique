@@ -24,7 +24,7 @@
 
         <div class="header-top">
 
-            <h1>Boutique E-commerce</h1>
+            <h1>Boutique T-commerce</h1>
 
         </div>
 
@@ -35,10 +35,15 @@
                 <li><a href="<?= URL; ?>index.php" aria-current="page">Accueil</a></li>
 
                 <?php if (userIsAdmin()) : ?>
-                    <li><a href="<?= URL; ?>admin">Dashboard</a></li>
-                <?php endif ?>
 
-                <?php if (userConnected()) : ?>
+                    <li><a href="<?= URL; ?>boutique.php">Boutique</a></li>
+                    <li><a href="<?= URL; ?>admin">Dashboard</a></li>
+                    <li><a href="<?= URL; ?>panier.php">Panier</a></li>
+                    <li><a href="<?= URL; ?>deconnexion.php">Deconnexion</a></li>
+
+
+                <?php elseif (userConnected() && $_SESSION['user']['status'] == 0) : ?>
+
                     <li><a href="<?= URL; ?>profil.php">Profil</a></li>
                     <li><a href="<?= URL; ?>boutique.php">Boutique</a></li>
                     <li><a href="<?= URL; ?>panier.php">Panier</a></li>

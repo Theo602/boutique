@@ -1,50 +1,57 @@
 'use strict';
 
 
-/* Menu - Dashboard */
+/* Menu - Responsive */
 
 ; (function () {
 
-    const btnOpenDashboard = document.querySelector('.btnOpenDashboard i');
-    const btnCloseDashboard = document.querySelector('.btnCloseDashboard');
-    const modalDashboard = document.querySelector('.modal-dashboard-left');
-    let contentDashboard = document.querySelector('.menu-dashboard');
-    let contentResponsiveDashboard = document.querySelector('.modal-mobile-left');
+    const containerOpen = document.querySelector('.btnOpen');
+    const containerClose = document.querySelector('.btnClose');
+    const btnOpen = document.querySelector('.btnOpen i');
+    const btnClose = document.querySelector('.btnClose i');
+    const modal = document.querySelector('.modal-menu');
+    let content = document.querySelector('.menu-dashboard');
+    let contentResponsive = document.querySelector('.modal-mobile');
 
-    contentResponsiveDashboard.innerHTML = contentDashboard.innerHTML;
+    contentResponsive.innerHTML = content.innerHTML;
 
-    btnOpenDashboard.addEventListener('click', function () {
-        modalDashboard.classList.add('active-menu-left');
-        btnCloseDashboard.style.display = "block";
-    });
+    btnOpen.addEventListener('click', function (event) {
 
-    btnCloseDashboard.addEventListener('click', function () {
-        modalDashboard.classList.remove('active-menu-left');
-        btnCloseDashboard.style.display = "none";
+        event.preventDefault();
 
+        containerClose.style.display = "block";
+        containerOpen.style.display = "none";
 
-    });
+        if (!modal.classList.contains('active-menu')) {
 
-    window.onresize = function () {
+            modal.classList.add('active-menu');
+            modal.style.height = 'auto';
 
-        if (window.innerWidth > 992) {
-            btnOpen.style.display = "none";
+            let height = modal.clientHeight + 'px';
+
+            modal.style.height = '0px';
+
+            setTimeout(function () {
+                modal.style.height = height;
+            }, 0);
+
         }
 
-        else {
-            btnOpen.style.display = "block";
-        }
-    }
+    });
+
+    btnClose.addEventListener('click', function (event) {
+
+        event.preventDefault();
+
+        modal.style.height = '0px';
+        containerClose.style.display = "none";
+        containerOpen.style.display = "block";
+
+        modal.addEventListener('transitionend', function () {
+            modal.classList.remove('active-menu');
+        }, {
+            once: true
+        });
+    });
 
 })()
-
-    /* Bouton supprimer */
-
-    ; (function () {
-
-        let btnDelete = document.querySelector('.btnDelete');
-        btnDelete.onclick = function () {
-            return (confirm('Etes vous sur ?'));
-        }
-
-    })()

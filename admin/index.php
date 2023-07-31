@@ -1,0 +1,180 @@
+<?php
+
+require_once('../config/init.php');
+
+if (!userIsAdmin()) {
+    header('Location: ../errors/error403.php');
+}
+
+$pageTitle = 'Dashboard';
+$pageMetaDesc = 'Bienvenue sur votre dashboard.';
+$bodyId = ADMIN_DASHBOARD;
+
+/* Nombre de produit */
+
+$requestProduit = $bdd->prepare('SELECT COUNT(*) FROM produit');
+
+try {
+    $requestProduit->execute();
+} catch (PDOException $exception) {
+    header('Location: errors/error500.php');
+    exit();
+}
+
+$countProduit = $requestProduit->fetchColumn();
+
+/* Nombre de commande */
+
+$requestCommande = $bdd->prepare('SELECT COUNT(*) FROM commande');
+
+try {
+    $requestCommande->execute();
+} catch (PDOException $exception) {
+    header('Location: ../errors/error500.php');
+    exit();
+}
+
+$countCommande = $requestCommande->fetchColumn();
+
+/* Nombre de membre */
+
+$requestUser = $bdd->prepare('SELECT COUNT(*) FROM user');
+
+try {
+    $requestUser->execute();
+} catch (PDOException $exception) {
+    header('Location: ../errors/error500.php');
+    exit();
+}
+
+$countUser = $requestUser->fetchColumn();
+
+/* Affichage des commandes */
+
+$requestDetailCommande = $bdd->prepare("SELECT *, DATE_FORMAT(c.created_at, '%d/%m/%Y') AS created_at FROM commande c INNER JOIN user u ON 
+c.id_membre = u.id_membre ORDER BY id_commande  DESC LIMIT 0, 6");
+
+try {
+    $requestDetailCommande->execute();
+} catch (PDOException $exception) {
+    header('Location: ../errors/error500.php');
+    exit();
+}
+
+$commandes = $requestDetailCommande->fetchAll();
+
+require_once('inc/header.inc.php');
+?>
+
+
+<!-- Affichage de la page -->
+
+<section class="section-left">
+
+    <?php require_once('inc/menu.inc.php');  ?>
+
+</section>
+
+<section class="section-right">
+
+    <section class="section-1-dashboard">
+
+        <div class="block-indication">
+
+            <div class="fiche-indication">
+
+                <h3>Produits</h3>
+                <p><?= $countProduit; ?></p>
+
+            </div>
+
+            <div class="fiche-indication">
+
+                <h3>Commandes</h3>
+                <p><?= $countCommande; ?></p>
+
+            </div>
+
+            <div class="fiche-indication">
+
+                <h3>Membres</h3>
+                <p><?= $countUser; ?></p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section-2-dashboard">
+
+        <div class="table-list">
+
+            <h3>Commandes récentes des clients</h3>
+            <hr>
+
+            <p>
+                <a class="table-link" href="">Voir tout</a>
+            </p>
+
+            <table>
+
+                <thead>
+                    <tr class="table-top-commande">
+                        <th>Commande nᵒ</th>
+                        <th>Référence</th>
+                        <th>Client</th>
+                        <th>Date</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <?php if (!empty($commandes)) : ?>
+
+                        <?php foreach ($commandes as $commande) : extract($produit); ?>
+
+                            <tr class="table-responsive">
+
+                                <td>Commande nᵒ <?= $id_commande; ?></td>
+                                <td><i class="fas fa-chevron-down"></td>
+
+                            </tr>
+
+                            <tr class="table-details-commande">
+                                <td data-label="Commande nᵒ"><?= $id_commande; ?></td>
+                                <td data-label="Référence"><?= $reference; ?></td>
+                                <td data-label="Client"><?= $email; ?></td>
+                                <td data-label="Date"><?= $created_at; ?></td>
+                                <td data-label="Total"><?= $montant; ?></td>
+                                <td data-label="Status"><?= $etat; ?></td>
+                                <td data-label="Option">
+
+                                    <a href="" title="Voir"><i class="fa fa-eye"></i></a>
+
+                                </td>
+                            </tr>
+
+                        <?php endforeach; ?>
+
+                    <?php else : ?>
+
+                        <tr class="td-empty">
+                            <td colspan="7">Aucune commande</td>
+                        </tr>
+
+                    <?php endif ?>
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </section>
+
+</section>
+
+
+<?php require_once('inc/footer.inc.php');  ?>

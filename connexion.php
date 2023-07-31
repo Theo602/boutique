@@ -27,27 +27,32 @@ if ($_POST) {
         $email = htmlspecialchars(strip_tags($email));
         $password = htmlspecialchars(strip_tags($password));
 
-        $connect = $bdd->prepare('SELECT * FROM user WHERE email = :email ');
-        $connect->bindParam(":email", $email, PDO::PARAM_STR);
+        $requestConnect = $bdd->prepare('SELECT * FROM user WHERE email = :email ');
+        $requestConnect->bindParam(":email", $email, PDO::PARAM_STR);
 
         try {
-            $connect->execute();
+            $requestConnect->execute();
         } catch (PDOException $exception) {
             header('Location: errors/error500.php');
             exit();
         }
 
-        if ($connect->rowCount() >= 1) {
+        if ($requestConnect->rowCount() >= 1) {
 
-            $user = $connect->fetch(PDO::FETCH_ASSOC);
+            $user = $requestConnect->fetch(PDO::FETCH_ASSOC);
 
             if ($user && password_verify($password, $user['password'])) {
 
                 $_SESSION['user']['id_membre'] = $user['id_membre'];
                 $_SESSION['user']['status'] = $user['status'];
 
-                header('Location: profil.php');
-                exit();
+                if ($user['status'] == 1) {
+                    header('Location: admin/profil_admin.php');
+                    exit();
+                } else {
+                    header('Location: profil.php');
+                    exit();
+                }
             } else {
                 $error['identification'] = 'Mot de passe incorrect';
             }

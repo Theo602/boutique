@@ -9,29 +9,29 @@ $bodyId = HOME_PAGE;
 
 /* Affichage des catégorie */
 
-$dataCategorie = $bdd->prepare('SELECT DISTINCT categorie FROM produit');
+$requestCategorie = $bdd->prepare('SELECT DISTINCT categorie FROM produit');
 
 try {
-    $dataCategorie->execute();
+    $requestCategorie->execute();
 } catch (PDOException $exception) {
     header('Location: errors/error500.php');
     exit();
 }
 
-$categories = $dataCategorie->fetchAll();
+$categories = $requestCategorie->fetchAll();
 
 /* Affichage des derniers produits */
 
-$dataProducts = $bdd->prepare('SELECT * FROM produit ORDER BY id_produit DESC LIMIT 0, 4');
+$requestProduit = $bdd->prepare('SELECT * FROM produit ORDER BY id_produit DESC LIMIT 0, 4');
 
 try {
-    $dataProducts->execute();
+    $requestProduit->execute();
 } catch (PDOException $exception) {
     header('Location: errors/error500.php');
     exit();
 }
 
-$products = $dataProducts->fetchAll();
+$produits = $requestProduit->fetchAll();
 
 require_once('inc/header.inc.php');
 
@@ -90,17 +90,17 @@ require_once('inc/header.inc.php');
 
     <div class="block-produit-accueil">
 
-        <?php if (!empty($products)) : ?>
+        <?php if (!empty($produits)) : ?>
 
-            <?php foreach ($products as $product) : ?>
+            <?php foreach ($produits as $produit) : ?>
 
                 <div class="fiche-produit-accueil">
                     <figure>
-                        <img src="<?= $product['photo'] ?>" alt="Catégorie <?= $product['titre'] ?>">
+                        <img src="<?= $produit['photo'] ?>" alt="Catégorie <?= $produit['titre'] ?>">
                     </figure>
-                    <h3 class="titre_products"><?= ucfirst($product['titre']) ?></h3>
-                    <p><?= ucfirst($product['public']) ?></p>
-                    <a href="<?= "produit.php?id_produit=" . $product['id_produit'] ?>">Voir le produit</a>
+                    <h3 class="titre_produit_accueil"><?= ucfirst($produit['titre']) ?></h3>
+                    <p><?= ucfirst($produit['public']) ?></p>
+                    <a href="<?= "fiche-produit.php?id_produit=" . $produit['id_produit'] ?>">Voir le produit</a>
                 </div>
 
             <?php endforeach; ?>
