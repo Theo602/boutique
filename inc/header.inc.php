@@ -44,7 +44,14 @@
 
                     <li><a href="<?= URL; ?>boutique.php">Boutique</a></li>
                     <li><a href="<?= URL; ?>admin">Dashboard</a></li>
-                    <li><a href="<?= URL; ?>panier.php">Panier</a></li>
+                    <li>
+                        <a class="link-shop" href="<?= URL; ?>panier.php">Panier
+                            <img class="image-shop" src="asset/img/shop/icone-panier.png" alt="icone panier">
+                            <span class="count-shop">
+                                <?= (!empty(nbreProduitPanier())) ? nbreProduitPanier() : 0 ?>
+                            </span>
+                        </a>
+                    </li>
                     <li><a href="<?= URL; ?>deconnexion.php">Deconnexion</a></li>
 
 
@@ -52,7 +59,14 @@
 
                     <li><a href="<?= URL; ?>compte.php">Mon Compte</a></li>
                     <li><a href="<?= URL; ?>boutique.php">Boutique</a></li>
-                    <li><a href="<?= URL; ?>panier.php">Panier</a></li>
+                    <li>
+                        <a class="link-shop" href="<?= URL; ?>panier.php">Panier
+                            <img class="image-shop" src="asset/img/shop/icone-panier.png" alt="icone panier">
+                            <span class="count-shop">
+                                <?= (!empty(nbreProduitPanier())) ? nbreProduitPanier() : 0 ?>
+                            </span>
+                        </a>
+                    </li>
                     <li><a href="<?= URL; ?>deconnexion.php">Deconnexion</a></li>
 
                 <?php else : ?>
