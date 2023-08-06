@@ -2,15 +2,17 @@
 
 require_once('config/init.php');
 
-$pageTitle = 'Connexion';
-$pageMetaDesc = 'Connectez vous à votre espace client';
+
+$pageTitle = 'Espace connexion';
+$pageMetaDesc = 'Connectez vous à votre compte';
 $bodyId = SIGN_UP;
 
 
 if (userConnected()) {
-    header('Location: profil.php');
+    header('Location: compte.php');
     exit();
 }
+
 
 $erreur = [];
 
@@ -37,7 +39,7 @@ if ($_POST) {
             exit();
         }
 
-        if ($requestConnect->rowCount() >= 1) {
+        if ($requestConnect->rowCount() == 1) {
 
             $user = $requestConnect->fetch(PDO::FETCH_ASSOC);
 
@@ -47,17 +49,17 @@ if ($_POST) {
                 $_SESSION['user']['status'] = $user['status'];
 
                 if ($user['status'] == 1) {
-                    header('Location: admin/profil_admin.php');
+                    header('Location: admin');
                     exit();
                 } else {
-                    header('Location: profil.php');
+                    header('Location: compte.php');
                     exit();
                 }
             } else {
                 $error['identification'] = 'Mot de passe incorrect';
             }
         } else {
-            $error['email'] = "L'email n'existe pas";
+            $error['email'] = "L'email $email n'existe pas";
         }
     } else {
         $error['champs'] = "L'email et le mot de passe sont incorrect";

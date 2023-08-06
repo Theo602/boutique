@@ -8,6 +8,20 @@
     padding: 0;
 }
 
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1 0 auto;
+}
+
 /*Header*/
 
 /* 1. Header Top */
@@ -238,19 +252,19 @@ header .menu a:hover {
     width: 50%;
 }
 
-.section-4-accueil>form>.newsletter-email input {
+.newsletter-validation {
+    margin: 4% auto;
+    text-align: center;
+}
+
+.input-newsletter {
     padding: 16px;
     border-radius: 5px;
     width: 100%;
     border: 2px solid #02010A;
 }
 
-.section-4-accueil>form>.newsletter-validation {
-    margin: 4% auto;
-    text-align: center;
-}
-
-.section-4-accueil>form>.newsletter-validation input {
+.submit-newsletter {
     background-color: #000;
     border: none;
     padding: 2% 6%;
@@ -260,42 +274,10 @@ header .menu a:hover {
     border: 2px solid #fff;
 }
 
-.section-4-accueil>form>.newsletter-validation input:hover {
+.submit-newsletter:hover {
     background-color: #0D00A4;
     cursor: pointer;
     transition: 2s;
-}
-
-/* Page Profil */
-
-.section-1-profil h2 {
-    font-size: 2.6em;
-    text-align: center;
-    margin: 0 auto 50px;
-}
-
-.profil-information p {
-    font-size: 20px;
-    margin: 10px 0;
-}
-
-.profil-information a {
-    background-color: #000;
-    border: 3px solid #0D00A4;
-    color: #fff;
-    display: block;
-    width: 20%;
-    text-align: center;
-    padding: 5px;
-    border-radius: 5px;
-    text-decoration: navajowhite;
-    margin: 20px auto;
-    font-size: 18px;
-}
-
-.profil-information a:hover {
-    background-color: #0D00A4;
-    transition: 1s;
 }
 
 /* Page Boutique */
@@ -456,7 +438,13 @@ header .menu a:hover {
 
 .produit-infos h2 {
     font-size: 2.2em;
-    padding: 20px 0;
+    padding: 20px 0 15px 0;
+}
+
+.produit-prix {
+    font-size: 1.6em;
+    font-weight: bold;
+    padding: 5px 0 10px 0px;
 }
 
 .produit-text,
@@ -508,17 +496,107 @@ header .menu a:hover {
     cursor: pointer;
 }
 
-/* Page Accueil - Page Boutique - Page inscription - Page connexion - Page Profil - Page Produit  */
+/* Page Process-order */
+
+.background-commande {
+    background: #fff;
+    box-shadow: #000 0px 0px 4px 4px;
+    border-radius: 5px;
+    margin: 20px auto;
+    padding: 10px;
+    width: 90%;
+}
+
+.resume-commande {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.fiche-information {
+    width: 25%;
+}
+
+.fiche-information p {
+    font-size: 18px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Page Validation Commande */
+
+.section-1-achat {
+    background-color: #04052E;
+}
+
+.section-1-achat h2 {
+    text-align: center;
+    font-size: 2.6em;
+    color: #fff;
+}
+
+.section-1-achat p {
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+}
+
+.information-achat {
+    background: #fff;
+    box-shadow: #000 0px 0px 4px 4px;
+    border-radius: 5px;
+    margin: 20px auto;
+    padding: 4%;
+    width: 80%;
+}
+
+.information-achat h3 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.information-achat hr {
+    margin: 20px auto;
+    padding: 1px;
+    background-color: #000;
+}
+
+.resume-achat p {
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    padding: 2px 0;
+}
+
+.btn-compte {
+    color: #0D00A4;
+    text-decoration: none;
+}
+
+.btn-compte:hover {
+    color: #000;
+    transition: 1s;
+}
+
+/* Page Accueil - Page Boutique - Page inscription - Page connexion - Page Produit  - Page Panier - Page Process-order - Page Validation Commande */
 
 /* 1. Hr */
 
 .inscription-form hr,
 .connexion-form hr,
-.profil-information hr,
 .section-2-accueil hr,
 .section-1-boutique hr,
 .section-3-accueil hr,
-.section-4-accueil hr {
+.section-4-accueil hr,
+.section-1-panier hr,
+.section-1-commande hr,
+.information-commande hr,
+.fiche-information hr,
+.list-panier hr,
+.list-commande hr,
+.section-1-achat hr,
+.section-2-achat hr {
     margin: 20px auto;
     padding: 1px;
     background-color: #000;
@@ -526,7 +604,11 @@ header .menu a:hover {
 
 .section-2-accueil hr,
 .section-3-accueil hr,
-.section-4-accueil hr {
+.section-4-accueil hr,
+.section-1-boutique hr,
+.section-1-panier hr,
+.section-1-commande hr,
+.section-1-achat hr {
     width: 40%;
 }
 
@@ -534,8 +616,15 @@ header .menu a:hover {
     width: 60%;
 }
 
+.fiche-information hr {
+    width: 70%;
+}
+
 .section-2-accueil hr,
-.section-4-accueil hr {
+.section-4-accueil hr,
+.section-1-panier hr,
+.section-1-commande hr,
+.section-1-achat hr {
     background-color: #fff;
 }
 
@@ -543,10 +632,19 @@ header .menu a:hover {
 
 .section-1-inscription,
 .section-1-connexion,
-.section-1-profil,
 .section-1-boutique,
-.section-1-produit {
+.section-1-produit,
+.section-1-panier,
+.section-2-panier,
+.section-1-commande,
+.section-2-commande,
+.section-1-achat,
+.section-2-achat {
     padding: 4% 0px;
+}
+
+.section-1-connexion {
+    height: 100%;
 }
 
 /* Page Accueil - Page Boutique */
@@ -561,13 +659,24 @@ header .menu a:hover {
 
 /* 1. Formulaire */
 
+
+.connect {
+    margin: 20px 0 0 0;
+    text-align: center;
+    font-size: 18px;
+}
+
 .inscription-form div,
 .connexion-form div {
     margin: 20px auto;
 }
 
-.inscription-form .inputForm,
-.connexion-form .inputForm {
+.civilite,
+.civilite p {
+    margin: 10px 0;
+}
+
+.inputForm {
     border: 1px black solid;
     border-radius: 5px;
     display: block;
@@ -577,20 +686,16 @@ header .menu a:hover {
     width: 100%;
 }
 
-
-.inscription-form .submit,
-.connexion-form .submit {
+.submit {
     background-color: #000;
     border-radius: 5px;
     color: #fff;
     cursor: pointer;
 }
 
-.inscription-form .connect,
-.connexion-form .connect {
-    margin: 20px 0 0 0;
-    text-align: center;
-    font-size: 18px;
+.submit:hover {
+    background-color: #11006c;
+    transition: 1s;
 }
 
 .inscription-form a,
@@ -605,22 +710,209 @@ header .menu a:hover {
     transition: 1s;
 }
 
-.inscription-form .submit:hover,
-.connexion-form .submit:hover {
-    background-color: #11006c;
+/* Page Panier - Page Process-order */
+
+/* 1. Block Panier */
+
+.section-1-panier,
+.section-1-commande {
+    background-color: #04052E;
+}
+
+.section-1-panier h2,
+.section-1-commande h2 {
+    color: #fff;
+    font-size: 2.6em;
+    text-align: center;
+}
+
+.section-1-panier p,
+.section-1-commande p {
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+}
+
+/* 2. Block Liste Panier */
+
+.list-panier,
+.list-commande {
+    background: #fff;
+    border-radius: 5px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.list-panier {
+    box-shadow: #000 0px 0px 4px 4px;
+    width: 90%;
+}
+
+.list-commande {
+    margin-top: 5%;
+}
+
+.information-commande h3,
+.resume-commande h3,
+.list-panier h3,
+.list-commande h3 {
+    font-size: 30px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.resume-commande h3 {
+    font-size: 24px;
+    text-align: center;
+}
+
+.list-panier table,
+.list-commande table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.table-top-commande th,
+.table-details-commande td {
+    width: calc(100% /6);
+}
+
+.table-top-panier th,
+.table-details-panier td {
+    width: calc(100% /8);
+}
+
+.table-details-panier,
+.table-details-commande {
+    text-align: center;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+.table-top-panier th,
+.table-details-panier td,
+.table-top-commande th,
+.table-details-commande td {
+    padding: 10px;
+}
+
+.table-top-panier th,
+.table-top-commande {
+    font-size: 20px;
+}
+
+.table-details-panier td,
+.table-details-commande td {
+    font-size: 18px;
+}
+
+.table-details-panier figure,
+.table-details-commande figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.table-details-panier img,
+.table-details-commande img {
+    width: 80px;
+    border-radius: 10px;
+}
+
+.table-details-panier a {
+    color: #000;
+    margin: 0 5px;
+}
+
+.table-details-panier a:hover {
+    color: #0D00A4;
     transition: 1s;
 }
 
-.civilite,
-.civilite p {
-    margin: 10px 0;
+.table-responsive {
+    display: none;
 }
 
-/* Page inscription - Page connexion - Page Profil */
+.td-empty {
+    text-align: center;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+.td-empty td {
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 3. Block Bouton - Texte Panier */
+
+.panier-total {
+    text-align: end;
+    margin: 1% 4% 1% 0;
+    font-size: 18px;
+}
+
+.order {
+    display: flex;
+    justify-content: end;
+    margin: 20px 0;
+}
+
+.btn-order,
+.btn-connect-panier,
+.btn-achat {
+    background-color: #000;
+    border: 2px solid #0D00A4;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px 10px;
+    margin: 0 6px;
+    width: 22%;
+    text-align: center;
+}
+
+.btn-achat {
+    width: 12%;
+}
+
+.btn-connect-panier {
+    width: 30%;
+}
+
+.btn-connect-panier:hover,
+.btn-order:hover,
+.btn-achat:hover {
+    background-color: #0D00A4;
+    cursor: pointer;
+    border-bottom: 2px solid #0D00A4;
+    transition: 1s;
+}
+
+.panier-vide {
+    font-size: 18px;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+.panier-vide a {
+    color: #0D00A4;
+    text-decoration: none;
+}
+
+.panier-vide a:hover {
+    color: #000;
+    transition: 1s;
+}
+
+/* Page inscription - Page connexion */
 
 .section-1-inscription .inscription-form,
-.section-1-connexion .connexion-form,
-.section-1-profil .profil-information {
+.section-1-connexion .connexion-form {
     border: 2px solid #000;
     border-radius: 10px;
     width: 50%;
@@ -633,8 +925,7 @@ header .menu a:hover {
 }
 
 .inscription-form h3,
-.connexion-form h3,
-.profil-information h3 {
+.connexion-form h3 {
     font-size: 30px;
     margin: 20px 0;
     text-align: center;
@@ -657,17 +948,22 @@ footer {
 
 .message-succes,
 .message-error,
-.message-error-input {
+.message-error-input,
+.message-error-newsletter,
+.message-succes-newsletter {
     width: 80%;
     margin: 10px auto;
-    font-size: 16px;
+    font-size: 18px;
     border-radius: 5px;
     color: black;
     text-align: center;
     padding: 10px;
+    line-height: 22px;
 }
 
-.message-error-input {
+.message-error-input,
+.message-error-newsletter,
+.message-succes-newsletter {
     width: 100%;
 }
 
@@ -676,10 +972,20 @@ footer {
     background: rgba(71, 173, 74, 0.2);
 }
 
+.message-succes-newsletter {
+    border: 2px solid #119d15;
+    background: #fff;
+}
+
 .message-error,
 .message-error-input {
     border: 2px solid red;
     background: rgba(255, 0, 0, 0.2);
+}
+
+.message-error-newsletter {
+    border: 2px solid red;
+    background: #fff;
 }
 
 .border-error {
@@ -796,13 +1102,6 @@ footer {
         margin: 2% 0%;
     }
 
-    /* Page Profil */
-
-    .profil-information a {
-        width: 30%;
-    }
-
-
     /* Page Boutique */
 
     .container-left-right {
@@ -844,10 +1143,93 @@ footer {
         width: 100%;
     }
 
+    /* Page Panier - Page Process-order */
+
+    /* 2. Block Liste Panier */
+
+    .list-panier thead,
+    .list-commande thead {
+        display: none;
+    }
+
+    .table-details-panier,
+    .table-details-commande {
+        display: none;
+        border: 2px solid #000;
+    }
+
+    .table-details-panier img,
+    .table-details-commande img {
+        margin: auto;
+    }
+
+    .table-details-panier td::before,
+    .table-details-commande td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    .table-details-panier td,
+    .table-details-commande td {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-bottom: 2px solid #000;
+        padding: 10px;
+    }
+
+    .table-responsive {
+        display: flex;
+        border: 2px solid #000;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 0;
+    }
+
+    .table-responsive:hover {
+        background-color: #0D00A4;
+        color: #fff;
+        cursor: pointer;
+        transition: 1s;
+    }
+
+    .table-responsive td {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .active-liste {
+        background-color: #0D00A4;
+        color: #fff;
+    }
+
+    .active-details {
+        display: block !important;
+    }
+
+    /* 3. Block Bouton - Texte Panier */
+
+    .order {
+        flex-direction: column;
+    }
+
+    .btn-order,
+    .btn-connect-panier,
+    .btn-achat {
+        margin: 6px 6px;
+        width: 100%;
+    }
+
+    /* Page Process-order */
+
+    .fiche-information {
+        width: 50%;
+    }
+
     /* Page inscription - Page connexion */
 
-    .section-1-inscription .inscription-form,
-    .section-1-profil .profil-information {
+    .section-1-inscription .inscription-form {
         width: 70%;
     }
 
@@ -858,12 +1240,6 @@ footer {
 
 @media screen and (max-width: 768px) {
 
-    /* Page Profil */
-
-    .profil-information a {
-        width: 40%;
-    }
-
     /* Page Boutique */
 
     .menu-categorie li {
@@ -873,8 +1249,7 @@ footer {
     /* Page inscription - Page connexion */
 
     .section-1-inscription .inscription-form,
-    .section-1-connexion .connexion-form,
-    .section-1-profil .profil-information {
+    .section-1-connexion .connexion-form {
         width: 80%;
     }
 }
@@ -925,12 +1300,6 @@ footer {
         width: 80%;
     }
 
-    /* Page Profil */
-
-    .profil-information a {
-        width: 50%;
-    }
-
     /* Page Boutique */
 
     .fiche-produit-boutique {
@@ -948,11 +1317,34 @@ footer {
         width: 100%;
     }
 
+    /* Page Process-order */
+
+    .resume-commande {
+        flex-direction: column;
+    }
+
+    .fiche-information {
+        width: 100%;
+    }
+
+    .fiche-information hr {
+        width: 50%;
+    }
+
+    /* Page Panier - Page Process-order - Page Validation Commande*/
+
+    /* 1. Block Panier */
+
+    .section-1-panier p,
+    .section-1-commande p,
+    .section-1-achat p {
+        padding: 2%;
+    }
+
     /* Page inscription - Page connexion */
 
     .section-1-inscription .inscription-form,
-    .section-1-connexion .connexion-form,
-    .section-1-profil .profil-information {
+    .section-1-connexion .connexion-form {
         width: 90%;
     }
 }

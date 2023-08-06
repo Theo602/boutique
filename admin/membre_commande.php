@@ -2,13 +2,16 @@
 
 require_once('../config/init.php');
 
+
 if (!userIsAdmin()) {
     header('Location: ../errors/error403.php');
 }
 
-$pageTitle = 'Commande';
-$pageMetaDesc = 'Bienvenue sur votre commande.';
-$bodyId = ADMIN_COMMANDE;
+
+$pageTitle = 'Espace Admin - Achats Commandes';
+$pageMetaDesc = 'Retrouver la liste des commandes des membres';
+$bodyId = ADMIN_LISTE_COMMANDE;
+
 
 /* Affichage des commandes */
 
@@ -42,7 +45,7 @@ require_once('inc/header.inc.php');
 
         <div class="table-list">
 
-            <h3>Liste des commandes</h3>
+            <h3>Liste des commandes des clients</h3>
             <hr>
 
             <table>
@@ -53,8 +56,9 @@ require_once('inc/header.inc.php');
                         <th>Référence</th>
                         <th>Client</th>
                         <th>Date</th>
-                        <th>Total</th>
+                        <th>TotalTcc</th>
                         <th>Status</th>
+                        <th>Option</th>
                     </tr>
                 </thead>
 
@@ -76,7 +80,7 @@ require_once('inc/header.inc.php');
                                 <td data-label="Référence"><?= $reference; ?></td>
                                 <td data-label="Client"><?= $email; ?></td>
                                 <td data-label="Date"><?= $created_at; ?></td>
-                                <td data-label="Total"><?= $montant; ?></td>
+                                <td data-label="TotalTcc"><?= $total_ttc; ?></td>
                                 <td data-label="Status"><?= $etat; ?></td>
                                 <td data-label="Option">
 

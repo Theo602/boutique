@@ -5,13 +5,13 @@
 
 ; (function () {
 
-    const containerOpen = document.querySelector('.btnOpen');
-    const containerClose = document.querySelector('.btnClose');
-    const btnOpen = document.querySelector('.btnOpen i');
-    const btnClose = document.querySelector('.btnClose i');
-    const modal = document.querySelector('.modal-menu');
+    const containerOpen = document.querySelector('.btnOpenDashboard');
+    const containerClose = document.querySelector('.btnCloseDashboard');
+    const btnOpen = document.querySelector('.btnOpenDashboard i');
+    const btnClose = document.querySelector('.btnCloseDashboard i');
+    const modal = document.querySelector('.modal-menu-dashboard');
     let content = document.querySelector('.menu-dashboard');
-    let contentResponsive = document.querySelector('.modal-mobile');
+    let contentResponsive = document.querySelector('.modal-mobile-dashboard');
 
     contentResponsive.innerHTML = content.innerHTML;
 
@@ -22,9 +22,9 @@
         containerClose.style.display = "block";
         containerOpen.style.display = "none";
 
-        if (!modal.classList.contains('active-menu')) {
+        if (!modal.classList.contains('active-menu-dashboard')) {
 
-            modal.classList.add('active-menu');
+            modal.classList.add('active-menu-dashboard');
             modal.style.height = 'auto';
 
             let height = modal.clientHeight + 'px';
@@ -48,7 +48,7 @@
         containerOpen.style.display = "block";
 
         modal.addEventListener('transitionend', function () {
-            modal.classList.remove('active-menu');
+            modal.classList.remove('active-menu-dashboard');
         }, {
             once: true
         });

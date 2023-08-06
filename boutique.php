@@ -2,6 +2,7 @@
 
 require_once('config/init.php');
 
+
 $pageTitle = 'Boutique';
 $pageMetaDesc = 'Découvrez nos produits de prêt-à-porter pour les jeunes adultes.';
 $bodyId = BOUTIQUE_PAGE;
@@ -60,6 +61,7 @@ require_once('inc/header.inc.php');
 <section class="section-1-boutique">
 
     <h2 class="title-product">Nos produits</h2>
+    <hr>
 
     <div class="container-left-right">
 

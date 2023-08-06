@@ -13,12 +13,17 @@
 </footer>
 
 <?php if (isset($bodyId)) : ?>
-    <?php if ($bodyId === ADMIN_BOUTIQUE  || $bodyId === ADMIN_COMPTE || $bodyId === ADMIN_COMMANDE) : ?>
-        <script src="../asset/js/script_back_liste.js"></script>
+
+    <?php if ($bodyId === ADMIN_BOUTIQUE || $bodyId === ADMIN_COMPTE_MEMBRE || $bodyId === ADMIN_LISTE_COMMANDE || $bodyId === ADMIN_GESTION_NEWSLETTER || $bodyId === ADMIN_COMPTE || $bodyId === ADMIN_COMMANDE) : ?>
+        <script src="../asset/js/script_liste.js"></script>
+    <?php endif ?>
+
+    <?php if ($bodyId === ADMIN_BOUTIQUE || $bodyId === ADMIN_COMPTE_MEMBRE || $bodyId === ADMIN_LISTE_COMMANDE || $bodyId === ADMIN_GESTION_NEWSLETTER) : ?>
+        <script src="../asset/js/script_delete_liste.js"></script>
     <?php endif ?>
 <?php endif ?>
 
-<script src="../asset/js/script_back.js"></script>
+<script src="../asset/js/script_dashboard.js"></script>
 
 </body>
 

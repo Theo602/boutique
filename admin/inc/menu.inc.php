@@ -1,8 +1,6 @@
-<?php require_once('../config/init.php'); ?>
-
 <nav class="menu-dashboard">
 
-    <ul class="menu">
+    <ul class="liste-menu">
 
         <li>
             <img src="../asset/img/dashboard/icone-dashboard.png" title="DashBoard" alt="DashBoard">
@@ -10,9 +8,21 @@
         </li>
 
         <li>
-            <img src="../asset/img/dashboard/icone-profile.png" title="Profil" alt="Profil">
-            <a href="profil_admin.php">Profil</a>
+            <img src="../asset/img/dashboard/icone-client.png" title="Compte Admin" alt="Compte Admin">
+            <a href="admin_compte.php">Mon compte</a>
         </li>
+
+        <li>
+            <img src="../asset/img/dashboard/icone-profile.png" title="Profil admin" alt="Profil admin">
+            <a href="admin_profil.php">Mon profil</a>
+        </li>
+
+        <li>
+            <img src="../asset/img/dashboard/icone-achat.png" title="Commande admin" alt="Commande admin">
+            <a href="admin_commande.php">Mes commandes</a>
+        </li>
+
+        <hr class="menu-separate">
 
         <li>
             <img src="../asset/img/dashboard/icone-boutique.png" title="Boutique" alt="Boutique">
@@ -21,17 +31,22 @@
 
         <li>
             <img src="../asset/img/dashboard/icone-produit.png" title="Produit" alt="Produit">
-            <a href="gestion_produit.php?action=ajouter">Produit</a>
+            <a href="gestion_produit.php?action=ajouter">Produits</a>
         </li>
 
         <li>
-            <img src="../asset/img/dashboard/icone-order.png" title="Commande" alt="Commande">
-            <a href="commande.php">Commande</a>
+            <img src="../asset/img/dashboard/icone-order.png" title="Commande membres" alt="Commande membres">
+            <a href="membre_commande.php">Commandes</a>
         </li>
 
         <li>
-            <img src="../asset/img/dashboard/icone-client.png" title="Membre" alt="Membre">
-            <a href="compte.php">Membre</a>
+            <img src="../asset/img/dashboard/icone-membre.png" title="Membre" alt="Membre">
+            <a href="membre_compte.php">Membres</a>
+        </li>
+
+        <li>
+            <img src="../asset/img/dashboard/icone-newsletter.png" title="Newsletter" alt="Newsletter">
+            <a href="gestion_newsletter.php">Newsletters</a>
         </li>
 
         <li>
@@ -44,13 +59,13 @@
 </nav>
 
 <div class="btnDashboard">
-    <div class="btnOpen"><i class="fas fa-bars"></i></div>
-    <div class="btnClose"><i class="fas fa-times"></i></div>
+    <div class="btnOpenDashboard"><i class="fas fa-bars"></i></div>
+    <div class="btnCloseDashboard"><i class="fas fa-times"></i></div>
 </div>
 
 
-<div class="modal-menu">
+<div class="modal-menu-dashboard">
     <div class="modal-dashboard">
-        <div class="modal-mobile"></div>
+        <div class="modal-mobile-dashboard"></div>
     </div>
 </div>

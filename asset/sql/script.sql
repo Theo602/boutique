@@ -17,7 +17,7 @@ CREATE TABLE user(
     nom VARCHAR(60) NOT NULL,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    civilite ENUM('homme','femme') NOT NULL,
+    civilite VARCHAR(60) NOT NULL,
     ville VARCHAR(100) NOT NULL,
     code_postal INT(5) UNSIGNED ZEROFILL NOT NULL,
     adresse VARCHAR(100) NOT NULL,
@@ -55,15 +55,18 @@ CREATE TABLE produit(
 CREATE TABLE commande(
 
     id_commande INT(11) NOT NULL AUTO_INCREMENT,
-    id_membre INT(11) NOT NULL,
-    montant DOUBLE NOT NULL,
+    id_membre INT(11) DEFAULT NULL,
     reference VARCHAR(255) NOT NULL,
-    etat ENUM('en cours de traitement','envoyé','livré') NOT NULL,
+    livraison VARCHAR(100) NOT NULL,
+    adresse_livraison VARCHAR(255) NOT NULL,
+    total_ht DOUBLE NOT NULL,
+    total_ttc DOUBLE NOT NULL,
+    etat enum('payé','en cours de traitement','envoyé','livré') NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     PRIMARY KEY(id_commande),
-    FOREIGN KEY(id_membre) REFERENCES user(id_membre) ON DELETE CASCADE
+    FOREIGN KEY(id_membre) REFERENCES user(id_membre) ON DELETE SET NULL ON UPDATE CASCADE
 
 ) ENGINE=InnoDB;
 
@@ -73,7 +76,7 @@ CREATE TABLE detail_commande(
 
     id_detail_commande INT(11) NOT NULL AUTO_INCREMENT,
     id_commande INT(11) NOT NULL,
-    id_produit INT(11) NOT NULL,
+    id_produit INT(11) DEFAULT NULL,
     quantite INT(11) NOT NULL,
     prix DOUBLE NOT NULL,
     total DOUBLE NOT NULL,
@@ -81,6 +84,6 @@ CREATE TABLE detail_commande(
     PRIMARY KEY(id_detail_commande),
 
     FOREIGN KEY(id_commande) REFERENCES commande(id_commande) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY(id_produit) REFERENCES produit(id_produit) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY(id_produit) REFERENCES produit(id_produit) ON DELETE SET NULL ON UPDATE RESTRICT
 
 ) ENGINE=InnoDB;

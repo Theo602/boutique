@@ -13,6 +13,8 @@
     const ville = document.querySelector('#ville');
     const code_postal = document.querySelector('#code_postal');
     const adresse = document.querySelector('#adresse');
+    const telephone = document.querySelector('#telephone');
+    const pays = document.querySelector('#pays');
 
     function check(field) {
 
@@ -39,5 +41,7 @@
     check(ville);
     check(code_postal);
     check(adresse);
+    check(telephone);
+    check(pays);
 
 })()

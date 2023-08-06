@@ -1,48 +1,73 @@
-/* Style Css Dashboard Back-End */
+/* Styles Css Front Profil */
 
-/* Dashboard  Global */
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+/* Profil  Global */
 
-html,
-body {
-    height: 100%;
-}
-
-body {
+.container-profil {
     display: flex;
-    flex-direction: column;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    height: 100%;
 }
 
 a {
     text-decoration: none;
 }
 
-.container {
-    flex: 1 0 auto;
+.section-1-compte,
+.section-2-compte,
+.section-1-profil,
+.section-3-profil,
+.section-1-commande-user {
+    padding: 4% 0px;
 }
 
-.dashboard-container {
-    display: flex;
-    height: 100%;
-    border-bottom: 1px solid #fff;
+.profil-information hr,
+.separate-section-2,
+.separate-section-1,
+.information hr,
+.espace-adresse hr,
+.detail-profil hr,
+.detail-adresse hr,
+.espace-password hr {
+    margin: 20px auto;
+    padding: 1px;
+    background-color: #000;
 }
+
+.information hr,
+.espace-adresse hr,
+.detail-profil hr,
+.detail-adresse hr,
+.espace-password hr {
+    width: 70%;
+}
+
+.separate-section-1 {
+    width: 20%;
+}
+
+.profil-information h3,
+.espace-adresse h3,
+.detail-profil h3,
+.detail-adresse h3,
+.espace-password h3 {
+    font-size: 30px;
+    text-align: center;
+}
+
 
 /* 1. Section Right */
 
-.section-right {
+.section-profil-right {
     width: 80%;
     height: 100%;
-    background-color: #04052E;
+    background-color: #fff;
 }
 
 /* 2. Section Left */
 
-.section-left {
+.section-profil-left {
     background-color: #02010A;
     width: 20%;
 }
@@ -80,99 +105,11 @@ a {
     transition: 1s;
 }
 
-.menu-separate {
-    margin: 40px auto;
-    padding: 1px;
-    background-color: #fff;
-}
-
 /* 4. Modale - Menu Responsive */
 
 .modal-menu-dashboard,
 .btnDashboard {
     display: none;
-}
-
-/* Header */
-
-header {
-    background: #000;
-    border-bottom: 1px solid #fff;
-    padding: 2% 0;
-}
-
-/* 1. Header Top */
-
-.back-header-top {
-    display: flex;
-    align-items: center;
-}
-
-.header-return,
-.back-header-top h1,
-.icone-header {
-    text-align: center;
-    width: calc(100%/3);
-}
-
-.back-header-top img {
-    width: 30px;
-}
-
-/* 2. Lien retour sur le site */
-
-.header-return a {
-    color: #fff;
-    font-size: 20px;
-    border-bottom: 2px solid transparent;
-}
-
-.header-return a:hover {
-    color: #0D00A4;
-    border-bottom: 2px solid #0D00A4;
-    transition: 1s;
-}
-
-/* 2. Titre du header */
-
-.back-header-top h1 {
-    color: #fff;
-    font-size: 35px;
-}
-
-/* 2. Icone du header */
-
-.icone-header a {
-    margin: 0 6px;
-}
-
-/* Page dashboard */
-
-/* 1. Block indication */
-
-.block-indication {
-    display: flex;
-    justify-content: center;
-}
-
-.fiche-indication {
-    background: #fff;
-    box-shadow: #000 0px 0px 4px 4px;
-    border-radius: 5px;
-    margin: 20px 20px;
-    text-align: center;
-    width: calc(100% / 3);
-    padding: 10px 0;
-}
-
-.fiche-indication h3 {
-    font-size: 30px;
-}
-
-.fiche-indication p {
-    font-size: 25px;
-    margin: 4% 0px;
-    font-weight: bold;
 }
 
 /* Page Compte */
@@ -326,67 +263,6 @@ header {
     transition: 1s;
 }
 
-/* Page dashboard - Page Gestion Produit - Page Boutique - Page Compte - Page Gestion Membre - Page Profil - Page Compte - Page Admin_Compte */
-
-.section-1-produit,
-.section-1-dashboard,
-.section-2-dashboard,
-.section-1-boutique,
-.section-1-compte,
-.section-1-commande,
-.section-1-membre,
-.section-1-newsletter,
-.section-1-compte,
-.section-2-compte,
-.section-1-profil,
-.section-3-profil,
-.section-1-commande-admin {
-    padding: 4% 0;
-}
-
-.gestion-form hr,
-.table-list hr,
-.profil-information hr,
-.separate-section-2,
-.separate-section-1,
-.information hr,
-.espace-adresse hr,
-.detail-profil hr,
-.detail-adresse hr,
-.espace-password hr {
-    margin: 20px auto;
-    padding: 1px;
-    background-color: #000;
-}
-
-.information hr,
-.espace-adresse hr,
-.detail-profil hr,
-.detail-adresse hr,
-.espace-password hr {
-    width: 70%;
-}
-
-.separate-section-1 {
-    width: 20%;
-}
-
-.profil-information h3,
-.espace-adresse h3,
-.detail-profil h3,
-.detail-adresse h3,
-.espace-password h3,
-.gestion-form h3,
-.table-list h3 {
-    font-size: 30px;
-    text-align: center;
-}
-
-.gestion-form h3,
-.table-list h3 {
-    margin: 20px 0;
-}
-
 /* Page Compte - Page Profil */
 
 .profil-information p,
@@ -398,59 +274,19 @@ header {
     text-align: center;
 }
 
-/* Page Gestion Produit - Page Gestion Membre */
+/* Page Compte - Page Commande*/
 
-.gestion-form {
-    background-color: #fff;
-    border: 2px solid #000;
-    border-radius: 10px;
-    width: 60%;
-    margin: auto;
-    padding: 2%;
-}
-
-.gestion-form div {
+.table-list hr {
     margin: 20px auto;
-}
-
-.gestion-form .inputForm,
-.gestion-form textarea,
-.gestion-form select {
-    border: 1px black solid;
-    border-radius: 5px;
-    display: block;
-    font-size: 1em;
-    margin: 10px auto;
-    padding: 10px;
-    width: 100%;
-}
-
-.gestion-form select {
+    padding: 1px;
     background-color: #000;
-    color: #fff;
 }
 
-.gestion-form .submit {
-    background-color: #000;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-}
-
-.gestion-form .submit:hover {
-    background-color: #11006c;
-    transition: 1s;
-}
-
-.gestion-form .photo figure {
+.table-list h3 {
+    font-size: 30px;
     margin: 20px 0;
+    text-align: center;
 }
-
-.gestion-form .photo img {
-    width: 200px;
-}
-
-/* Page dashboard - Page Boutique - Page Compte */
 
 .table-list {
     background: white;
@@ -468,57 +304,27 @@ header {
     margin: 20px 0;
 }
 
-.table-top-newsletter th,
-.table-details-newsletter td {
-    width: calc(100% / 4);
-}
-
-.table-top-user th,
-.table-details-user td {
-    width: calc(100% / 6);
-}
-
 .table-top-commande th,
 .table-details-commande td {
     width: calc(100% / 7);
 }
 
-.table-top th,
-.table-details td {
-    width: calc(100% / 11);
-}
-
-.table-details,
-.table-details-commande,
-.table-details-user,
-.table-details-newsletter {
+.table-details-commande {
     text-align: center;
     border-top: 2px solid #000;
     border-bottom: 2px solid #000;
 }
 
-.table-top th,
 .table-top-commande th,
-.table-top-user th,
-.table-top-newsletter th,
-.table-details td,
-.table-details-commande td,
-.table-details-user td,
-.table-details-newsletter td {
+.table-details-commande td {
     padding: 10px;
 }
 
-.table-top th,
-.table-top-commande th,
-.table-top-user th,
-.table-top-newsletter th {
+.table-top-commande th {
     font-size: 20px;
 }
 
-.table-details td,
-.table-details-commande td,
-.table-details-user td,
-.table-details-newsletter td {
+.table-details-commande td {
     font-size: 18px;
 }
 
@@ -535,22 +341,12 @@ header {
     transition: 1s;
 }
 
-.table-details img {
-    width: 80px;
-}
-
-.table-details a,
-.table-details-commande a,
-.table-details-user a,
-.table-details-newsletter a {
+.table-details-commande a {
     color: #000;
     margin: 0 5px;
 }
 
-.table-details a:hover,
-.table-details-commande a:hover,
-.table-details-user a:hover,
-.table-details-newsletter a:hover {
+.table-details-commande a:hover {
     color: #0D00A4;
     transition: 1s;
 }
@@ -571,25 +367,8 @@ header {
     font-weight: bold;
 }
 
-/* Footer */
-
-footer {
-    background: #000;
-    padding: 2% 0;
-    margin-top: auto;
-}
-
-.text-copyright {
-    color: #fff;
-    text-align: center;
-    font-size: 1.2em;
-}
-
 /* Message Erreur - Message Succès */
 
-.message-succes,
-.message-error,
-.message-error-input,
 .message-succes-profil,
 .message-error-profil {
     width: 80%;
@@ -601,31 +380,20 @@ footer {
     padding: 10px;
 }
 
-.message-error-input {
-    width: 100%;
-}
-
-.message-succes,
 .message-succes-profil {
     border: 2px solid #119d15;
     background: rgba(71, 173, 74, 0.2);
 }
 
-.message-error,
-.message-error-input,
 .message-error-profil {
     border: 2px solid red;
     background: rgba(255, 0, 0, 0.2);
 }
 
-.border-error,
 .border-error-profil {
     border: 2px solid red !important;
 }
 
-.border-succes {
-    border: 2px solid #119d15 !important;
-}
 
 @media screen and (max-width: 1250px) {
 
@@ -635,10 +403,7 @@ footer {
         display: none;
     }
 
-    .table-details,
-    .table-details-commande,
-    .table-details-user,
-    .table-details-newsletter {
+    .table-details-commande {
         display: none;
         border: 2px solid #000;
     }
@@ -647,26 +412,17 @@ footer {
         margin: auto;
     }
 
-    .table-details a,
-    .table-details-commande a,
-    .table-details-user a,
-    .table-details-newsletter a {
+    .table-details-commande a {
         margin: 5px;
     }
 
-    .table-details td::before,
-    .table-details-commande td::before,
-    .table-details-user td::before,
-    .table-details-newsletter td::before {
+    .table-details-commande td::before {
         content: attr(data-label);
         font-weight: bold;
         margin: 10px 0;
     }
 
-    .table-details td,
-    .table-details-commande td,
-    .table-details-user td,
-    .table-details-newsletter td {
+    .table-details-commande td {
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -706,20 +462,21 @@ footer {
 
 @media screen and (max-width: 992px) {
 
-    /* Dashboard  Global */
+    /* Profil  Global */
 
-    .dashboard-container {
+    .container-profil {
         flex-direction: column;
     }
 
-    /* 1. Section Right - 2. Section Left*/
+    /* 1. Section Right - Section Left*/
 
-    .section-right,
-    .section-left {
+    .section-profil-right,
+    .section-profil-left {
         width: 100%;
+
     }
 
-    .section-right {
+    .section-profil-right {
         padding-top: 20px;
     }
 
@@ -785,20 +542,6 @@ footer {
 
     .active-menu-dashboard {
         display: block;
-        border-bottom: 1px solid #fff;
-    }
-
-    /* Page dashboard */
-
-    /* 1. Block indication */
-
-    .block-indication {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .fiche-indication {
-        width: calc(80%/2);
     }
 
     /* Page Compte */
@@ -808,33 +551,10 @@ footer {
     .separate-section-1 {
         width: 26%;
     }
+
 }
 
 @media screen and (max-width: 768px) {
-
-    /* Header */
-
-    /* 1. Header Top */
-
-    .back-header-top {
-        flex-direction: column;
-    }
-
-    .header-return,
-    .back-header-top h1,
-    .icone-header {
-        width: 100%;
-        margin: 20px auto;
-    }
-
-    /* Page dashboard */
-
-    /* 1. Block indication */
-
-    .fiche-indication {
-        width: calc(85% / 2);
-    }
-
     /* Page Compte */
 
     /* 1. Compte Global */
@@ -874,38 +594,17 @@ footer {
 
     /* Message Erreur - Message Succès */
 
-    .message-succes-profil,
+    .message-succes,
     .message-error-profil {
         width: 90%;
     }
 
-    /* Page Gestion Produit - Page Gestion Membre */
-
-    .gestion-form {
-        width: 80%;
-    }
-
 }
 
-@media screen and (max-width: 576px) {
-
-    /* Page dashboard */
-
-    /* 1. Block indication */
-
-    .fiche-indication {
-        width: 90%;
-    }
-
+@media screen and (max-width: 516px) {
     /* 1. Compte Global */
 
     .separate-section-1 {
         width: 56%;
-    }
-
-    /* Page Gestion Produit - Page Gestion Membre */
-
-    .gestion-form {
-        width: 90%;
     }
 }

@@ -2,16 +2,20 @@
 
 require_once('../config/init.php');
 
+
 if (!userIsAdmin()) {
     header('Location: ../errors/error403.php');
 }
 
-$pageTitle = 'Gestion des produits';
-$pageMetaDesc = 'Ajouter - modifier - supprimer des produits';
-$bodyId = ADMIN_PRODUIT;
+
+$pageTitle = 'Espace Admin - Gestion des produits';
+$pageMetaDesc = 'Ajouter - modifier - supprimer les produits de la boutique';
+$bodyId = ADMIN_GESTION_PRODUIT;
+
 
 $valid = "";
 $error =  [];
+
 
 if (!isset($_GET['action']) || empty($_GET['action'])) {
     header('Location: ../errors/error404.php');
@@ -63,10 +67,20 @@ if ($_GET['action'] == "ajouter" || $_GET['action'] == "modifier" || $_GET['acti
 
         if ($_GET['action'] == "ajouter") {
 
-            $referenceFind = $bdd->query("SELECT * FROM produit WHERE reference = '$reference'");
+            // Vérification de l'existence de la référence
 
-            if ($referenceFind->rowCount() >= 1) {
-                $error['reference'] = "La référence existe déjà";
+            $referenceFind = $bdd->prepare("SELECT * FROM produit WHERE reference = :reference");
+            $referenceFind->bindParam(':reference', $reference, PDO::PARAM_STR);
+
+            try {
+                $referenceFind->execute();
+            } catch (PDOException $exception) {
+                header('Location: errors/error500.php');
+                exit();
+            }
+
+            if ($referenceFind->rowCount() == 1) {
+                $error['reference'] = "La référence $reference existe déjà";
             }
         }
 
@@ -147,9 +161,10 @@ if ($_GET['action'] == "ajouter" || $_GET['action'] == "modifier" || $_GET['acti
             } else {
 
                 $query = $bdd->prepare(" INSERT INTO produit(reference, categorie, titre, description, couleur, taille, public, photo, prix, stock, created_at)
-                VALUES(:reference, :categorie, :titre, :description, :couleur, :taille, :public, :photo, :prix, :stock, :created_at)");
+                VALUES(:reference, :categorie, :titre, :description, :couleur, :taille, :public, :photo, :prix, :stock, :created_at, :update_at)");
 
                 $query->bindParam(":created_at", $date, PDO::PARAM_STR);
+                $query->bindParam(":update_at", $date, PDO::PARAM_STR);
 
                 $valid = "Le produit " . ucfirst($titre) . ", référence " . $reference .  " a bien été ajouté";
             }
@@ -168,15 +183,15 @@ if ($_GET['action'] == "ajouter" || $_GET['action'] == "modifier" || $_GET['acti
             try {
                 $query->execute();
                 $_SESSION['content']['valid'] = $valid;
-                header('Location: boutique.php?send=success#messageForm');
+                header('Location: boutique.php?send=success');
                 exit();
             } catch (PDOException $exception) {
 
                 if ($_GET['action'] == "modifier") {
-                    header("Location: gestion_produit.php?action=modifier&id_produit=$_GET[id_produit]&send=error#messageForm");
+                    header("Location: gestion_produit.php?action=modifier&id_produit=$_GET[id_produit]&send=error");
                     exit();
                 } else {
-                    header("Location: gestion_produit.php?action=ajouter&send=error#messageForm");
+                    header("Location: gestion_produit.php?action=ajouter&send=error");
                     exit();
                 }
             }
@@ -200,14 +215,14 @@ if ($_GET['action'] == "ajouter" || $_GET['action'] == "modifier" || $_GET['acti
                 $validSupp = "Le produit " . ucfirst($titre) . ", référence " . $reference .  " a bien été supprimé";
                 $_SESSION['content']['valid'] = $validSupp;
 
-                header('Location: boutique.php?send=success#messageForm');
+                header('Location: boutique.php?send=success');
                 exit();
             } catch (PDOException $exception) {
 
-                $ErrorSupp = "Erreur lors de la suppression";
-                $_SESSION['content']['error'] = $ErrorSupp;
+                $errorSupp = "Erreur lors de la suppression";
+                $_SESSION['content']['error'] = $errorSupp;
 
-                header('Location: boutique.php?send=error#messageForm');
+                header('Location: boutique.php?send=error');
                 exit();
             }
         }
@@ -234,7 +249,7 @@ require_once('inc/header.inc.php');
 
     <section class="section-1-produit">
 
-        <div class="gestion-form" id="messageForm">
+        <div class="gestion-form">
 
             <h3><?= (ucfirst($_GET['action'])) ??  'Erreur';  ?> un produit</h3>
             <hr>
@@ -260,16 +275,6 @@ require_once('inc/header.inc.php');
 
                 </div>
 
-                <div class="categorie">
-                    <label for="categorie">Categorie</label>
-                    <select name="categorie" id="categorie">
-                        <option value="t-shirt" <?= (isset($categorie) && $categorie == "t-shirt") ? 'selected' : '';  ?>>T-shirt</option>
-                        <option value="pantalon" <?= (isset($categorie) && $categorie == "pantalon") ? 'selected' : '';  ?>>Pantalon</option>
-                        <option value="robe" <?= (isset($categorie) && $categorie == "robe") ? 'selected' : '';  ?>>Robe</option>
-                        <option value="chaussure" <?= (isset($categorie) && $categorie == "chaussure") ? 'selected' : '';  ?>>Chaussure</option>
-                    </select>
-                </div>
-
                 <div class="titre">
                     <label for="titre">Titre</label>
                     <input class="inputForm" type="text" name="titre" id="titre" value="<?= ($titre) ??  '';  ?>">
@@ -278,6 +283,16 @@ require_once('inc/header.inc.php');
                 <div class="description">
                     <label for="description">Description</label>
                     <textarea name="description" id="description" cols="30" rows="10"><?= ($description) ??  '';  ?></textarea>
+                </div>
+
+                <div class="categorie">
+                    <label for="categorie">Categorie</label>
+                    <select name="categorie" id="categorie">
+                        <option value="t-shirt" <?= (isset($categorie) && $categorie == "t-shirt") ? 'selected' : '';  ?>>T-shirt</option>
+                        <option value="pantalon" <?= (isset($categorie) && $categorie == "pantalon") ? 'selected' : '';  ?>>Pantalon</option>
+                        <option value="robe" <?= (isset($categorie) && $categorie == "robe") ? 'selected' : '';  ?>>Robe</option>
+                        <option value="chaussure" <?= (isset($categorie) && $categorie == "chaussure") ? 'selected' : '';  ?>>Chaussure</option>
+                    </select>
                 </div>
 
                 <div class="couleur">

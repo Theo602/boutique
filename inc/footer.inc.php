@@ -18,6 +18,18 @@
         <script src="asset/js/script_form.js"></script>
     <?php endif ?>
 
+    <?php if (isset($bodyId)) : ?>
+        <?php if ($bodyId === MEMBER_COMPTE  || $bodyId === MEMBER_PROFILE || $bodyId === MEMBER_COMMANDE) : ?>
+            <script src="asset/js/script_dashboard.js"></script>
+        <?php endif ?>
+        <?php if ($bodyId === MEMBER_COMPTE) : ?>
+            <script src="asset/js/script_delete_liste.js"></script>
+        <?php endif ?>
+        <?php if ($bodyId === PROCESS_COMMANDE || $bodyId === PANIER) : ?>
+            <script src="asset/js/script_liste.js"></script>
+        <?php endif ?>
+    <?php endif ?>
+
     <script src="asset/js/script.js"></script>
 
     </body>

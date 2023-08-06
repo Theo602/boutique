@@ -2,14 +2,21 @@
 
 require_once('config/init.php');
 
-$pageTitle = 'Inscription';
+
+$pageTitle = 'Espace inscription';
 $pageMetaDesc = 'Inscrivez vous sur notre boutique de e-commerce';
 $bodyId = SIGN_IN;
 
-if (userConnected()) {
-    header('Location: profil.php');
+if (userIsAdmin()) {
+    header('Location: admin');
     exit();
 }
+
+if (userConnected()) {
+    header('Location: compte.php');
+    exit();
+}
+
 
 // Création du profil d'un membre
 
@@ -20,8 +27,8 @@ if ($_POST) {
     extract($_POST);
 
     if (
-        empty($nom) || empty($prenom) || empty($email) || empty($password) || empty($confirmPassword) || empty($ville) || empty($code_postal)
-        || empty($adresse)
+        empty($nom) || empty($prenom) || empty($email) || empty($telephone) || empty($password) || empty($confirmPassword) || empty($ville) || empty($code_postal)
+        || empty($adresse || empty($pays))
     ) {
         $error['champs'] = "Veuillez remplir les champs";
     }
@@ -38,12 +45,24 @@ if ($_POST) {
         $error['email'] = "L'adresse email est incorrect (caractères interdits)";
     }
 
-    // Vérifier si l'email' est disponible 
+    // Vérification de l'existence de l'email 
 
-    $emailFind = $bdd->query("SELECT * FROM user WHERE email = '$email'");
+    $emailFind = $bdd->prepare("SELECT * FROM newsletter WHERE email = :email");
+    $emailFind->bindParam(':email', $email, PDO::PARAM_STR);
 
-    if ($emailFind->rowCount() >= 1) {
-        $error['email'] = "L'email existe déjà";
+    try {
+        $emailFind->execute();
+    } catch (PDOException $exception) {
+        header('Location: errors/error500.php');
+        exit();
+    }
+
+    if ($emailFind->rowCount() == 1) {
+        $error['email'] = "L'email $email existe déjà, Veuillez en saisir un autre.";
+    }
+
+    if (!preg_match("/^([+]{1}[1-9]{2,3}[ .-]?)?[0-9]{1,3}([ .-]?[0-9]{2,3}){3,6}$/", $telephone)) {
+        $error['telephone'] = "Le numero de téléphone est incorrect";
     }
 
     // Vérifier si les mots de passes sont identiques 
@@ -60,10 +79,12 @@ if ($_POST) {
     $nom = htmlspecialchars($nom);
     $prenom = htmlspecialchars($prenom);
     $email = htmlspecialchars($email);
+    $telephone = htmlspecialchars($telephone);
     $civilite = htmlspecialchars($civilite);
     $ville = htmlspecialchars($ville);
     $code_postal = htmlspecialchars($code_postal);
     $adresse = htmlspecialchars($adresse);
+    $pays = htmlspecialchars($pays);
 
     $password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -74,19 +95,22 @@ if ($_POST) {
         $date_creation = new DateTime('now', new DateTimeZone('Europe/Paris'));
         $date_creation = $date_creation->format('Y-m-d H:i:s');
 
-        $query =  $bdd->prepare("INSERT INTO user(password, nom, prenom, email, civilite, ville, code_postal, adresse, status, created_at)
-        VALUES(:password, :nom, :prenom, :email, :civilite, :ville, :code_postal, :adresse, :status, :created_at)");
+        $query =  $bdd->prepare("INSERT INTO user(password, nom, prenom, email, telephone, civilite, ville, code_postal, adresse, pays, status, created_at, update_at)
+        VALUES(:password, :nom, :prenom, :email, :telephone, :civilite, :ville, :code_postal, :adresse, :pays, :status, :created_at, :update_at)");
 
         $query->bindParam(":password", $password, PDO::PARAM_STR);
         $query->bindParam(":nom", $nom, PDO::PARAM_STR);
         $query->bindParam(":prenom", $prenom, PDO::PARAM_STR);
         $query->bindParam(":email", $email, PDO::PARAM_STR);
+        $query->bindParam(":telephone", $telephone, PDO::PARAM_STR);
         $query->bindParam(":civilite", $civilite, PDO::PARAM_STR);
         $query->bindParam(":ville", $ville, PDO::PARAM_STR);
         $query->bindParam(":code_postal", $code_postal, PDO::PARAM_INT);
         $query->bindParam(":adresse", $adresse, PDO::PARAM_STR);
+        $query->bindParam(":pays", $pays, PDO::PARAM_STR);
         $query->bindParam(":status", $status, PDO::PARAM_INT);
         $query->bindParam(":created_at", $date_creation, PDO::PARAM_STR);
+        $query->bindParam(":update_at", $date_creation, PDO::PARAM_STR);
 
         try {
             $query->execute();
@@ -168,6 +192,19 @@ require_once('inc/header.inc.php');
 
             </div>
 
+            <div class="telephone">
+
+                <label for="telephone">Téléphone :</label>
+                <input class="inputForm <?= isset($error['telephone']) ? 'border-error' : '' ?>" type="text" name="telephone" id="telephone" value="<?= ($telephone) ??  '';  ?>">
+
+                <div class="message-error-input active-message"></div>
+
+                <?php if (isset($error['telephone'])) : ?>
+                    <div class="message-error-input"><?= $error['telephone'] ?></div>
+                <?php endif ?>
+
+            </div>
+
             <div class="password">
 
                 <label for="password">Mot de passe :</label>
@@ -209,6 +246,12 @@ require_once('inc/header.inc.php');
             <div class="adresse">
                 <label for="adresse">Adresse :</label>
                 <input class="inputForm" type="text" name="adresse" id="adresse" value="<?= ($adresse) ??  '';  ?>">
+                <div class="message-error-input active-message"></div>
+            </div>
+
+            <div class="pays">
+                <label for="pays">Pays :</label>
+                <input class="inputForm" type="text" name="pays" id="pays" value="<?= ($pays) ??  '';  ?>">
                 <div class="message-error-input active-message"></div>
             </div>
 

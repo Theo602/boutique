@@ -12,6 +12,12 @@
 
     <link rel="stylesheet" href="asset/css/style_front.css">
 
+    <?php if (isset($bodyId)) : ?>
+        <?php if ($bodyId === MEMBER_COMPTE  || $bodyId === MEMBER_PROFILE || $bodyId === MEMBER_COMMANDE) : ?>
+            <link rel="stylesheet" href="asset/css/style_front_profil.css">
+        <?php endif ?>
+    <?php endif ?>
+
     <!-- CDN Font-awesome -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -44,7 +50,7 @@
 
                 <?php elseif (userConnected() && $_SESSION['user']['status'] == 0) : ?>
 
-                    <li><a href="<?= URL; ?>profil.php">Profil</a></li>
+                    <li><a href="<?= URL; ?>compte.php">Mon Compte</a></li>
                     <li><a href="<?= URL; ?>boutique.php">Boutique</a></li>
                     <li><a href="<?= URL; ?>panier.php">Panier</a></li>
                     <li><a href="<?= URL; ?>deconnexion.php">Deconnexion</a></li>
@@ -52,8 +58,7 @@
                 <?php else : ?>
 
                     <li><a href="<?= URL; ?>boutique.php">Boutique</a></li>
-                    <li><a href="<?= URL; ?>inscription.php">Inscription</a></li>
-                    <li><a href="<?= URL; ?>connexion.php">Connexion</a></li>
+                    <li><a href="<?= URL; ?>connexion.php">Compte</a></li>
                     <li><a href="<?= URL; ?>panier.php">Panier</a></li>
 
                 <?php endif ?>

@@ -2,33 +2,23 @@
 
 require_once('../config/init.php');
 
+$pageTitle = 'Espace Membre - Commande';
+$pageMetaDesc = 'Retrouver la liste de vos commandes.';
+$bodyId = ADMIN_COMMANDE;
+
 
 if (!userIsAdmin()) {
     header('Location: ../errors/error403.php');
 }
 
 
-$pageTitle = 'Espace Admin - Dashboard';
-$pageMetaDesc = "Bienvenue sur votre panneau d'administration";
-$bodyId = ADMIN_DASHBOARD;
+/* Affichage des commandes */
 
+$id_membre = $_SESSION['user']['id_membre'];
 
-/* Nombre de produit */
-
-$requestProduit = $bdd->prepare('SELECT COUNT(*) FROM produit');
-
-try {
-    $requestProduit->execute();
-} catch (PDOException $exception) {
-    header('Location: errors/error500.php');
-    exit();
-}
-
-$countProduit = $requestProduit->fetchColumn();
-
-/* Nombre de commande */
-
-$requestCommande = $bdd->prepare('SELECT COUNT(*) FROM commande');
+$requestCommande = $bdd->prepare("SELECT *, DATE_FORMAT(c.created_at, '%d/%m/%Y') AS 'date_commande' FROM commande c INNER JOIN user u ON 
+    c.id_membre = u.id_membre AND u.id_membre = :id_membre");
+$requestCommande->bindParam(":id_membre", $id_membre, PDO::PARAM_INT);
 
 try {
     $requestCommande->execute();
@@ -37,36 +27,11 @@ try {
     exit();
 }
 
-$countCommande = $requestCommande->fetchColumn();
+$commandes = $requestCommande->fetchAll();
 
-/* Nombre de membre */
-
-$requestUser = $bdd->prepare('SELECT COUNT(*) FROM user');
-
-try {
-    $requestUser->execute();
-} catch (PDOException $exception) {
-    header('Location: ../errors/error500.php');
-    exit();
-}
-
-$countUser = $requestUser->fetchColumn();
-
-/* Affichage des commandes */
-
-$requestDetailCommande = $bdd->prepare("SELECT *, DATE_FORMAT(c.created_at, '%d/%m/%Y') AS 'date_commande' FROM commande c INNER JOIN user u ON 
-c.id_membre = u.id_membre ORDER BY id_commande  DESC LIMIT 0, 6");
-
-try {
-    $requestDetailCommande->execute();
-} catch (PDOException $exception) {
-    header('Location: ../errors/error500.php');
-    exit();
-}
-
-$commandes = $requestDetailCommande->fetchAll();
 
 require_once('inc/header.inc.php');
+
 ?>
 
 
@@ -80,45 +45,12 @@ require_once('inc/header.inc.php');
 
 <section class="section-right">
 
-    <section class="section-1-dashboard">
-
-        <div class="block-indication">
-
-            <div class="fiche-indication">
-
-                <h3>Produits</h3>
-                <p><?= $countProduit; ?></p>
-
-            </div>
-
-            <div class="fiche-indication">
-
-                <h3>Commandes</h3>
-                <p><?= $countCommande; ?></p>
-
-            </div>
-
-            <div class="fiche-indication">
-
-                <h3>Membres</h3>
-                <p><?= $countUser; ?></p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="section-2-dashboard">
+    <section class="section-1-commande-admin">
 
         <div class="table-list">
 
-            <h3>Commandes récentes des clients</h3>
+            <h3>Liste des commandes</h3>
             <hr>
-
-            <p>
-                <a class="table-link" href="membre_commande.php">Voir tout</a>
-            </p>
 
             <table>
 
@@ -128,8 +60,9 @@ require_once('inc/header.inc.php');
                         <th>Référence</th>
                         <th>Client</th>
                         <th>Date</th>
-                        <th>Total</th>
+                        <th>TotalTcc</th>
                         <th>Status</th>
+                        <th>Option</th>
                     </tr>
                 </thead>
 
@@ -141,7 +74,7 @@ require_once('inc/header.inc.php');
 
                             <tr class="table-responsive">
 
-                                <td>Commande nᵒ <?= $id_commande; ?></td>
+                                <td>Commande nᵒ <?= $id_produit; ?></td>
                                 <td><i class="fas fa-chevron-down"></td>
 
                             </tr>
@@ -151,7 +84,7 @@ require_once('inc/header.inc.php');
                                 <td data-label="Référence"><?= $reference; ?></td>
                                 <td data-label="Client"><?= $email; ?></td>
                                 <td data-label="Date"><?= $date_commande; ?></td>
-                                <td data-label="Total"><?= $total_ttc; ?></td>
+                                <td data-label="TotalTcc"><?= $total_ttc; ?></td>
                                 <td data-label="Status"><?= $etat; ?></td>
                                 <td data-label="Option">
 
@@ -178,6 +111,5 @@ require_once('inc/header.inc.php');
     </section>
 
 </section>
-
 
 <?php require_once('inc/footer.inc.php');  ?>

@@ -37,16 +37,20 @@
                     <img src="../asset/img/dashboard/icone-dashboard.png" title="DashBoard" alt="DashBoard">
                 </a>
 
-                <a href="profil_admin.php">
-                    <img src="../asset/img/dashboard/icone-profile.png" title="Profil" alt="Profil">
+                <a href="admin_compte.php">
+                    <img src="../asset/img/dashboard/icone-client.png" title="Mon compte" alt="Mon compte">
                 </a>
 
-                <a href="">
-                    <img src="../asset/img/dashboard/icone-order.png" title="Commande" alt="Commande">
+                <a href="boutique.php">
+                    <img src="../asset/img/dashboard/icone-boutique.png" title="Boutique" alt="Boutique">
                 </a>
 
-                <a href="gestion_produit.php?action=ajouter">
-                    <img src="../asset/img/dashboard/icone-produit.png" title="Produit" alt="Produit">
+                <a href="membre_commande.php">
+                    <img src="../asset/img/dashboard/icone-order.png" title="Commande membres" alt="Commande membres">
+                </a>
+
+                <a href="membre_compte.php">
+                    <img src="../asset/img/dashboard/icone-membre.png" title="Membre" alt="Membre">
                 </a>
 
                 <a href="../deconnexion.php">

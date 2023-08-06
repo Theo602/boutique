@@ -2,13 +2,16 @@
 
 require_once('../config/init.php');
 
+
 if (!userIsAdmin()) {
     header('Location: ../errors/error403.php');
 }
 
-$pageTitle = 'Gestion de la boutique';
-$pageMetaDesc = 'Gestion de la boutique';
+
+$pageTitle = 'Espace Admin - Boutique';
+$pageMetaDesc = 'Retrouver la liste des produits de la boutique';
 $bodyId = ADMIN_BOUTIQUE;
+
 
 /* Affichage des produits */
 
@@ -40,7 +43,7 @@ require_once('inc/header.inc.php');
 
     <section class="section-1-boutique">
 
-        <div class="table-list" id="messageForm">
+        <div class="table-list">
 
             <h3>Liste des produits</h3>
             <hr>
@@ -57,7 +60,7 @@ require_once('inc/header.inc.php');
             <?php if (isset($_GET['send']) && ($_GET['send'] == "error")) : ?>
 
                 <?php if (isset($_SESSION['content']['error'])) : ?>
-                    <div class='message-succes'> <?= $_SESSION['content']['error']; ?></div>
+                    <div class='message-error'> <?= $_SESSION['content']['error']; ?></div>
                 <?php endif;
                 unset($_SESSION['content']['error']); ?>
 

@@ -2,18 +2,22 @@
 
 require_once('../config/init.php');
 
+
 if (!userIsAdmin()) {
     header('Location: ../errors/error403.php');
 }
 
-$pageTitle = 'Gestion des membres';
-$pageMetaDesc = 'Modifier - supprimer des membres';
-$bodyId = ADMIN_MEMBRE;
+
+$pageTitle = 'Espace Admin - Gestion des membres';
+$pageMetaDesc = 'Modifier - supprimer les comptes des membres';
+$bodyId = ADMIN_GESTION_MEMBRE;
+
 
 $error = [];
 
+
 if (!isset($_GET['action']) || empty($_GET['action'])) {
-    header('Location: errors/error404.php');
+    header('Location: ../errors/error404.php');
     exit();
 }
 
@@ -52,8 +56,8 @@ if ($_GET['action'] == "edit" || $_GET['action'] == "suppression") {
             extract($_POST);
 
             if (
-                empty($nom) || empty($prenom) || empty($email) || empty($ville) || empty($code_postal)
-                || empty($adresse)
+                empty($nom) || empty($prenom) || empty($email) || empty($telephone) || empty($ville) || empty($code_postal)
+                || empty($adresse) || empty($pays)
             ) {
                 $error['champs'] = "Veuillez remplir les champs";
             }
@@ -70,6 +74,10 @@ if ($_GET['action'] == "edit" || $_GET['action'] == "suppression") {
                 $error['email'] = "L'adresse email est incorrect (caractères interdits)";
             }
 
+            if (!preg_match("/^([+]{1}[1-9]{2,3}[ .-]?)?[0-9]{1,3}([ .-]?[0-9]{2,3}){3,6}$/", $telephone)) {
+                $error['telephone'] = "Le numero de téléphone est incorrect";
+            }
+
             if (!preg_match("/^\d{5}$/", $code_postal) || (iconv_strlen($code_postal) != 5)) {
                 $error['code_postal'] = "Le code postal est incorrect";
             }
@@ -77,26 +85,30 @@ if ($_GET['action'] == "edit" || $_GET['action'] == "suppression") {
             $nom = htmlspecialchars($nom);
             $prenom = htmlspecialchars($prenom);
             $email = htmlspecialchars($email);
+            $telephone = htmlspecialchars($telephone);
             $civilite = htmlspecialchars($civilite);
             $ville = htmlspecialchars($ville);
             $code_postal = htmlspecialchars($code_postal);
             $adresse = htmlspecialchars($adresse);
+            $pays = htmlspecialchars($pays);
 
             if (empty($error)) {
 
                 $date_modification = new DateTime('now', new DateTimeZone('Europe/Paris'));
                 $date_modification = $date_modification->format('Y-m-d H:i:s');
 
-                $query = $bdd->prepare('UPDATE user SET nom = :nom, prenom = :prenom, email = :email, civilite = :civilite, ville = :ville, code_postal = :code_postal, adresse = :adresse, status = :status, update_at = :update_at WHERE id_membre = :id_membre');
+                $query = $bdd->prepare('UPDATE user SET nom = :nom, prenom = :prenom, email = :email, telephone = :telephone, civilite = :civilite, ville = :ville, code_postal = :code_postal, adresse = :adresse, pays = :pays, status = :status, update_at = :update_at WHERE id_membre = :id_membre');
 
                 $query->bindParam(":id_membre", $_GET['membre'], PDO::PARAM_INT);
                 $query->bindParam(":nom", $nom, PDO::PARAM_STR);
                 $query->bindParam(":prenom", $prenom, PDO::PARAM_STR);
                 $query->bindParam(":email", $email, PDO::PARAM_STR);
+                $query->bindParam(":telephone", $telephone, PDO::PARAM_STR);
                 $query->bindParam(":civilite", $civilite, PDO::PARAM_STR);
                 $query->bindParam(":ville", $ville, PDO::PARAM_STR);
                 $query->bindParam(":code_postal", $code_postal, PDO::PARAM_INT);
                 $query->bindParam(":adresse", $adresse, PDO::PARAM_STR);
+                $query->bindParam(":pays", $pays, PDO::PARAM_STR);
                 $query->bindParam(":status", $status, PDO::PARAM_INT);
                 $query->bindParam(":update_at", $date_modification, PDO::PARAM_STR);
 
@@ -106,11 +118,11 @@ if ($_GET['action'] == "edit" || $_GET['action'] == "suppression") {
                     $validEdit = "La modification de " . ucfirst($prenom) . " " . ucfirst($nom) . " (ID : " . $_GET['membre'] . ") a bien été effectué";
                     $_SESSION['content']['valid'] = $validEdit;
 
-                    header('Location: compte.php?send=success#messageForm');
+                    header('Location: membre_compte.php?send=success');
                     exit();
                 } catch (PDOException $exception) {
 
-                    header("Location: gestion_membre.php?action=edit&membre=$_GET[membre]&send=error#messageForm");
+                    header("Location: gestion_membre.php?action=edit&membre=$_GET[membre]&send=error");
                     exit();
                 }
             }
@@ -135,13 +147,14 @@ if ($_GET['action'] == "edit" || $_GET['action'] == "suppression") {
             $validSupp = "Le compte nᵒ " . $_GET['membre'] . " a bien été supprimé";
             $_SESSION['content']['valid'] = $validSupp;
 
-            header('Location: compte.php?send=success#messageForm');
+            header('Location: membre_compte.php?send=success');
             exit();
         } catch (PDOException $exception) {
 
-            $ErrorSupp = "Erreur lors de la suppression";
-            $_SESSION['content']['error'] = $ErrorSupp;
-            header('Location: compte.php?send=error#messageForm');
+            $errorSupp = "Erreur lors de la suppression";
+            $_SESSION['content']['error'] = $errorSupp;
+
+            header('Location: membre_compte.php?send=error');
             exit();
         }
     }
@@ -167,7 +180,7 @@ require_once('inc/header.inc.php');
 
     <section class="section-1-membre">
 
-        <div class="gestion-form" id="messageForm">
+        <div class="gestion-form">
 
             <h3>Modification du compte de <?= ucfirst($user['prenom']) . " " .
                                                 ucfirst($user['nom']); ?></h3>
@@ -180,12 +193,11 @@ require_once('inc/header.inc.php');
                 <div class="message-error"><?= $error['champs'] ?></div>
             <?php endif ?>
 
-            <form id="messageForm" action="" method="POST">
+            <form action="" method="POST">
 
-                <div class="civilite">
-                    <p class="civilite">Civilité :</p>
-                    <input type="radio" name="civilite" value="homme" id="masculin" checked /> <label for="masculin">Homme</label>
-                    <input type="radio" name="civilite" value="femme" id="feminin" /> <label for="feminin">Femme</label>
+                <div class="civilite-profil">
+                    <input class="input-civilite-profil" type="radio" name="civilite" value="homme" id="homme" <?= (isset($civilite) && $civilite == "homme") ? 'checked' : ''; ?> /> <label for="homme">Homme</label>
+                    <input class="input-civilite-profil" type="radio" name="civilite" value="femme" id="femme" <?= (isset($civilite) && $civilite == "femme") ? 'checked' : ''; ?> /> <label for="femme">Femme</label>
                 </div>
 
                 <div class="prenom">
@@ -221,6 +233,17 @@ require_once('inc/header.inc.php');
 
                 </div>
 
+                <div class="telephone">
+
+                    <label for="telephone">Téléphone :</label>
+                    <input class="inputForm <?= isset($error['telephone']) ? 'border-error' : '' ?>" type="text" name="telephone" id="telephone" value="<?= ($telephone) ??  '';  ?>">
+
+                    <?php if (isset($error['telephone'])) : ?>
+                        <div class="message-error-input"><?= $error['telephone'] ?></div>
+                    <?php endif ?>
+
+                </div>
+
                 <div class="ville">
                     <label for="ville">Ville :</label>
                     <input class="inputForm" type="text" name="ville" id="ville" value="<?= ($ville) ??  '';  ?>">
@@ -240,6 +263,11 @@ require_once('inc/header.inc.php');
                 <div class="adresse">
                     <label for="adresse">Adresse :</label>
                     <input class="inputForm" type="text" name="adresse" id="adresse" value="<?= ($adresse) ??  '';  ?>">
+                </div>
+
+                <div class="pays">
+                    <label for="pays">Pays :</label>
+                    <input class="inputForm" type="text" name="pays" id="pays" value="<?= ($pays) ??  '';  ?>">
                 </div>
 
                 <div class="status">
