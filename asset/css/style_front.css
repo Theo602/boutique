@@ -37,7 +37,6 @@ header>.header-top {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
 }
 
 header>.header-top>figure {
@@ -52,31 +51,55 @@ header>.header-top>h1 {
 
 }
 
+.header-panier-mobile {
+    display: none;
+}
+
+.link-shop {
+    display: block;
+}
+
 /* 2. Menu navigation */
 
-header .menu {
+.menu {
     display: flex;
     justify-content: center;
+    align-items: baseline;
     padding: 20px;
     margin: 0;
 }
 
-header .menu li {
+.menu li {
     list-style: none;
     padding: 0 25px;
 }
 
-header .menu a {
+.menu a {
     color: #fff;
     font-size: 24px;
     text-decoration: none;
     border-bottom: 2px solid transparent;
 }
 
-header .menu a:hover {
+.menu a:hover {
     color: #0D00A4;
     border-bottom: 4px solid #0D00A4;
     transition: 1s;
+}
+
+.image-shop {
+    width: 30px;
+}
+
+.count-shop {
+    padding: 4px 10px;
+    background: white;
+    color: black;
+    border-radius: 20px;
+    font-size: 20px;
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: -14px;
 }
 
 /* 3. Modale - Menu Responsive */
@@ -1016,18 +1039,36 @@ footer {
         padding: 4% 0;
     }
 
+    .header-panier-mobile {
+        display: block;
+    }
+
+    .image-shop-mobile {
+        width: 40px;
+    }
+
+    .count-shop-mobile {
+        padding: 4px 10px;
+        background: white;
+        color: black;
+        border-radius: 20px;
+        font-size: 20px;
+        vertical-align: middle;
+        display: inline-block;
+        margin-top: -14px;
+    }
+
     /* 2. Menu navigation */
 
     header>nav>.menu {
         display: none;
     }
 
-
     /* 3. Modale - Menu Responsive */
 
     .menu {
         flex-direction: column;
-        align-items: center;
+        align-items: center !important;
         height: 100vh;
     }
 
@@ -1042,9 +1083,6 @@ footer {
 
     .btnOpen {
         display: block;
-        position: absolute;
-        top: 20px;
-        right: 20px;
         border: 1px solid #fff;
     }
 
@@ -1067,7 +1105,6 @@ footer {
         height: 100vh;
         width: 100%;
         background-color: #000;
-        opacity: 0.9;
         transform: translateY(-100%);
         transition: transform 0.9s ease-in-out;
         z-index: 10;
@@ -1260,16 +1297,35 @@ footer {
 
     header {
         padding: 6% 0;
+        flex-direction: column;
     }
 
     header>.header-top>h1 {
-        font-size: 25px;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .header-panier-mobile {
+        margin: 30px auto;
+    }
+
+    .image-shop-mobile {
+        width: 50px;
+    }
+
+    .count-shop-mobile {
+        padding: 6px 12px;
+        margin-top: -30px;
     }
 
     /* 3. Modale - Menu Responsive */
 
+    .btnOpen {
+        margin: auto;
+    }
+
     .btnOpen .fa-bars {
-        font-size: 1.4em;
+        font-size: 1.8em;
     }
 
     /* Page Accueil */

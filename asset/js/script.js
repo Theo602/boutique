@@ -17,14 +17,14 @@
 
         modal.classList.add('active-menu');
         btnClose.style.display = "block";
-        btnOpen.style.display = "none";
+
     });
 
     btnClose.addEventListener('click', function () {
 
         modal.classList.remove('active-menu');
         btnClose.style.display = "none";
-        btnOpen.style.display = "block";
+
     });
 
     window.onresize = function () {

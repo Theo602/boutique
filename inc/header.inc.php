@@ -59,7 +59,14 @@
 
                     <li><a href="<?= URL; ?>boutique.php">Boutique</a></li>
                     <li><a href="<?= URL; ?>connexion.php">Compte</a></li>
-                    <li><a href="<?= URL; ?>panier.php">Panier</a></li>
+                    <li>
+                        <a class="link-shop" href="<?= URL; ?>panier.php">Panier
+                            <img class="image-shop" src="asset/img/shop/icone-panier.png" alt="icone panier">
+                            <span class="count-shop">
+                                <?= (!empty(nbreProduitPanier())) ? nbreProduitPanier() : 0 ?>
+                            </span>
+                        </a>
+                    </li>
 
                 <?php endif ?>
 
@@ -67,16 +74,24 @@
 
         </nav>
 
+        <div class="header-panier-mobile">
+            <a class="link-shop" href="<?= URL; ?>panier.php">
+                <img class="image-shop-mobile" src="asset/img/shop/icone-panier.png" alt="icone panier">
+                <span class="count-shop-mobile">
+                    <?= (!empty(nbreProduitPanier())) ? nbreProduitPanier() : 0 ?>
+                </span>
+            </a>
+        </div>
 
         <div class="btnOpen"><i class="fas fa-bars"></i></div>
 
-        <div class="modal-menu">
-            <div class="modal-navigation">
-                <div class="btnClose"><i class="fas fa-times"></i></div>
-                <div class="modal-mobile"></div>
-            </div>
-        </div>
-
     </header>
+
+    <div class="modal-menu">
+        <div class="modal-navigation">
+            <div class="btnClose"><i class="fas fa-times"></i></div>
+            <div class="modal-mobile"></div>
+        </div>
+    </div>
 
     <main class="container">

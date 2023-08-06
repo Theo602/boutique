@@ -148,11 +148,11 @@ if (isset($_POST["payer"])) {
 
         /* On envoie un mail de confirmation */
 
-        $to = 'exemple@email.fr';
+        $to = $email;
 
         $entete = 'MIME-Version: 1.0' . "\r\n";
         $entete .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-        $entete .= 'From: exemple@email.fr' . "\r\n";
+        $entete .= 'From: confirmation-commande@boutique-tcommerce.fr' . "\r\n";
         $entete .= 'Reply-to: confirmation-commande@boutique-tcommerce.fr';
 
         $sujet = 'Confirmation de votre commande n° ' . $reference;

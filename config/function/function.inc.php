@@ -173,6 +173,23 @@ function prixTotalTCC($prixTotalHT, $tva)
     return round($total, 2);
 }
 
+/* Fonction  qui retourne le nombre de produit pour le badge du panier dans la barre de navigation */
+
+function nbreProduitPanier()
+{
+    if (isset($_SESSION['panier']) && $_SESSION['panier']['quantite'] > 0) {
+
+        $nombre = 0;
+
+        for ($i = 0; $i < count($_SESSION['panier']['id_produit']); $i++) {
+            $nombre += $_SESSION['panier']['quantite'][$i];
+        }
+    } else {
+        $nombre = 0;
+    }
+    return $nombre;
+}
+
 /* Fonction qui retourne une chaîne de caractère aléatoire pour la référence de la commande */
 
 function chaineAleatoire($lenght = 10)
