@@ -5,6 +5,7 @@ require_once('config/init.php');
 
 /* Affichage des produits */
 
+
 if (isset($_GET['id_produit']) && !empty($_GET['id_produit'])) {
 
     $requestProduit = $bdd->prepare('SELECT * FROM produit WHERE id_produit = :id_produit');

@@ -21,7 +21,7 @@ if (!userConnected()) {
 
 $id_membre = $_SESSION['user']['id_membre'];
 
-$requestCommande = $bdd->prepare("SELECT *, DATE_FORMAT(c.created_at, '%d/%m/%Y') AS created_at FROM commande c INNER JOIN user u ON 
+$requestCommande = $bdd->prepare("SELECT *, DATE_FORMAT(c.created_at, '%d/%m/%Y') AS 'date_commande' FROM commande c INNER JOIN user u ON 
     c.id_membre = u.id_membre AND u.id_membre = :id_membre");
 $requestCommande->bindParam(":id_membre", $id_membre, PDO::PARAM_INT);
 
@@ -89,12 +89,12 @@ require_once('inc/header.inc.php');
                                     <td data-label="Commande nᵒ"><?= $id_commande; ?></td>
                                     <td data-label="Référence"><?= $reference; ?></td>
                                     <td data-label="Client"><?= $email; ?></td>
-                                    <td data-label="Date"><?= $created_at; ?></td>
+                                    <td data-label="Date"><?= $date_commande; ?></td>
                                     <td data-label="TotalTcc"><?= $total_ttc; ?></td>
                                     <td data-label="Status"><?= $etat; ?></td>
                                     <td data-label="Option">
 
-                                        <a href="" title="Voir"><i class="fa fa-eye"></i></a>
+                                        <a href="detail-commande.php?commande=<?= $id_commande; ?>" title="Voir"><i class="fa fa-eye"></i></a>
 
                                     </td>
                                 </tr>

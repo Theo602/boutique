@@ -40,7 +40,7 @@ if (isset($_GET['action']) || !empty($_GET['action'])) {
             try {
                 $query->execute();
 
-                $validSupp = "La newsletter nᵒ " . $_GET['id_newsletter'] . " a bien été supprimée";
+                $validSupp = "La <b>newsletter nᵒ " . $_GET['id_newsletter'] . "</b> a bien été supprimée";
                 $_SESSION['content']['valid'] = $validSupp;
 
                 header('Location: gestion_newsletter.php?send=success');
@@ -53,6 +53,9 @@ if (isset($_GET['action']) || !empty($_GET['action'])) {
                 header('Location: gestion_newsletter.php?send=error');
                 exit();
             }
+        } else {
+            header('Location: ../errors/error404.php');
+            exit();
         }
     }
 }

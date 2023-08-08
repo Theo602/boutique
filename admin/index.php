@@ -54,7 +54,7 @@ $countUser = $requestUser->fetchColumn();
 
 /* Affichage des commandes */
 
-$requestDetailCommande = $bdd->prepare("SELECT *, DATE_FORMAT(c.created_at, '%d/%m/%Y') AS 'date_commande' FROM commande c INNER JOIN user u ON 
+$requestDetailCommande = $bdd->prepare("SELECT *, DATE_FORMAT(c.created_at, '%d/%m/%Y') AS 'date_commande' FROM commande c LEFT JOIN user u ON 
 c.id_membre = u.id_membre ORDER BY id_commande  DESC LIMIT 0, 6");
 
 try {
@@ -149,13 +149,13 @@ require_once('inc/header.inc.php');
                             <tr class="table-details-commande">
                                 <td data-label="Commande nᵒ"><?= $id_commande; ?></td>
                                 <td data-label="Référence"><?= $reference; ?></td>
-                                <td data-label="Client"><?= $email; ?></td>
+                                <td data-label="Client"><?= ($email) ? $email : 'Commande archivée' ?></td>
                                 <td data-label="Date"><?= $date_commande; ?></td>
                                 <td data-label="Total"><?= $total_ttc; ?></td>
                                 <td data-label="Status"><?= $etat; ?></td>
                                 <td data-label="Option">
 
-                                    <a href="" title="Voir"><i class="fa fa-eye"></i></a>
+                                    <a href="membre_commande.php" title="Voir"><i class="fa fa-eye"></i></a>
 
                                 </td>
                             </tr>

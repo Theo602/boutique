@@ -7,7 +7,9 @@ $pageTitle = 'Espace connexion';
 $pageMetaDesc = 'Connectez vous à votre compte';
 $bodyId = SIGN_UP;
 
-
+if (userIsAdmin()) {
+    header('Location: admin');
+}
 if (userConnected()) {
     header('Location: compte.php');
     exit();

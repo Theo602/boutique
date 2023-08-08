@@ -32,7 +32,8 @@ const ADMIN_GESTION_PRODUIT = 'gestion_produit';
 const ADMIN_COMPTE_MEMBRE = 'admin_compte_membre';
 const ADMIN_GESTION_MEMBRE = 'gestion_membre';
 const ADMIN_LISTE_COMMANDE  = 'admin_liste_commande';
-const ADMIN_GESTION_COMMANDE = 'gestion_commande';
+const ADMIN_COMMANDE_MEMBER  = 'admin_commande_member';
+const ADMIN_GESTION_COMMANDE = 'gestion_commande_';
 const ADMIN_GESTION_NEWSLETTER = 'gestion_newsletter';
 
 // Erreur

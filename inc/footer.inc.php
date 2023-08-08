@@ -25,7 +25,7 @@
         <?php if ($bodyId === MEMBER_COMPTE) : ?>
             <script src="asset/js/script_delete_liste.js"></script>
         <?php endif ?>
-        <?php if ($bodyId === PROCESS_COMMANDE || $bodyId === PANIER) : ?>
+        <?php if ($bodyId === PROCESS_COMMANDE || $bodyId === PANIER || $bodyId === MEMBER_DETAIL_COMMANDE) : ?>
             <script src="asset/js/script_liste.js"></script>
         <?php endif ?>
     <?php endif ?>

@@ -249,7 +249,7 @@ require_once('inc/header.inc.php');
                                     <td data-label="Status"><?= $etat; ?></td>
                                     <td data-label="Option">
 
-                                        <a href="" title="Voir"><i class="fa fa-eye"></i></a>
+                                        <a href="detail-commande.php?commande=<?= $id_commande; ?>" title="Voir"><i class="fa fa-eye"></i></a>
 
                                     </td>
                                 </tr>

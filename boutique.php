@@ -94,7 +94,7 @@ require_once('inc/header.inc.php');
 
                     <div class="block-produit-boutique">
 
-                        <?php while ($produit = $requestProduit->fetch(PDO::FETCH_ASSOC)) : extract($produit) ?>
+                        <?php while ($produit = $requestProduit->fetch(PDO::FETCH_ASSOC)) : extract($produit); ?>
 
                             <div class="fiche-produit-boutique">
 

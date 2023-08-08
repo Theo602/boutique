@@ -76,7 +76,7 @@ require_once('inc/header.inc.php');
 
             <?php if (userIsAdmin()) : ?>
 
-                <p>Pour suivre votre commande, rendez-vous sur votre <a class="btn-compte" href="admin_compte.php">compte</a>.</p>
+                <p>Pour suivre votre commande, rendez-vous sur votre <a class="btn-compte" href="admin/admin_compte.php">compte</a>.</p>
 
             <?php else : ?>
 

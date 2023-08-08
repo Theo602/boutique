@@ -115,7 +115,7 @@ if ($_GET['action'] == "edit" || $_GET['action'] == "suppression") {
                 try {
                     $query->execute();
 
-                    $validEdit = "La modification de " . ucfirst($prenom) . " " . ucfirst($nom) . " (ID : " . $_GET['membre'] . ") a bien été effectué";
+                    $validEdit = "La modification de <b>" . ucfirst($prenom) . " " . ucfirst($nom) . " (ID : " . $_GET['membre'] . ")</b> a bien été effectué";
                     $_SESSION['content']['valid'] = $validEdit;
 
                     header('Location: membre_compte.php?send=success');
@@ -133,28 +133,29 @@ if ($_GET['action'] == "edit" || $_GET['action'] == "suppression") {
 
     if ($_GET['action'] == "suppression") {
 
-        if (!isset($_GET['membre']) && empty($_GET['membre'])) {
+        if (isset($_GET['membre']) && !empty($_GET['membre'])) {
+
+            $query = $bdd->prepare('DELETE FROM user WHERE id_membre = :id_membre');
+            $query->bindParam(":id_membre", $_GET['membre'], PDO::PARAM_INT);
+
+            try {
+                $query->execute();
+
+                $validSupp = "Le <b> compte nᵒ " . $_GET['membre'] . "</b> a bien été supprimé";
+                $_SESSION['content']['valid'] = $validSupp;
+
+                header('Location: membre_compte.php?send=success');
+                exit();
+            } catch (PDOException $exception) {
+
+                $errorSupp = "Erreur lors de la suppression";
+                $_SESSION['content']['error'] = $errorSupp;
+
+                header('Location: membre_compte.php?send=error');
+                exit();
+            }
+        } else {
             header('Location: ../errors/error404.php');
-            exit();
-        }
-
-        $query = $bdd->prepare('DELETE FROM user WHERE id_membre = :id_membre');
-        $query->bindParam(":id_membre", $_GET['membre'], PDO::PARAM_INT);
-
-        try {
-            $query->execute();
-
-            $validSupp = "Le compte nᵒ " . $_GET['membre'] . " a bien été supprimé";
-            $_SESSION['content']['valid'] = $validSupp;
-
-            header('Location: membre_compte.php?send=success');
-            exit();
-        } catch (PDOException $exception) {
-
-            $errorSupp = "Erreur lors de la suppression";
-            $_SESSION['content']['error'] = $errorSupp;
-
-            header('Location: membre_compte.php?send=error');
             exit();
         }
     }

@@ -74,7 +74,7 @@ require_once('inc/header.inc.php');
 
                             <tr class="table-responsive">
 
-                                <td>Commande nᵒ <?= $id_produit; ?></td>
+                                <td>Commande nᵒ <?= $id_commande; ?></td>
                                 <td><i class="fas fa-chevron-down"></td>
 
                             </tr>
@@ -88,7 +88,7 @@ require_once('inc/header.inc.php');
                                 <td data-label="Status"><?= $etat; ?></td>
                                 <td data-label="Option">
 
-                                    <a href="" title="Voir"><i class="fa fa-eye"></i></a>
+                                    <a href="../detail-commande.php?commande=<?= $id_commande; ?>" title="Voir"><i class="fa fa-eye"></i></a>
 
                                 </td>
                             </tr>

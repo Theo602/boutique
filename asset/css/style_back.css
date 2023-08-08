@@ -326,7 +326,89 @@ header {
     transition: 1s;
 }
 
-/* Page dashboard - Page Gestion Produit - Page Boutique - Page Compte - Page Gestion Membre - Page Profil - Page Compte - Page Admin_Compte */
+/* Page Detail Commande Membre */
+
+/* Block information */
+
+.dashboard-info {
+    background: #fff;
+    box-shadow: #000 0px 0px 4px 4px;
+    border-radius: 5px;
+    margin: 20px auto;
+    padding: 10px;
+    width: 90%;
+}
+
+.order {
+    display: flex;
+    justify-content: end;
+    margin: 20px 0;
+}
+
+.order-client {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+
+.btn-order,
+.btn-commande {
+    background-color: #000;
+    border: 2px solid #0D00A4;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px 10px;
+    margin: 0 6px;
+    width: 30%;
+    text-align: center;
+}
+
+.btn-order:hover,
+.btn-commande:hover {
+    background-color: #0D00A4;
+    cursor: pointer;
+    border-bottom: 2px solid #0D00A4;
+    transition: 1s;
+}
+
+/* Block détail commande */
+
+.background-commande {
+    background: #fff;
+    box-shadow: #000 0px 0px 4px 4px;
+    border-radius: 5px;
+    margin: 20px auto;
+    padding: 2%;
+    width: 90%;
+}
+
+.resume-commande {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.fiche-information {
+    width: 25%;
+}
+
+.fiche-information p {
+    font-size: 18px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.panier-total {
+    text-align: end;
+    margin: 1% 4% 1% 0;
+    font-size: 18px;
+}
+
+/* Page dashboard - Page Gestion Produit - Page Boutique - Page Compte - Page Gestion Membre - Page Profil - Page Compte - Page Admin_Compte - Page Detail Commande Membre */
 
 .section-1-produit,
 .section-1-dashboard,
@@ -340,8 +422,13 @@ header {
 .section-2-compte,
 .section-1-profil,
 .section-3-profil,
-.section-1-commande-admin {
+.section-1-commande-admin,
+.section-1-client {
     padding: 4% 0;
+}
+
+.section-2-client {
+    padding-bottom: 4%;
 }
 
 .gestion-form hr,
@@ -353,7 +440,11 @@ header {
 .espace-adresse hr,
 .detail-profil hr,
 .detail-adresse hr,
-.espace-password hr {
+.espace-password hr,
+.dashboard-info hr,
+.list-client hr,
+.fiche-information hr,
+.information-client hr {
     margin: 20px auto;
     padding: 1px;
     background-color: #000;
@@ -363,7 +454,8 @@ header {
 .espace-adresse hr,
 .detail-profil hr,
 .detail-adresse hr,
-.espace-password hr {
+.espace-password hr,
+.fiche-information hr {
     width: 70%;
 }
 
@@ -377,13 +469,23 @@ header {
 .detail-adresse h3,
 .espace-password h3,
 .gestion-form h3,
-.table-list h3 {
+.table-list h3,
+.dashboard-info h3,
+.list-client h3,
+.fiche-information h3,
+.information-client h3 {
     font-size: 30px;
     text-align: center;
 }
 
+.fiche-information h3 {
+    font-size: 24px;
+}
+
 .gestion-form h3,
-.table-list h3 {
+.table-list h3,
+.list-client h3,
+.information-client h3 {
     margin: 20px 0;
 }
 
@@ -462,7 +564,8 @@ header {
     padding: 2%;
 }
 
-.table-list table {
+.table-list table,
+.list-client table {
     border-collapse: collapse;
     width: 100%;
     margin: 20px 0;
@@ -474,7 +577,9 @@ header {
 }
 
 .table-top-user th,
-.table-details-user td {
+.table-details-user td,
+.table-top-client th,
+.table-details-client td {
     width: calc(100% / 6);
 }
 
@@ -491,7 +596,8 @@ header {
 .table-details,
 .table-details-commande,
 .table-details-user,
-.table-details-newsletter {
+.table-details-newsletter,
+.table-details-client {
     text-align: center;
     border-top: 2px solid #000;
     border-bottom: 2px solid #000;
@@ -501,24 +607,28 @@ header {
 .table-top-commande th,
 .table-top-user th,
 .table-top-newsletter th,
+.table-top-client th,
 .table-details td,
 .table-details-commande td,
 .table-details-user td,
-.table-details-newsletter td {
+.table-details-newsletter td,
+.table-details-client td {
     padding: 10px;
 }
 
 .table-top th,
 .table-top-commande th,
 .table-top-user th,
-.table-top-newsletter th {
+.table-top-newsletter th,
+.table-top-client th {
     font-size: 20px;
 }
 
 .table-details td,
 .table-details-commande td,
 .table-details-user td,
-.table-details-newsletter td {
+.table-details-newsletter td,
+.table-details-client td {
     font-size: 18px;
 }
 
@@ -535,7 +645,8 @@ header {
     transition: 1s;
 }
 
-.table-details img {
+.table-details img,
+.table-details-client img {
     width: 80px;
 }
 
@@ -631,19 +742,22 @@ footer {
 
     /* Page dashboard - Page Boutique */
 
-    .table-list thead {
+    .table-list thead,
+    .list-client thead {
         display: none;
     }
 
     .table-details,
     .table-details-commande,
     .table-details-user,
-    .table-details-newsletter {
+    .table-details-newsletter,
+    .table-details-client {
         display: none;
         border: 2px solid #000;
     }
 
-    .table-details img {
+    .table-details img,
+    .table-details-client img {
         margin: auto;
     }
 
@@ -657,7 +771,8 @@ footer {
     .table-details td::before,
     .table-details-commande td::before,
     .table-details-user td::before,
-    .table-details-newsletter td::before {
+    .table-details-newsletter td::before,
+    .table-details-client td::before {
         content: attr(data-label);
         font-weight: bold;
         margin: 10px 0;
@@ -666,7 +781,8 @@ footer {
     .table-details td,
     .table-details-commande td,
     .table-details-user td,
-    .table-details-newsletter td {
+    .table-details-newsletter td,
+    .table-details-client td {
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -808,6 +924,28 @@ footer {
     .separate-section-1 {
         width: 26%;
     }
+
+    /* Page Detail Commande Membre */
+
+    /* Block information */
+
+    .order,
+    .order-client {
+        flex-direction: column;
+    }
+
+    .btn-order,
+    .btn-commande {
+        margin: 6px auto;
+        width: 100%;
+    }
+
+    /* Block détail commande */
+
+    .fiche-information {
+        width: 50%;
+    }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -870,6 +1008,14 @@ footer {
     .civilite-profil,
     .password-profil {
         width: 90%;
+    }
+
+    /* Page Detail Commande Membre */
+
+    /* Block détail commande */
+
+    .fiche-information {
+        width: 100%;
     }
 
     /* Message Erreur - Message Succès */

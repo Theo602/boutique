@@ -543,7 +543,7 @@ header>.header-top>h1 {
 
 .fiche-information p {
     font-size: 18px;
-    margin: 20px 0;
+    margin: 10px 0;
     text-align: center;
 }
 
@@ -1254,7 +1254,7 @@ footer {
     .btn-order,
     .btn-connect-panier,
     .btn-achat {
-        margin: 6px 6px;
+        margin: 6px auto;
         width: 100%;
     }
 
