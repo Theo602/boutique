@@ -42,11 +42,7 @@ if (isset($_GET['commande']) && !empty($_GET['commande'])) {
 
     /* Affichage du détail des produits de la commande */
 
-    $query = $bdd->prepare("SELECT dc.id_produit, dc.prix AS 'detail_prix', dc.quantite AS 'detail_quantite',
-                                            dc.total AS 'detail_total', p.id_produit, p.reference, p.titre, p.photo
-                                            FROM detail_commande dc
-                                            INNER JOIN produit p  ON dc.id_produit = p.id_produit
-                                            AND dc.id_commande = :id_commande");
+    $query = $bdd->prepare("SELECT *, prix AS 'detail_prix', quantite AS 'detail_quantite', total AS 'detail_total' FROM detail_commande WHERE id_commande = :id_commande");
 
     $query->bindParam(":id_commande", $_GET['commande'], PDO::PARAM_INT);
 
@@ -92,7 +88,7 @@ require_once('inc/header.inc.php');
 
             <div class="order-client">
 
-                <a href="" class="btn-commande"></i>Bon de commande</a>
+                <a href="../facture-commande.php?commande=<?= $id_commande; ?>" class="btn-commande"></i>Bon de commande</a>
                 <a href="gestion_commande.php?action=edit&commande=<?= $commande_id ?>" title="Changer le status" class="btn-commande"></i>Modifier la commande</a>
                 <a href="membre_commande.php" title="retour sur les commandes clients" class="btn-commande"></i>Retour sur les commandes clients</a>
 
@@ -196,13 +192,13 @@ require_once('inc/header.inc.php');
 
                                     <figure>
                                         <a href="fiche-produit.php?id_produit=<?= $id_produit; ?>" title="Voir le produit">
-                                            <img src="<?= $photo; ?>"></a>
+                                            <img src="<?= $photo_produit; ?>"></a>
                                     </figure>
 
                                 </td>
 
-                                <td data-label="Référence"><?= $reference; ?></td>
-                                <td data-label="Nom du produit"><?= ucfirst($titre); ?></td>
+                                <td data-label="Référence"><?= $reference_produit; ?></td>
+                                <td data-label="Nom du produit"><?= ucfirst($nom_produit); ?></td>
                                 <td data-label="Quantité"><?= $detail_quantite; ?></td>
                                 <td data-label="Prix"><?= $detail_prix; ?> €</td>
                                 <td data-label="Total"><?= $detail_total; ?> €</td>

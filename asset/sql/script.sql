@@ -57,6 +57,7 @@ CREATE TABLE commande(
     id_commande INT(11) NOT NULL AUTO_INCREMENT,
     id_membre INT(11) DEFAULT NULL,
     reference VARCHAR(255) NOT NULL,
+    facture VARCHAR(255) NOT NULL,
     livraison VARCHAR(100) NOT NULL,
     adresse_livraison VARCHAR(255) NOT NULL,
     total_ht DOUBLE NOT NULL,
@@ -76,14 +77,16 @@ CREATE TABLE detail_commande(
 
     id_detail_commande INT(11) NOT NULL AUTO_INCREMENT,
     id_commande INT(11) NOT NULL,
-    id_produit INT(11) DEFAULT NULL,
+    id_produit INT(11) NOT NULL,
+    reference_produit VARCHAR(60) NOT NULL,
+    nom_produit VARCHAR(100) NOT NULL,
+    photo_produit VARCHAR(255) NOT NULL,
     quantite INT(11) NOT NULL,
     prix DOUBLE NOT NULL,
     total DOUBLE NOT NULL,
 
     PRIMARY KEY(id_detail_commande),
 
-    FOREIGN KEY(id_commande) REFERENCES commande(id_commande) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY(id_produit) REFERENCES produit(id_produit) ON DELETE SET NULL ON UPDATE RESTRICT
+    FOREIGN KEY(id_commande) REFERENCES commande(id_commande) ON DELETE CASCADE ON UPDATE CASCADE,
 
 ) ENGINE=InnoDB;

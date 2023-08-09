@@ -13,9 +13,11 @@
     <link rel="stylesheet" href="asset/css/style_front.css">
 
     <?php if (isset($bodyId)) : ?>
+
         <?php if ($bodyId === MEMBER_COMPTE  || $bodyId === MEMBER_PROFILE || $bodyId === MEMBER_COMMANDE) : ?>
             <link rel="stylesheet" href="asset/css/style_front_profil.css">
         <?php endif ?>
+
     <?php endif ?>
 
     <!-- CDN Font-awesome -->
@@ -57,8 +59,8 @@
 
                 <?php elseif (userConnected() && $_SESSION['user']['status'] == 0) : ?>
 
-                    <li><a href="<?= URL; ?>compte.php">Mon Compte</a></li>
                     <li><a href="<?= URL; ?>boutique.php">Boutique</a></li>
+                    <li><a href="<?= URL; ?>compte.php">Mon Compte</a></li>
                     <li>
                         <a class="link-shop" href="<?= URL; ?>panier.php">Panier
                             <img class="image-shop" src="asset/img/shop/icone-panier.png" alt="icone panier">

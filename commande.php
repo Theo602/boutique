@@ -41,6 +41,7 @@ require_once('inc/header.inc.php');
 
 <!-- Affichage de la page -->
 
+
 <div class="container-profil">
 
     <section class="section-profil-left">
@@ -95,6 +96,7 @@ require_once('inc/header.inc.php');
                                     <td data-label="Option">
 
                                         <a href="detail-commande.php?commande=<?= $id_commande; ?>" title="Voir"><i class="fa fa-eye"></i></a>
+                                        <a href="facture-commande.php?commande=<?= $id_commande; ?>" title="Facture"><i class="fas fa-file-pdf"></i></a>
 
                                     </td>
                                 </tr>

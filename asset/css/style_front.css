@@ -519,34 +519,6 @@ header>.header-top>h1 {
     cursor: pointer;
 }
 
-/* Page Process-order */
-
-.background-commande {
-    background: #fff;
-    box-shadow: #000 0px 0px 4px 4px;
-    border-radius: 5px;
-    margin: 20px auto;
-    padding: 10px;
-    width: 90%;
-}
-
-.resume-commande {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding: 10px;
-}
-
-.fiche-information {
-    width: 25%;
-}
-
-.fiche-information p {
-    font-size: 18px;
-    margin: 10px 0;
-    text-align: center;
-}
-
 /* Page Validation Commande */
 
 .section-1-achat {
@@ -733,7 +705,57 @@ header>.header-top>h1 {
     transition: 1s;
 }
 
-/* Page Panier - Page Process-order */
+/* Page inscription - Page connexion */
+
+.section-1-inscription .inscription-form,
+.section-1-connexion .connexion-form {
+    border: 2px solid #000;
+    border-radius: 10px;
+    width: 50%;
+    margin: auto;
+    padding: 2%;
+}
+
+.section-1-connexion .connexion-form {
+    width: 40%;
+}
+
+.inscription-form h3,
+.connexion-form h3 {
+    font-size: 30px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Page Process-order - Page Detail Commande*/
+
+.background-commande {
+    background: #fff;
+    box-shadow: #000 0px 0px 4px 4px;
+    border-radius: 5px;
+    margin: 20px auto;
+    padding: 10px;
+    width: 90%;
+}
+
+.resume-commande {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.fiche-information {
+    width: 25%;
+}
+
+.fiche-information p {
+    font-size: 18px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* Page Panier - Page Process-order - Page Detail Commande */
 
 /* 1. Block Panier */
 
@@ -930,28 +952,6 @@ header>.header-top>h1 {
 .panier-vide a:hover {
     color: #000;
     transition: 1s;
-}
-
-/* Page inscription - Page connexion */
-
-.section-1-inscription .inscription-form,
-.section-1-connexion .connexion-form {
-    border: 2px solid #000;
-    border-radius: 10px;
-    width: 50%;
-    margin: auto;
-    padding: 2%;
-}
-
-.section-1-connexion .connexion-form {
-    width: 40%;
-}
-
-.inscription-form h3,
-.connexion-form h3 {
-    font-size: 30px;
-    margin: 20px 0;
-    text-align: center;
 }
 
 /* Footer */
@@ -1180,7 +1180,7 @@ footer {
         width: 100%;
     }
 
-    /* Page Panier - Page Process-order */
+    /* Page Panier - Page Process-order  - Page Detail Commande */
 
     /* 2. Block Liste Panier */
 
@@ -1258,7 +1258,7 @@ footer {
         width: 100%;
     }
 
-    /* Page Process-order */
+    /* Page Process-order - Page Detail Commande*/
 
     .fiche-information {
         width: 50%;
@@ -1373,7 +1373,7 @@ footer {
         width: 100%;
     }
 
-    /* Page Process-order */
+    /* Page Process-order - Page Detail Commande*/
 
     .resume-commande {
         flex-direction: column;
@@ -1387,7 +1387,7 @@ footer {
         width: 50%;
     }
 
-    /* Page Panier - Page Process-order - Page Validation Commande*/
+    /* Page Panier - Page Process-order - Page Validation Commande - Page Detail Commande*/
 
     /* 1. Block Panier */
 

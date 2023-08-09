@@ -104,6 +104,8 @@ require_once('inc/header.inc.php');
 
                                     <a href="membre_detail_commande.php?commande=<?= $id_commande; ?>" title="Voir"><i class="fa fa-eye"></i></a>
 
+                                    <a href="../facture-commande.php?commande=<?= $id_commande; ?>" title="Facture"><i class="fas fa-file-pdf"></i></a>
+
                                     <a href="gestion_commande.php?action=edit&commande=<?= $id_commande ?>" title="Modifier"><i class="fas fa-pencil"></i></a>
 
                                     <a class="btnDelete" href="gestion_commande.php?action=suppression&commande=<?= $id_commande ?>" title="Supprimer"> <i class="fa fa-trash-can"></i></a>

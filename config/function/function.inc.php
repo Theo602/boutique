@@ -192,10 +192,24 @@ function nbreProduitPanier()
 
 /* Fonction qui retourne une chaîne de caractère aléatoire pour la référence de la commande */
 
-function chaineAleatoire($lenght = 10)
+function chaineReference($lenght = 10)
 {
     $chaine = "";
     $caractere = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $lenghtMax = strlen($caractere);
+
+    for ($i = 0; $i < $lenght; $i++) {
+        $chaine .= $caractere[rand(0, $lenghtMax - 1)];
+    }
+    return $chaine;
+}
+
+/* Fonction qui retourne une chaîne de caractère aléatoire pour la facture de la commande */
+
+function chaineFacture($lenght = 10)
+{
+    $chaine = "";
+    $caractere = "0123456789";
     $lenghtMax = strlen($caractere);
 
     for ($i = 0; $i < $lenght; $i++) {

@@ -1,0 +1,138 @@
+/* Style de la view du générateur de PDF */
+
+/* 1. Global */
+
+* {
+    font-family: 'Roboto', Helvetica, sans-serif, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.list-pdf hr,
+.information-pdf hr,
+.resume-pdf hr,
+.information-order>.resume-order>.fiche-information-pdf hr,
+.information-order>.resume-order>.fiche-livraison-pdf hr,
+.section-1-pdf hr {
+    margin: 20px auto;
+    padding: 1px;
+    background-color: #000;
+}
+
+.section-1-pdf hr {
+    background-color: #fff;
+}
+
+.fiche-information-pdf hr,
+.fiche-livraison-pdf hr {
+    width: 50%;
+}
+
+.section-1-pdf {
+    padding: 2% 0;
+    background-color: #04052E;
+}
+
+.section-2-pdf {
+    padding: 2%;
+}
+
+.clear {
+    clear: both;
+}
+
+/* 2. Section 1 */
+
+.section-1-pdf h1 {
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+}
+
+.section-1-pdf h2 {
+    color: #fff;
+    font-size: 25px;
+    text-align: center;
+}
+
+.section-1-pdf p {
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    margin: 20px 0;
+    line-height: 24px;
+}
+
+/* 3. Section 2 */
+
+.information-pdf h3,
+.list-pdf h3,
+.resume-pdf h3 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.background-pdf {
+    background: #fff;
+    width: 100%;
+}
+
+/* 3.1. Block information */
+
+.fiche-information-pdf {
+    float: left;
+    width: 25%;
+    margin: 4% 0;
+}
+
+.fiche-information-pdf h3 {
+    font-size: 20px;
+}
+
+.fiche-information-pdf p {
+    font-size: 18px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* 3.2. Block Liste */
+
+.list-pdf table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.table-top-pdf th,
+.table-details-pdf td {
+    width: calc(100% /6);
+    padding: 10px;
+}
+
+.table-details-pdf {
+    text-align: center;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+.table-top-pdf th {
+    font-size: 20px;
+}
+
+.table-details-pdf td {
+    font-size: 18px;
+}
+
+.table-details-pdf img {
+    width: 60px;
+    border-radius: 10px;
+}
+
+/* 3.3. Texte Panier */
+
+.panier-total-pdf {
+    font-size: 18px;
+    margin: 10px;
+    text-align: right;
+}

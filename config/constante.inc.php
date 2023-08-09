@@ -18,6 +18,7 @@ const MEMBER_COMPTE = 'member_compte';
 const MEMBER_PROFILE = 'member_profile';
 const MEMBER_COMMANDE = 'member_commande';
 const MEMBER_DETAIL_COMMANDE = 'member_detail_commande';
+const MEMBER_FACTURE_COMMANDE = 'member_facture_commande';
 
 // Dashboard
 

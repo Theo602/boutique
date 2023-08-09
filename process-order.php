@@ -92,15 +92,17 @@ if (isset($_POST["payer"])) {
         $date_creation = new DateTime('now', new DateTimeZone('Europe/Paris'));
         $date_reference = $date_creation->format('Ymd');
         $date_creation = $date_creation->format('Y-m-d H:i:s');
-        $reference = $date_reference . "-" . chaineAleatoire(12);
+        $reference_commande = $date_reference . "-" . chaineReference(12);
+        $facture_commande = chaineFacture(12);
 
         $etat = "payé";
 
-        $request = $bdd->prepare("INSERT INTO commande (id_membre, reference, livraison, adresse_livraison, total_ht,  total_ttc, etat, created_at, update_at) 
-        VALUES (:id_membre, :reference, :livraison, :adresse_livraison, :total_ht,  :total_ttc, :etat, :created_at, :update_at)");
+        $request = $bdd->prepare("INSERT INTO commande (id_membre, reference, facture, livraison, adresse_livraison, total_ht,  total_ttc, etat, created_at, update_at) 
+        VALUES (:id_membre, :reference, :facture, :livraison, :adresse_livraison, :total_ht,  :total_ttc, :etat, :created_at, :update_at)");
 
         $request->bindParam(":id_membre", $id_membre, PDO::PARAM_INT);
-        $request->bindParam(":reference", $reference, PDO::PARAM_STR);
+        $request->bindParam(":reference", $reference_commande, PDO::PARAM_STR);
+        $request->bindParam(":facture", $facture_commande, PDO::PARAM_STR);
         $request->bindParam(":livraison", $modeDeLivraision, PDO::PARAM_STR);
         $request->bindParam(":adresse_livraison", $adresseLivraison, PDO::PARAM_STR);
         $request->bindParam(":total_ht", $totalHT, PDO::PARAM_INT);
@@ -121,11 +123,13 @@ if (isset($_POST["payer"])) {
 
             $produitTotal = produitTotal($_SESSION['panier']['id_produit'][$i]);
 
-            $query = $bdd->prepare("INSERT INTO detail_commande (id_commande, id_produit, quantite, prix, total)
-            VALUES (:id_commande, :id_produit, :quantite, :prix, :total)");
+            $query = $bdd->prepare("INSERT INTO detail_commande (id_commande, id_produit, reference_produit, nom_produit, photo_produit, quantite, prix, total) VALUES (:id_commande, :id_produit, :reference_produit, :nom_produit, :photo_produit, :quantite, :prix, :total)");
 
             $query->bindParam(":id_commande", $id_commande, PDO::PARAM_INT);
             $query->bindParam(":id_produit", $_SESSION['panier']['id_produit'][$i], PDO::PARAM_INT);
+            $query->bindParam(":reference_produit", $_SESSION['panier']['reference'][$i], PDO::PARAM_STR);
+            $query->bindParam(":nom_produit", $_SESSION['panier']['titre'][$i], PDO::PARAM_STR);
+            $query->bindParam(":photo_produit", $_SESSION['panier']['photo'][$i], PDO::PARAM_STR);
             $query->bindParam(":quantite", $_SESSION['panier']['quantite'][$i], PDO::PARAM_INT);
             $query->bindParam(":prix", $_SESSION['panier']['prix'][$i], PDO::PARAM_INT);
             $query->bindParam(":total", $produitTotal, PDO::PARAM_INT);
@@ -183,7 +187,7 @@ if (isset($_POST["payer"])) {
 
         </html>';
 
-        mail($to, $sujet, $message, $entete);
+        // mail($to, $sujet, $message, $entete);
 
         $_SESSION['commande']['id_commande'] = $id_commande;
 

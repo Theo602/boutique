@@ -160,7 +160,7 @@ if ($_GET['action'] == "ajouter" || $_GET['action'] == "modifier" || $_GET['acti
                 $valid = "La modification du produit " . ucfirst($titre) . ", référence " . $reference .  " a bien été effectué";
             } else {
 
-                $query = $bdd->prepare(" INSERT INTO produit(reference, categorie, titre, description, couleur, taille, public, photo, prix, stock, created_at)
+                $query = $bdd->prepare(" INSERT INTO produit(reference, categorie, titre, description, couleur, taille, public, photo, prix, stock, created_at, update_at )
                 VALUES(:reference, :categorie, :titre, :description, :couleur, :taille, :public, :photo, :prix, :stock, :created_at, :update_at)");
 
                 $query->bindParam(":created_at", $date, PDO::PARAM_STR);
