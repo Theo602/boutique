@@ -4,7 +4,7 @@ require_once('../config/init.php');
 
 
 if (!userIsAdmin()) {
-    header('Location: ../errors/error403.php');
+    header('Location: ' . URL . 'errors/error403.php');
 }
 
 
@@ -18,7 +18,7 @@ $error =  [];
 
 
 if (!isset($_GET['action']) || empty($_GET['action'])) {
-    header('Location: ../errors/error404.php');
+    header('Location: ' . URL . 'admin/boutique.php');
     exit();
 }
 
@@ -34,19 +34,19 @@ if ($_GET['action'] == "ajouter" || $_GET['action'] == "modifier" || $_GET['acti
             try {
                 $requestProduit->execute();
             } catch (PDOException $exception) {
-                header('Location: ../errors/error500.php');
+                header('Location: ' . URL . 'errors/error500.php');
                 exit();
             }
 
             if ($requestProduit->rowCount() == 0) {
-                header('Location: ../errors/error404.php');
+                header('Location: ' . URL . 'errors/error404.php');
                 exit();
             } else {
                 $produit = $requestProduit->fetch(PDO::FETCH_ASSOC);
                 extract($produit);
             }
         } else {
-            header('Location: ../errors/error404.php');
+            header('Location: ' . URL . 'admin/boutique.php');
             exit();
         }
     }
@@ -75,7 +75,7 @@ if ($_GET['action'] == "ajouter" || $_GET['action'] == "modifier" || $_GET['acti
             try {
                 $referenceFind->execute();
             } catch (PDOException $exception) {
-                header('Location: errors/error500.php');
+                header('Location: ' . URL . 'errors/error500.php');
                 exit();
             }
 
@@ -183,15 +183,15 @@ if ($_GET['action'] == "ajouter" || $_GET['action'] == "modifier" || $_GET['acti
             try {
                 $query->execute();
                 $_SESSION['content']['valid'] = $valid;
-                header('Location: boutique.php?send=success');
+                header('Location: ' . URL . 'admin/boutique.php?send=success');
                 exit();
             } catch (PDOException $exception) {
 
                 if ($_GET['action'] == "modifier") {
-                    header("Location: gestion_produit.php?action=modifier&id_produit=$_GET[id_produit]&send=error");
+                    header("Location: " . URL . "admin/gestion_produit.php?action=modifier&id_produit=$_GET[id_produit]&send=error");
                     exit();
                 } else {
-                    header("Location: gestion_produit.php?action=ajouter&send=error");
+                    header('Location: ' . URL . 'admin/gestion_produit.php?action=ajouter&send=error');
                     exit();
                 }
             }
@@ -215,20 +215,20 @@ if ($_GET['action'] == "ajouter" || $_GET['action'] == "modifier" || $_GET['acti
                 $validSupp = "Le produit " . ucfirst($titre) . ", référence " . $reference .  " a bien été supprimé";
                 $_SESSION['content']['valid'] = $validSupp;
 
-                header('Location: boutique.php?send=success');
+                header('Location: ' . URL . 'admin/boutique.php?send=success');
                 exit();
             } catch (PDOException $exception) {
 
                 $errorSupp = "Erreur lors de la suppression";
                 $_SESSION['content']['error'] = $errorSupp;
 
-                header('Location: boutique.php?send=error');
+                header('Location: ' . URL . 'admin/boutique.php?send=error');
                 exit();
             }
         }
     }
 } else {
-    header('Location: ../errors/error404.php');
+    header('Location: ' . URL . 'admin/boutique.php');
     exit();
 }
 

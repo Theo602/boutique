@@ -8,11 +8,11 @@ $bodyId = MEMBER_COMMANDE;
 
 
 if (userIsAdmin()) {
-    header('Location: admin');
+    header('Location: ' . URL . 'admin');
 }
 
 if (!userConnected()) {
-    header('Location: errors/error403.php');
+    header('Location: ' . URL . 'errors/error403.php');
     exit();
 }
 
@@ -28,7 +28,7 @@ $requestCommande->bindParam(":id_membre", $id_membre, PDO::PARAM_INT);
 try {
     $requestCommande->execute();
 } catch (PDOException $exception) {
-    header('Location: ../errors/error500.php');
+    header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 

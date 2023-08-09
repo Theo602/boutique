@@ -4,7 +4,7 @@ require_once('../config/init.php');
 
 
 if (!userIsAdmin()) {
-    header('Location: ../errors/error403.php');
+    header('Location: ' . URL . 'errors/error403.php');
 }
 
 
@@ -20,7 +20,7 @@ $requestProduit = $bdd->prepare('SELECT COUNT(*) FROM produit');
 try {
     $requestProduit->execute();
 } catch (PDOException $exception) {
-    header('Location: errors/error500.php');
+    header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 
@@ -33,7 +33,7 @@ $requestCommande = $bdd->prepare('SELECT COUNT(*) FROM commande');
 try {
     $requestCommande->execute();
 } catch (PDOException $exception) {
-    header('Location: ../errors/error500.php');
+    header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 
@@ -46,7 +46,7 @@ $requestUser = $bdd->prepare('SELECT COUNT(*) FROM user');
 try {
     $requestUser->execute();
 } catch (PDOException $exception) {
-    header('Location: ../errors/error500.php');
+    header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 
@@ -60,7 +60,7 @@ c.id_membre = u.id_membre ORDER BY id_commande  DESC LIMIT 0, 6");
 try {
     $requestDetailCommande->execute();
 } catch (PDOException $exception) {
-    header('Location: ../errors/error500.php');
+    header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 

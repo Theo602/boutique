@@ -9,7 +9,7 @@ $bodyId = ADMIN_PROFIL;
 
 
 if (!userIsAdmin()) {
-    header('Location: ../errors/error403.php');
+    header('Location: ' . URL . 'errors/error403.php');
 }
 
 
@@ -21,7 +21,7 @@ $requestUser->bindParam(":id_membre", $id_membre, PDO::PARAM_INT);
 try {
     $requestUser->execute();
 } catch (PDOException $exception) {
-    header('Location: ../errors/error500.php');
+    header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 
@@ -74,14 +74,14 @@ if (isset($_POST['btn_modifier_profil'])) {
             $query->execute();
             $valid = 'Le profil a été modifié';
             $_SESSION['content']['validProfil'] = $valid;
-            header('Location: admin_profil.php#messageProfil');
+            header('Location: ' . URL . 'admin/admin_profil.php#messageProfil');
             exit();
         } catch (PDOException $exception) {
             $errorMotif = 'Erreur lors de la modification';
         }
     } else {
         $_SESSION['champs']['error'] = $error;
-        header('Location: admin_profil.php#messageProfil');
+        header('Location: ' . URL . 'admin/admin_profil.php#messageProfil');
         exit();
     }
 }
@@ -128,14 +128,14 @@ if (isset($_POST['btn_modifier_adresse'])) {
             $query->execute();
             $valid = "L'adresse a été modifiée";
             $_SESSION['content']['validAdresse'] = $valid;
-            header('Location: admin_profil.php#messageAdresse');
+            header('Location: ' . URL . 'admin/admin_profil.php#messageAdresse');
             exit();
         } catch (PDOException $exception) {
             $errorMotif = 'Erreur lors de la modification';
         }
     } else {
         $_SESSION['champs']['error'] = $error;
-        header('Location: admin_profil.php#messageAdresse');
+        header('Location: ' . URL . 'admin/admin_profil.php#messageAdresse');
         exit();
     }
 }
@@ -174,14 +174,14 @@ if (isset($_POST['btn_modifier_password'])) {
             $query->execute();
             $valid = "Le mot de passe a été modifiée";
             $_SESSION['content']['validPassword'] = $valid;
-            header('Location: admin_profil.php#messagePassword');
+            header('Location: ' . URL . 'admin/admin_profil.php#messagePassword');
             exit();
         } catch (PDOException $exception) {
             $errorMotif = 'Erreur lors de la modification';
         }
     } else {
         $_SESSION['champs']['error'] = $error;
-        header('Location: admin_profil.php#messagePassword');
+        header('Location: ' . URL . 'admin/admin_profil.php#messagePassword');
         exit();
     }
 }

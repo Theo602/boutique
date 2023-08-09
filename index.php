@@ -15,7 +15,7 @@ $requestCategorie = $bdd->prepare('SELECT DISTINCT categorie FROM produit');
 try {
     $requestCategorie->execute();
 } catch (PDOException $exception) {
-    header('Location: errors/error500.php');
+    header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 
@@ -28,7 +28,7 @@ $requestProduit = $bdd->prepare('SELECT * FROM produit ORDER BY id_produit DESC 
 try {
     $requestProduit->execute();
 } catch (PDOException $exception) {
-    header('Location: errors/error500.php');
+    header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 
@@ -57,7 +57,7 @@ if (isset($_POST['newsletter-validation'])) {
     try {
         $emailFind->execute();
     } catch (PDOException $exception) {
-        header('Location: errors/error500.php');
+        header('Location: ' . URL . 'errors/error500.php');
         exit();
     }
 
@@ -82,7 +82,7 @@ if (isset($_POST['newsletter-validation'])) {
             $query->execute();
             $validNewletter = 'Votre inscription a bien été prise en compte.';
             $_SESSION['content']['valid'] = $validNewletter;
-            header('Location: index.php#return_newsletter');
+            header('Location: ' . URL . 'index.php#return_newsletter');
             exit();
         } catch (PDOException $exception) {
             $errorNewletter = "Erreur lors de l'inscription";

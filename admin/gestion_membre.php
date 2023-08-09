@@ -4,7 +4,7 @@ require_once('../config/init.php');
 
 
 if (!userIsAdmin()) {
-    header('Location: ../errors/error403.php');
+    header('Location: ' . URL . 'errors/error403.php');
 }
 
 
@@ -17,7 +17,7 @@ $error = [];
 
 
 if (!isset($_GET['action']) || empty($_GET['action'])) {
-    header('Location: ../errors/error404.php');
+    header('Location: ' . URL . 'admin/membre_compte.php');
     exit();
 }
 
@@ -35,19 +35,19 @@ if ($_GET['action'] == "edit" || $_GET['action'] == "suppression") {
             try {
                 $requestUser->execute();
             } catch (PDOException $exception) {
-                header('Location: ../errors/error500.php');
+                header('Location: ' . URL . 'errors/error500.php');
                 exit();
             }
 
             if ($requestUser->rowCount() == 0) {
-                header('Location: ../errors/error404.php');
+                header('Location: ' . URL . 'errors/error404.php');
                 exit();
             } else {
                 $user = $requestUser->fetch(PDO::FETCH_ASSOC);
                 extract($user);
             }
         } else {
-            header('Location: ../errors/error404.php');
+            header('Location: ' . URL . 'admin/membre_compte.php');
             exit();
         }
 
@@ -118,11 +118,10 @@ if ($_GET['action'] == "edit" || $_GET['action'] == "suppression") {
                     $validEdit = "La modification de <b>" . ucfirst($prenom) . " " . ucfirst($nom) . " (ID : " . $_GET['membre'] . ")</b> a bien été effectué";
                     $_SESSION['content']['valid'] = $validEdit;
 
-                    header('Location: membre_compte.php?send=success');
+                    header('Location: ' . URL . 'admin/membre_compte.php?send=success');
                     exit();
                 } catch (PDOException $exception) {
-
-                    header("Location: gestion_membre.php?action=edit&membre=$_GET[membre]&send=error");
+                    header("Location: " . URL . "admin/gestion_membre.php?action=edit&membre=$_GET[membre]&send=error");
                     exit();
                 }
             }
@@ -141,26 +140,31 @@ if ($_GET['action'] == "edit" || $_GET['action'] == "suppression") {
             try {
                 $query->execute();
 
+                if ($query->rowCount() == 0) {
+                    header('Location: ' . URL . 'admin/membre_compte.php');
+                    exit();
+                }
+
                 $validSupp = "Le <b> compte nᵒ " . $_GET['membre'] . "</b> a bien été supprimé";
                 $_SESSION['content']['valid'] = $validSupp;
 
-                header('Location: membre_compte.php?send=success');
+                header('Location: ' . URL . 'admin/membre_compte.php?send=success');
                 exit();
             } catch (PDOException $exception) {
 
                 $errorSupp = "Erreur lors de la suppression";
                 $_SESSION['content']['error'] = $errorSupp;
 
-                header('Location: membre_compte.php?send=error');
+                header('Location: ' . URL . 'admin/membre_compte.php?send=error');
                 exit();
             }
         } else {
-            header('Location: ../errors/error404.php');
+            header('Location: ' . URL . 'admin/membre_compte.php');
             exit();
         }
     }
 } else {
-    header('Location: ../errors/error404.php');
+    header('Location: ' . URL . 'admin/membre_compte.php');
     exit();
 }
 

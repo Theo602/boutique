@@ -283,7 +283,6 @@ header {
 /* 3. Formulaire */
 
 .civilite-profil {
-    width: 80%;
     margin: 10px auto;
 }
 
@@ -1005,7 +1004,6 @@ footer {
 
     .submit-profil,
     .input-profil,
-    .civilite-profil,
     .password-profil {
         width: 90%;
     }

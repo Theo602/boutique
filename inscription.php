@@ -8,12 +8,12 @@ $pageMetaDesc = 'Inscrivez vous sur notre boutique de e-commerce';
 $bodyId = SIGN_IN;
 
 if (userIsAdmin()) {
-    header('Location: admin');
+    header('Location: ' . URL . 'admin');
     exit();
 }
 
 if (userConnected()) {
-    header('Location: compte.php');
+    header('Location: ' . URL . 'compte.php');
     exit();
 }
 
@@ -53,7 +53,7 @@ if ($_POST) {
     try {
         $emailFind->execute();
     } catch (PDOException $exception) {
-        header('Location: errors/error500.php');
+        header('Location: ' . URL . 'errors/error500.php');
         exit();
     }
 
@@ -114,10 +114,10 @@ if ($_POST) {
 
         try {
             $query->execute();
-            header('Location: connexion.php?send=success#messageForm');
+            header('Location: ' . URL . 'connexion.php?send=success#messageForm');
             exit();
         } catch (PDOException $exception) {
-            header('Location: inscription.php?send=error#messageForm');
+            header('Location: ' . URL . 'inscription.php?send=error#messageForm');
             exit();
         }
     }

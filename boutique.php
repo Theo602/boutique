@@ -15,7 +15,7 @@ $dataCategorie = $bdd->prepare('SELECT DISTINCT categorie FROM produit');
 try {
     $dataCategorie->execute();
 } catch (PDOException $exception) {
-    header('Location: errors/error500.php');
+    header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 
@@ -31,12 +31,12 @@ if (isset($_GET['categorie']) && !empty($_GET['categorie'])) {
     try {
         $requestProduit->execute();
     } catch (PDOException $exception) {
-        header('Location: errors/error500.php');
+        header('Location: ' . URL . 'errors/error500.php');
         exit();
     }
 
     if ($requestProduit->rowCount() == 0) {
-        header('Location: errors/error404.php');
+        header('Location: ' . URL . 'errors/error404.php');
         exit();
     }
 } else {
@@ -46,7 +46,7 @@ if (isset($_GET['categorie']) && !empty($_GET['categorie'])) {
     try {
         $requestProduit->execute();
     } catch (PDOException $exception) {
-        header('Location: errors/error500.php');
+        header('Location: ' . URL . 'errors/error500.php');
         exit();
     }
 }

@@ -4,7 +4,7 @@ require_once('../config/init.php');
 
 
 if (!userIsAdmin()) {
-    header('Location: ../errors/error403.php');
+    header('Location: ' . URL . 'errors/error403.php');
 }
 
 
@@ -21,7 +21,7 @@ c.id_membre = u.id_membre ");
 try {
     $requestCommande->execute();
 } catch (PDOException $exception) {
-    header('Location: ../errors/error500.php');
+    header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 

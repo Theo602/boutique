@@ -14,20 +14,19 @@ if (isset($_GET['id_produit']) && !empty($_GET['id_produit'])) {
     try {
         $requestProduit->execute();
     } catch (PDOException $exception) {
-        header('Location: errors/error500.php');
+        header('Location: ' . URL . 'errors/error500.php');
         exit();
     }
 
     if ($requestProduit->rowCount() == 0) {
-        header('Location: errors/error404.php');
+        header('Location: ' . URL . 'errors/error404.php');
         exit();
     } else {
         $produit = $requestProduit->fetch(PDO::FETCH_ASSOC);
         extract($produit);
     }
 } else {
-    header('Location: errors/error404.php');
-    exit();
+    header('Location: ' . URL . 'errors/error404.php');
 }
 
 

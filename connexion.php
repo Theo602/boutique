@@ -8,10 +8,10 @@ $pageMetaDesc = 'Connectez vous à votre compte';
 $bodyId = SIGN_UP;
 
 if (userIsAdmin()) {
-    header('Location: admin');
+    header('Location: ' . URL . 'admin');
 }
 if (userConnected()) {
-    header('Location: compte.php');
+    header('Location: ' . URL . 'compte.php');
     exit();
 }
 
@@ -37,7 +37,7 @@ if ($_POST) {
         try {
             $requestConnect->execute();
         } catch (PDOException $exception) {
-            header('Location: errors/error500.php');
+            header('Location: ' . URL . 'errors/error500.php');
             exit();
         }
 

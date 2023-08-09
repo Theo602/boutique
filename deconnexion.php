@@ -15,5 +15,5 @@ session_destroy();
 
 // Redirection sur connexion.php
 
-header('Location: index.php');
+header('Location: ' . URL);
 exit();

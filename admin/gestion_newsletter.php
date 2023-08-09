@@ -4,7 +4,7 @@ require_once('../config/init.php');
 
 
 if (!userIsAdmin()) {
-    header('Location: ../errors/error403.php');
+    header('Location: ' . URL . 'errors/error403.php');
 }
 
 
@@ -20,7 +20,7 @@ $requestNewsletter = $bdd->prepare("SELECT *, DATE_FORMAT(created_at, '%d/%m/%Y'
 try {
     $requestNewsletter->execute();
 } catch (PDOException $exception) {
-    header('Location: ../errors/error500.php');
+    header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 
@@ -40,21 +40,26 @@ if (isset($_GET['action']) || !empty($_GET['action'])) {
             try {
                 $query->execute();
 
+                if ($query->rowCount() == 0) {
+                    header('Location: ' . URL . 'admin/gestion_newsletter.php');
+                    exit();
+                }
+
                 $validSupp = "La <b>newsletter nᵒ " . $_GET['id_newsletter'] . "</b> a bien été supprimée";
                 $_SESSION['content']['valid'] = $validSupp;
 
-                header('Location: gestion_newsletter.php?send=success');
+                header('Location: ' . URL . 'admin/gestion_newsletter.php?send=success');
                 exit();
             } catch (PDOException $exception) {
 
                 $errorSupp = "Erreur lors de la suppression";
                 $_SESSION['content']['error'] = $errorSupp;
 
-                header('Location: gestion_newsletter.php?send=error');
+                header('Location: ' . URL . 'admin/gestion_newsletter.php?send=error');
                 exit();
             }
         } else {
-            header('Location: ../errors/error404.php');
+            header('Location: ' . URL . 'admin/gestion_newsletter.php');
             exit();
         }
     }

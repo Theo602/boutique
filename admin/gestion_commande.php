@@ -4,7 +4,7 @@ require_once('../config/init.php');
 
 
 if (!userIsAdmin()) {
-    header('Location: ../errors/error403.php');
+    header('Location: ' . URL . 'errors/error403.php');
 }
 
 
@@ -17,7 +17,7 @@ $error = [];
 
 
 if (!isset($_GET['action']) || empty($_GET['action'])) {
-    header('Location: ../errors/error404.php');
+    header('Location: ' . URL . 'admin/membre_commande.php');
     exit();
 }
 
@@ -35,19 +35,19 @@ if ($_GET['action'] == "edit" || $_GET['action'] == "suppression") {
             try {
                 $requestCommande->execute();
             } catch (PDOException $exception) {
-                header('Location: ../errors/error500.php');
+                header('Location: ' . URL . 'errors/error500.php');
                 exit();
             }
 
             if ($requestCommande->rowCount() == 0) {
-                header('Location: ../errors/error404.php');
+                header('Location: ' . URL . 'errors/error404.php');
                 exit();
             } else {
                 $commande = $requestCommande->fetch(PDO::FETCH_ASSOC);
                 extract($commande);
             }
         } else {
-            header('Location: ../errors/error404.php');
+            header('Location: ' . URL . 'admin/membre_commande.php');
             exit();
         }
 
@@ -82,11 +82,10 @@ if ($_GET['action'] == "edit" || $_GET['action'] == "suppression") {
                     $validEdit = "La modification de la <b>Commande n° $_GET[commande]</b> a bien été effectué";
                     $_SESSION['content']['valid'] = $validEdit;
 
-                    header('Location: membre_commande.php?send=success');
+                    header('Location: ' . URL . 'admin/membre_commande.php?send=success');
                     exit();
                 } catch (PDOException $exception) {
-
-                    header("Location: gestion_commande.php?action=edit&commande=$_GET[commande]&send=error");
+                    header("Location: " . URL . "admin/gestion_commande.php?action=edit&commande=$_GET[commande]&send=error");
                     exit();
                 }
             }
@@ -105,26 +104,31 @@ if ($_GET['action'] == "edit" || $_GET['action'] == "suppression") {
             try {
                 $query->execute();
 
+                if ($query->rowCount() == 0) {
+                    header('Location: ' . URL . 'admin/membre_commande.php');
+                    exit();
+                }
+
                 $validSupp = "La <b>commande nᵒ " . $_GET['commande'] . "</b> a bien été supprimée";
                 $_SESSION['content']['valid'] = $validSupp;
 
-                header('Location: membre_commande.php?send=success');
+                header('Location: ' . URL . 'admin/membre_commande.php?send=success');
                 exit();
             } catch (PDOException $exception) {
 
                 $errorSupp = "Erreur lors de la suppression";
                 $_SESSION['content']['error'] = $errorSupp;
 
-                header('Location: membre_commande.php?send=error');
+                header('Location: ' . URL . 'admin/membre_commande.php?send=error');
                 exit();
             }
         } else {
-            header('Location: ../errors/error404.php');
+            header('Location: ' . URL . 'admin/membre_commande.php');
             exit();
         }
     }
 } else {
-    header('Location: ../errors/error404.php');
+    header('Location: ' . URL . 'admin/membre_commande.php');
     exit();
 }
 

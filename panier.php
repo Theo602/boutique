@@ -18,7 +18,7 @@ if (isset($_POST['ajoutPanier'])) {
     try {
         $requestProduit->execute();
     } catch (PDOException $exception) {
-        header('Location: errors/error500.php');
+        header('Location: ' . URL . 'errors/error500.php');
         exit();
     }
 
@@ -44,12 +44,12 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
             try {
                 $requestProduit->execute();
             } catch (PDOException $exception) {
-                header('Location: errors/error500.php');
+                header('Location: ' . URL . 'errors/error500.php');
                 exit();
             }
 
             if ($requestProduit->rowCount() == 0) {
-                header('Location: errors/error404.php');
+                header('Location: ' . URL . 'errors/error404.php');
                 exit();
             } else {
                 $produit = $requestProduit->fetch(PDO::FETCH_ASSOC);
@@ -64,11 +64,11 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
 
             $idProduit = array_search($_GET['id_produit'], $_SESSION['panier']['id_produit']);
 
-            if ($idProduit   !== false) {
+            if ($idProduit !== false) {
                 $validsuppression = "Le produit <b>" . ucfirst($_SESSION['panier']['titre'][$idProduit]) . "</b> a été supprimé du panier";
                 deleteQuantiteProduit($_GET['id_produit']);
             } else {
-                header('Location: errors/error404.php');
+                header('Location: ' . URL . 'errors/error404.php');
                 exit();
             }
         }
@@ -78,11 +78,11 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
 
             $idProduit = array_search($_GET['id_produit'], $_SESSION['panier']['id_produit']);
 
-            if ($idProduit   !== false) {
+            if ($idProduit !== false) {
                 $validsuppression = "Le produit <b>" . ucfirst($_SESSION['panier']['titre'][$idProduit]) . "</b> a été supprimé du panier";
                 deleteProduit($_GET['id_produit']);
             } else {
-                header('Location: errors/error404.php');
+                header('Location: ' . URL . 'errors/error404.php');
                 exit();
             }
         }

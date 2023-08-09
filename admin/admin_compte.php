@@ -9,7 +9,7 @@ $bodyId = ADMIN_COMPTE;
 
 
 if (!userIsAdmin()) {
-    header('Location: ../errors/error403.php');
+    header('Location: ' . URL . 'errors/error403.php');
 }
 
 
@@ -23,7 +23,7 @@ $requestUser->bindParam(":id_membre", $id_membre, PDO::PARAM_INT);
 try {
     $requestUser->execute();
 } catch (PDOException $exception) {
-    header('Location: ../errors/error500.php');
+    header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 
@@ -40,7 +40,7 @@ $emailFind->bindParam(':email', $email, PDO::PARAM_STR);
 try {
     $emailFind->execute();
 } catch (PDOException $exception) {
-    header('Location: ../errors/error500.php');
+    header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 
@@ -63,10 +63,10 @@ if (isset($_GET['action']) || !empty($_GET['action'])) {
             $requestNewsletter->execute();
             $valid = "Votre abonnement à la newsletter a bien été supprimé";
             $_SESSION['content']['valid'] = $valid;
-            header('Location: admin_compte.php?send=success');
+            header('Location: ' . URL . 'admin/admin_compte.php?send=success');
             exit();
         } catch (PDOException $exception) {
-            header('Location: admin_compte.php?send=error');
+            header('Location: ' . URL . 'admin/admin_compte.php?send=error');
             exit();
         }
     }
@@ -82,7 +82,7 @@ $requestCommande->bindParam(":id_membre", $id_membre, PDO::PARAM_INT);
 try {
     $requestCommande->execute();
 } catch (PDOException $exception) {
-    header('Location: ../errors/error500.php');
+    header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 

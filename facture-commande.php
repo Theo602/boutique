@@ -31,12 +31,12 @@ if (isset($_GET['commande']) && !empty($_GET['commande'])) {
     try {
         $request->execute();
     } catch (PDOException $exception) {
-        header('Location: errors/error500.php');
+        header('Location: ' . URL . 'errors/error500.php');
         exit();
     }
 
     if ($request->rowCount() ==  0) {
-        header('Location: errors/error404.php');
+        header('Location: ' . URL . 'errors/error404.php');
         exit();
     }
 
@@ -44,7 +44,7 @@ if (isset($_GET['commande']) && !empty($_GET['commande'])) {
     extract($information);
 
     if ($_SESSION['user']['id_membre'] !== $id_membre && $_SESSION['user']['status'] !== "1") {
-        header('Location: compte.php');
+        header('Location: ' . URL . 'compte.php');
         exit();
     }
 
@@ -57,18 +57,16 @@ if (isset($_GET['commande']) && !empty($_GET['commande'])) {
     try {
         $query->execute();
     } catch (PDOException $exception) {
-        header('Location: errors/error500.php');
+        header('Location: ' . URL . 'errors/error500.php');
         exit();
     }
 
     if ($query->rowCount() ==  0) {
-        header('Location: errors/error404.php');
+        header('Location: ' . URL . 'errors/error404.php');
         exit();
     }
 
     /* Génération du pdf */
-
-
 
     $dompdf = new Dompdf();
     $option = new Options();
@@ -89,6 +87,6 @@ if (isset($_GET['commande']) && !empty($_GET['commande'])) {
         'Attachement' => true
     ]);
 } else {
-    header('Location: errors/error404.php');
+    header('Location: ' . URL . 'errors/error404.php');
     exit();
 }

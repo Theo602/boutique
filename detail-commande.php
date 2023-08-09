@@ -4,7 +4,7 @@ require_once('config/init.php');
 
 
 if (!userConnected()) {
-    header('Location: errors/error403.php');
+    header('Location: ' . URL . 'errors/error403.php');
     exit();
 }
 
@@ -28,12 +28,12 @@ if (isset($_GET['commande']) && !empty($_GET['commande'])) {
     try {
         $request->execute();
     } catch (PDOException $exception) {
-        header('Location: errors/error500.php');
+        header('Location: ' . URL . 'errors/error500.php');
         exit();
     }
 
     if ($request->rowCount() ==  0) {
-        header('Location: errors/error404.php');
+        header('Location: ' . URL . 'errors/error404.php');
         exit();
     }
 
@@ -41,7 +41,7 @@ if (isset($_GET['commande']) && !empty($_GET['commande'])) {
     extract($information);
 
     if ($_SESSION['user']['id_membre'] !== $id_membre) {
-        header('Location: compte.php');
+        header('Location: ' . URL . 'compte.php');
         exit();
     }
 
@@ -55,16 +55,16 @@ if (isset($_GET['commande']) && !empty($_GET['commande'])) {
     try {
         $query->execute();
     } catch (PDOException $exception) {
-        header('Location: errors/error500.php');
+        header('Location: ' . URL . 'errors/error500.php');
         exit();
     }
 
     if ($query->rowCount() ==  0) {
-        header('Location: errors/error404.php');
+        header('Location: ' . URL . 'errors/error404.php');
         exit();
     }
 } else {
-    header('Location: errors/error404.php');
+    header('Location: ' . URL . 'errors/error404.php');
     exit();
 }
 

@@ -11,14 +11,14 @@ $bodyId = PROCESS_COMMANDE;
 /* Redirection si le membre n'est pas connecté */
 
 if (!userConnected()) {
-    header('Location: errors/error403.php');
+    header('Location: ' . URL . 'errors/error403.php');
     exit();
 }
 
 /* Redirection si le panier n'existe pas en session */
 
 if (!isset($_SESSION['panier']) && empty($_SESSION['panier'])) {
-    header('location: panier.php');
+    header('Location: ' . URL . 'panier.php');
     exit();
 }
 
@@ -42,7 +42,7 @@ if (isset($_GET['order']) && !empty($_GET['order'])) {
         try {
             $requestUser->execute();
         } catch (PDOException $exception) {
-            header('Location: errors/error500.php');
+            header('Location: ' . URL . 'errors/error500.php');
             exit();
         }
 
@@ -115,7 +115,7 @@ if (isset($_POST["payer"])) {
             $request->execute();
             $id_commande = $bdd->lastInsertId();
         } catch (PDOException $exception) {
-            header('Location: errors/error500.php');
+            header('Location: ' . URL . 'errors/error500.php');
             exit();
         }
 
@@ -137,7 +137,7 @@ if (isset($_POST["payer"])) {
             try {
                 $query->execute();
             } catch (PDOException $exception) {
-                header('Location: errors/error500.php');
+                header('Location: ' . URL . 'errors/error500.php');
                 exit();
             }
 
@@ -190,8 +190,7 @@ if (isset($_POST["payer"])) {
         // mail($to, $sujet, $message, $entete);
 
         $_SESSION['commande']['id_commande'] = $id_commande;
-
-        header('Location: validation-commande.php');
+        header('Location: ' . URL . 'validation-commande.php');
         exit();
     }
 }

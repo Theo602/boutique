@@ -11,7 +11,7 @@ $bodyId = PROCESS_COMMANDE;
 /* Redirection si le membre n'est pas connecté */
 
 if (!userConnected()) {
-    header('Location: panier.php');
+    header('Location: ' . URL . 'panier.php');
     exit();
 }
 
@@ -24,7 +24,7 @@ $requestCommande->bindParam(":id_commande", $id_commande, PDO::PARAM_INT);
 try {
     $requestCommande->execute();
 } catch (PDOException $exception) {
-    header('Location: errors/error500.php');
+    header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 
