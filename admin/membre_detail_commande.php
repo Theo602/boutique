@@ -112,7 +112,7 @@ require_once('inc/header.inc.php');
 
                     <div class="fiche-information">
 
-                        <h3>Information</h3>
+                        <h3>Informations</h3>
                         <hr>
 
                         <p>Commande passée le <?= $date_commande; ?></p>
@@ -156,7 +156,7 @@ require_once('inc/header.inc.php');
 
             <div class="list-client">
 
-                <h3>Vos produits</h3>
+                <h3>Produits commandés</h3>
                 <hr>
 
                 <table>
@@ -167,7 +167,7 @@ require_once('inc/header.inc.php');
 
                             <th>Photo</th>
                             <th>Référence</th>
-                            <th>Nom du produit</th>
+                            <th>Produit</th>
                             <th>Quantité</th>
                             <th>Prix</th>
                             <th>Total</th>
@@ -198,7 +198,7 @@ require_once('inc/header.inc.php');
                                 </td>
 
                                 <td data-label="Référence"><?= $reference_produit; ?></td>
-                                <td data-label="Nom du produit"><?= ucfirst($nom_produit); ?></td>
+                                <td data-label="Produit"><?= ucfirst($nom_produit); ?></td>
                                 <td data-label="Quantité"><?= $detail_quantite; ?></td>
                                 <td data-label="Prix"><?= $detail_prix; ?> €</td>
                                 <td data-label="Total"><?= $detail_total; ?> €</td>
@@ -216,7 +216,7 @@ require_once('inc/header.inc.php');
                 <p class="panier-total">Total TTC : <?= $total_ttc; ?>€</p>
 
                 <div class="order">
-                    <a class="btn-order" href="">Télécharger la facture</a>
+                    <a class="btn-order" href="../facture-commande.php?commande=<?= $id_commande; ?>">Télécharger la facture</a>
                     <a class="btn-order" href="membre_commande.php">Retour sur les commandes clients</a>
                 </div>
 

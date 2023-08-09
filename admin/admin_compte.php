@@ -50,7 +50,7 @@ if ($emailFind->rowCount() == 1) {
     $newsletter = false;
 }
 
-/* supression de la newsletters */
+/* Supression de la newsletters */
 
 if (isset($_GET['action']) || !empty($_GET['action'])) {
 
@@ -241,7 +241,7 @@ require_once('inc/header.inc.php');
                                 <td data-label="Option">
 
                                     <a href="../detail-commande.php?commande=<?= $id_commande; ?>" title="Voir"><i class="fa fa-eye"></i></a>
-
+                                    <a href="../facture-commande.php?commande=<?= $id_commande; ?>" title="Facture"><i class="fas fa-file-pdf"></i></a>
                                 </td>
                             </tr>
 

@@ -1,7 +1,10 @@
 <?php
 
-require_once('config/init.php');
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
+require_once('config/init.php');
+require_once('config/tools/dompdf/autoload.inc.php');
 
 if (!userConnected()) {
     header('Location: errors/error403.php');
@@ -62,145 +65,30 @@ if (isset($_GET['commande']) && !empty($_GET['commande'])) {
         header('Location: errors/error404.php');
         exit();
     }
+
+    /* Génération du pdf */
+
+
+
+    $dompdf = new Dompdf();
+    $option = new Options();
+
+    $option->set('defaultFont', 'Roboto');
+    $option->set('isHtml5ParserEnabled', true);
+    $option->set('isRemoteEnabled', true);
+    $dompdf->setOptions($option);
+
+    ob_start();
+    require_once('inc/pdf-content.inc.php');
+    $html = ob_get_contents();
+    ob_end_clean();
+
+    $dompdf->loadHtml($html);
+    $dompdf->render();
+    $dompdf->stream("Facture-" . $commande_facture . ".pdf", [
+        'Attachement' => true
+    ]);
 } else {
     header('Location: errors/error404.php');
     exit();
 }
-
-
-$pageTitle = 'Facture - Commande n° ' . $commande_reference;
-$pageMetaDesc = 'Télécharger la facture de votre commande.';
-$bodyId = MEMBER_FACTURE_COMMANDE;
-
-require_once('inc/header_pdf.inc.php');
-
-?>
-
-<section class="section-1-pdf">
-
-    <h1>Boutique T-Commerce</h1>
-
-    <p>
-        24 rue de la foret <br>
-        35000 Rennes
-    </p>
-
-    <hr>
-
-    <h2>Commande n° <?= $commande_reference; ?></h2>
-    <hr>
-
-</section>
-
-<section class="section-2-pdf">
-
-    <div class="background-pdf">
-
-        <div class="information-pdf">
-
-            <h3>Mon récapitulatif</h3>
-
-            <hr>
-
-            <div class="resume-pdf">
-
-                <div class="fiche-information-pdf">
-
-                    <h3>Information</h3>
-                    <hr>
-
-                    <p>Commande passée le <?= $date_commande; ?></p>
-
-                    <p>Référence : <?= $commande_reference ?></p>
-                    <p>Facture : <?= $commande_facture ?></p>
-                </div>
-
-                <div class="fiche-information-pdf">
-
-                    <h3>Adresse de livraison</h3>
-                    <hr>
-
-                    <p><?= $adresse_livraison; ?></p>
-
-                </div>
-
-                <div class="fiche-information-pdf">
-
-                    <h3>Adresse de facturation</h3>
-                    <hr>
-
-                    <p><?= $adresse_livraison; ?></p>
-
-                </div>
-
-                <div class="fiche-information-pdf">
-
-                    <h3>Mode de livraison</h3>
-                    <hr>
-
-                    <p><?= $livraison; ?></p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="list-pdf clear">
-
-            <h3>Vos produits</h3>
-            <hr>
-
-            <table>
-
-                <thead>
-
-                    <tr class="table-top-pdf">
-
-                        <th>Photo</th>
-                        <th>Référence</th>
-                        <th>Nom du produit</th>
-                        <th>Quantité</th>
-                        <th>Prix</th>
-                        <th>Total</th>
-
-                    </tr>
-
-                </thead>
-                <tbody>
-
-                    <?php while ($detail = $query->fetch(PDO::FETCH_ASSOC)) : extract($detail); ?>
-
-                        <tr class="table-details-pdf">
-
-                            <td data-label="Photo">
-
-                                <figure>
-                                    <img src="<?= $photo_produit; ?>">
-                                </figure>
-
-                            </td>
-
-                            <td data-label="Référence"><?= $reference_produit; ?></td>
-                            <td data-label="Nom du produit"><?= ucfirst($nom_produit); ?></td>
-                            <td data-label="Quantité"><?= $detail_quantite; ?></td>
-                            <td data-label="Prix"><?= $detail_prix; ?> €</td>
-                            <td data-label="Total"><?= $detail_total; ?> €</td>
-
-                        </tr>
-
-                    <?php endwhile; ?>
-
-                </tbody>
-
-            </table>
-
-            <p class="panier-total-pdf">Total HT : <?= $total_ht; ?>€</p>
-            <p class="panier-total-pdf">Total TVA (20%) : <?= tauxTva($total_ht); ?>€</p>
-            <p class="panier-total-pdf">Total TTC : <?= $total_ttc; ?>€</p>
-
-        </div>
-
-    </div>
-
-</section>

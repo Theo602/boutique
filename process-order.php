@@ -277,7 +277,7 @@ require_once('inc/header.inc.php');
 
                         <th>Photo</th>
                         <th>Référence</th>
-                        <th>Nom du produit</th>
+                        <th>Produit</th>
                         <th>Quantité</th>
                         <th>Prix</th>
                         <th>Total</th>
@@ -309,7 +309,7 @@ require_once('inc/header.inc.php');
                             </td>
 
                             <td data-label="Référence"><?= $_SESSION['panier']['reference'][$i] ?></td>
-                            <td data-label="Nom du produit"><?= ucfirst($_SESSION['panier']['titre'][$i]) ?></td>
+                            <td data-label="Produit"><?= ucfirst($_SESSION['panier']['titre'][$i]) ?></td>
                             <td data-label="Quantité"><?= $_SESSION['panier']['quantite'][$i] ?></td>
                             <td data-label="Prix"><?= $_SESSION['panier']['prix'][$i] ?>€</td>
                             <td data-label="Total"><?= produitTotal($_SESSION['panier']['id_produit'][$i]) ?>€</td>
