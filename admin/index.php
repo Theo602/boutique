@@ -55,7 +55,7 @@ $countUser = $requestUser->fetchColumn();
 /* Affichage des commandes */
 
 $requestDetailCommande = $bdd->prepare("SELECT *, DATE_FORMAT(c.created_at, '%d/%m/%Y') AS 'date_commande' FROM commande c LEFT JOIN user u ON 
-c.id_membre = u.id_membre ORDER BY id_commande  DESC LIMIT 0, 6");
+c.id_membre = u.id_membre WHERE c.etat = 'payé' ORDER BY id_commande  DESC LIMIT 0, 6");
 
 try {
     $requestDetailCommande->execute();

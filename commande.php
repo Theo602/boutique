@@ -16,14 +16,23 @@ if (!userConnected()) {
     exit();
 }
 
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+    $currentPage = (int) strip_tags($_GET['page']);
+} else {
+    $currentPage = 1;
+}
 
 /* Affichage des commandes */
 
 $id_membre = $_SESSION['user']['id_membre'];
+$url_page = "commande.php?page=";
+$result = paginationCategorie($bdd, "commande", "id_membre", $id_membre, $currentPage, 6);
 
 $requestCommande = $bdd->prepare("SELECT *, DATE_FORMAT(c.created_at, '%d/%m/%Y') AS 'date_commande' FROM commande c INNER JOIN user u ON 
-    c.id_membre = u.id_membre AND u.id_membre = :id_membre");
+    c.id_membre = u.id_membre AND u.id_membre = :id_membre LIMIT :firstArticle, :limite");
 $requestCommande->bindParam(":id_membre", $id_membre, PDO::PARAM_INT);
+$requestCommande->bindValue(":firstArticle", $result['firstRow'], PDO::PARAM_INT);
+$requestCommande->bindValue(":limite", $result['limit'], PDO::PARAM_INT);
 
 try {
     $requestCommande->execute();
@@ -115,6 +124,8 @@ require_once('inc/header.inc.php');
                 </table>
 
             </div>
+
+            <?php require_once('inc/pagination.inc.php'); ?>
 
         </section>
 

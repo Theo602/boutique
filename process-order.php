@@ -187,7 +187,7 @@ if (isset($_POST["payer"])) {
 
         </html>';
 
-        // mail($to, $sujet, $message, $entete);
+        mail($to, $sujet, $message, $entete);
 
         $_SESSION['commande']['id_commande'] = $id_commande;
         header('Location: ' . URL . 'validation-commande.php');

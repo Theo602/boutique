@@ -13,18 +13,29 @@ $pageMetaDesc = 'Retrouver la liste des produits de la boutique';
 $bodyId = ADMIN_BOUTIQUE;
 
 
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+    $currentPage = (int) strip_tags($_GET['page']);
+} else {
+    $currentPage = 1;
+}
+
 /* Affichage des produits */
 
-$RequestProduit = $bdd->prepare('SELECT * FROM produit');
+$url_page = "boutique.php?page=";
+$result = pagination($bdd, "produit", $currentPage, 6);
+
+$requestProduit = $bdd->prepare('SELECT * FROM produit LIMIT :firstArticle, :limite');
+$requestProduit->bindValue(":firstArticle", $result['firstRow'], PDO::PARAM_INT);
+$requestProduit->bindValue(":limite", $result['limit'], PDO::PARAM_INT);
 
 try {
-    $RequestProduit->execute();
+    $requestProduit->execute();
 } catch (PDOException $exception) {
     header('Location: ' . URL . 'errors/error500.php');
     exit();
 }
 
-$produits = $RequestProduit->fetchAll();
+$produits = $requestProduit->fetchAll();
 
 require_once('inc/header.inc.php');
 
@@ -132,6 +143,8 @@ require_once('inc/header.inc.php');
             </table>
 
         </div>
+
+        <?php require_once('../inc/pagination.inc.php'); ?>
 
     </section>
 

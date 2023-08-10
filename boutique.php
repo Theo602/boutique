@@ -23,10 +23,21 @@ $categories = $dataCategorie->fetchAll();
 
 /* Affichage des produits */
 
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+    $currentPage = (int) strip_tags($_GET['page']);
+} else {
+    $currentPage = 1;
+}
+
 if (isset($_GET['categorie']) && !empty($_GET['categorie'])) {
 
-    $requestProduit = $bdd->prepare('SELECT * FROM produit WHERE categorie = :categorie');
+    $url_page =  "boutique.php?categorie=" . $_GET['categorie'] . "&page=";
+    $result = paginationCategorie($bdd, "produit", "categorie", $_GET['categorie'], $currentPage, 8);
+
+    $requestProduit = $bdd->prepare('SELECT * FROM produit WHERE categorie = :categorie LIMIT :firstArticle, :limite');
     $requestProduit->bindParam(':categorie', $_GET['categorie'], PDO::PARAM_STR);
+    $requestProduit->bindValue(":firstArticle", $result['firstRow'], PDO::PARAM_INT);
+    $requestProduit->bindValue(":limite", $result['limit'], PDO::PARAM_INT);
 
     try {
         $requestProduit->execute();
@@ -41,7 +52,12 @@ if (isset($_GET['categorie']) && !empty($_GET['categorie'])) {
     }
 } else {
 
-    $requestProduit = $bdd->prepare('SELECT * FROM produit');
+    $url_page = "boutique.php?page=";
+    $result = pagination($bdd, "produit", $currentPage, 8);
+
+    $requestProduit = $bdd->prepare('SELECT * FROM produit LIMIT :firstArticle, :limite');
+    $requestProduit->bindValue(":firstArticle", $result['firstRow'], PDO::PARAM_INT);
+    $requestProduit->bindValue(":limite", $result['limit'], PDO::PARAM_INT);
 
     try {
         $requestProduit->execute();
@@ -105,14 +121,14 @@ require_once('inc/header.inc.php');
                                 <h3 class="titre_produit"><?= ucfirst($titre) ?></h3>
                                 <p><?= ucfirst($public) ?></p>
                                 <p><?= $prix ?>€</p>
-                                <a href="<?= "fiche-produit.php?id_produit=" . $id_produit ?>">Voir le produit</a>
+                                <a href="fiche-produit.php?id_produit=<?= $id_produit ?>">Voir le produit</a>
 
                             </div>
 
                         <?php endwhile; ?>
 
                     </div>
-
+                    <?php require_once('inc/pagination.inc.php'); ?>
                 <?php else : ?>
 
                     <div class="message-info-produit">

@@ -13,10 +13,21 @@ $pageMetaDesc = 'Retrouver la liste des commandes des membres';
 $bodyId = ADMIN_LISTE_COMMANDE;
 
 
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+    $currentPage = (int) strip_tags($_GET['page']);
+} else {
+    $currentPage = 1;
+}
+
 /* Affichage des commandes */
 
+$url_page = "membre_commande.php?page=";
+$result = pagination($bdd, "commande", $currentPage, 6);
+
 $requestCommande = $bdd->prepare("SELECT *, DATE_FORMAT(c.created_at, '%d/%m/%Y') AS created_at FROM commande c LEFT JOIN user u ON 
-c.id_membre = u.id_membre ");
+c.id_membre = u.id_membre LIMIT :firstArticle, :limite ");
+$requestCommande->bindValue(":firstArticle", $result['firstRow'], PDO::PARAM_INT);
+$requestCommande->bindValue(":limite", $result['limit'], PDO::PARAM_INT);
 
 try {
     $requestCommande->execute();
@@ -127,6 +138,8 @@ require_once('inc/header.inc.php');
             </table>
 
         </div>
+
+        <?php require_once('../inc/pagination.inc.php'); ?>
 
     </section>
 

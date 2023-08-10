@@ -217,3 +217,48 @@ function chaineFacture($lenght = 10)
     }
     return $chaine;
 }
+
+/* Fonction pour la pagination : produits et les listes (commande, dashboard) */
+
+function pagination($bdd, $table, $currentPage, $limite)
+{
+    $request = $bdd->prepare("SELECT COUNT(*) AS nb_row FROM " . $table);
+    $request->execute();
+
+    $result = $request->fetch(PDO::FETCH_ASSOC);
+    $nb_row = (int) $result['nb_row'];
+
+    $pages = ceil($nb_row / $limite);
+
+    $firstRow = ($currentPage * $limite) - $limite;
+
+    $result['pages'] = $pages;
+    $result['currentPage'] = $currentPage;
+    $result['firstRow'] = $firstRow;
+    $result['limit'] = $limite;
+    $result['nb_row'] = $nb_row;
+    return $result;
+}
+
+/* Fonction pour la pagination des produits selon leurs catégories et les commandes des membres */
+
+function paginationCategorie($bdd, $table, $columns, $params, $currentPage, $limite)
+{
+    $request = $bdd->prepare("SELECT COUNT(*) AS nb_row FROM " . $table . " WHERE " . $columns . " = :categorie");
+    $request->bindParam(':categorie', $params, PDO::PARAM_STR);
+    $request->execute();
+
+    $result = $request->fetch(PDO::FETCH_ASSOC);
+    $nb_row = (int) $result['nb_row'];
+
+    $pages = ceil($nb_row / $limite);
+
+    $firstRow = ($currentPage * $limite) - $limite;
+
+    $result['pages'] = $pages;
+    $result['currentPage'] = $currentPage;
+    $result['firstRow'] = $firstRow;
+    $result['limit'] = $limite;
+
+    return $result;
+}

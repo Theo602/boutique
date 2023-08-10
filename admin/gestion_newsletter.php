@@ -13,9 +13,20 @@ $pageMetaDesc = 'Retrouver la liste des newsletters des membres';
 $bodyId = ADMIN_GESTION_NEWSLETTER;
 
 
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+    $currentPage = (int) strip_tags($_GET['page']);
+} else {
+    $currentPage = 1;
+}
+
 /* Affichage des newsletters */
 
-$requestNewsletter = $bdd->prepare("SELECT *, DATE_FORMAT(created_at, '%d/%m/%Y') AS created_at FROM newsletter");
+$url_page = "gestion_newsletter.php?page=";
+$result = pagination($bdd, "newsletter", $currentPage, 6);
+
+$requestNewsletter = $bdd->prepare("SELECT *, DATE_FORMAT(created_at, '%d/%m/%Y') AS created_at FROM newsletter LIMIT :firstArticle, :limite");
+$requestNewsletter->bindValue(":firstArticle", $result['firstRow'], PDO::PARAM_INT);
+$requestNewsletter->bindValue(":limite", $result['limit'], PDO::PARAM_INT);
 
 try {
     $requestNewsletter->execute();
@@ -154,6 +165,8 @@ require_once('inc/header.inc.php');
             </table>
 
         </div>
+
+        <?php require_once('../inc/pagination.inc.php'); ?>
 
     </section>
 

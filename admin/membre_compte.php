@@ -13,9 +13,20 @@ $pageMetaDesc = 'Retrouver la liste des comptes des membres';
 $bodyId = ADMIN_COMPTE_MEMBRE;
 
 
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+    $currentPage = (int) strip_tags($_GET['page']);
+} else {
+    $currentPage = 1;
+}
+
 /* Affichage des produits */
 
-$requestUser = $bdd->prepare('SELECT * FROM user');
+$url_page = "membre_compte.php?page=";
+$result = pagination($bdd, "user", $currentPage, 6);
+
+$requestUser = $bdd->prepare('SELECT * FROM user LIMIT :firstArticle, :limite');
+$requestUser->bindValue(":firstArticle", $result['firstRow'], PDO::PARAM_INT);
+$requestUser->bindValue(":limite", $result['limit'], PDO::PARAM_INT);
 
 try {
     $requestUser->execute();
@@ -121,6 +132,8 @@ require_once('inc/header.inc.php');
             </table>
 
         </div>
+
+        <?php require_once('../inc/pagination.inc.php'); ?>
 
     </section>
 
