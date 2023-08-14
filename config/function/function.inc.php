@@ -262,3 +262,21 @@ function paginationCategorie($bdd, $table, $columns, $params, $currentPage, $lim
 
     return $result;
 }
+
+/* Fonction qui retourne le nombre de commande, membre et de produit */
+
+function countDashboard($bdd, $table)
+{
+    $request = $bdd->prepare("SELECT COUNT(*) FROM " . $table);
+
+    try {
+        $request->execute();
+    } catch (PDOException $exception) {
+        header('Location: ' . URL . 'errors/error500.php');
+        exit();
+    }
+
+    $result = $request->fetchColumn();
+
+    return $result;
+}

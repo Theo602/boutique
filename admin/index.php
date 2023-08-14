@@ -15,44 +15,11 @@ $bodyId = ADMIN_DASHBOARD;
 
 $id_membre = $_SESSION['user']['id_membre'];
 
-/* Nombre de produit */
+/* Nombre : produit - commande - membre*/
 
-$requestProduit = $bdd->prepare('SELECT COUNT(*) FROM produit');
-
-try {
-    $requestProduit->execute();
-} catch (PDOException $exception) {
-    header('Location: ' . URL . 'errors/error500.php');
-    exit();
-}
-
-$countProduit = $requestProduit->fetchColumn();
-
-/* Nombre de commande */
-
-$requestCommande = $bdd->prepare('SELECT COUNT(*) FROM commande');
-
-try {
-    $requestCommande->execute();
-} catch (PDOException $exception) {
-    header('Location: ' . URL . 'errors/error500.php');
-    exit();
-}
-
-$countCommande = $requestCommande->fetchColumn();
-
-/* Nombre de membre */
-
-$requestUser = $bdd->prepare('SELECT COUNT(*) FROM user');
-
-try {
-    $requestUser->execute();
-} catch (PDOException $exception) {
-    header('Location: ' . URL . 'errors/error500.php');
-    exit();
-}
-
-$countUser = $requestUser->fetchColumn();
+$countProduit = countDashboard($bdd, "produit");
+$countCommande = countDashboard($bdd, "commande");
+$countUser = countDashboard($bdd, "user");
 
 /* Affichage des commandes */
 
