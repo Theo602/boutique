@@ -177,6 +177,7 @@ require_once('inc/header.inc.php');
 
                     <label for="etat">Etat :</label>
                     <select name="etat" id="etat">
+                        <option value="annulé" <?= (isset($etat) && $etat == "annulé") ? 'selected' : '';  ?>>Annulé</option>
                         <option value="payé" <?= (isset($etat) && $etat == "payé") ? 'selected' : '';  ?>>Payé</option>
                         <option value="en cours de traitement" <?= (isset($etat) && $etat == "en cours de traitement") ? 'selected' : '';  ?>>En cours de traitement</option>
                         <option value="envoyé" <?= (isset($etat) && $etat == "envoyé") ? 'selected' : '';  ?>>Envoyé</option>

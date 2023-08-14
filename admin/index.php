@@ -13,6 +13,8 @@ $pageMetaDesc = "Bienvenue sur votre panneau d'administration";
 $bodyId = ADMIN_DASHBOARD;
 
 
+$id_membre = $_SESSION['user']['id_membre'];
+
 /* Nombre de produit */
 
 $requestProduit = $bdd->prepare('SELECT COUNT(*) FROM produit');
@@ -54,8 +56,10 @@ $countUser = $requestUser->fetchColumn();
 
 /* Affichage des commandes */
 
-$requestDetailCommande = $bdd->prepare("SELECT *, DATE_FORMAT(c.created_at, '%d/%m/%Y') AS 'date_commande' FROM commande c LEFT JOIN user u ON 
-c.id_membre = u.id_membre WHERE c.etat = 'payé' ORDER BY id_commande  DESC LIMIT 0, 6");
+$requestDetailCommande = $bdd->prepare("SELECT c.id_commande, c.reference, c.total_ttc, c.etat, u.email, 
+                          DATE_FORMAT(c.created_at, '%d/%m/%Y') AS 'date_commande' FROM commande c 
+                          LEFT JOIN user u ON c.id_membre = u.id_membre 
+                          ORDER BY id_commande  DESC LIMIT 0, 6");
 
 try {
     $requestDetailCommande->execute();
@@ -116,9 +120,23 @@ require_once('inc/header.inc.php');
             <h3>Commandes récentes des clients</h3>
             <hr>
 
-            <p>
-                <a class="table-link" href="membre_commande.php">Voir tout</a>
-            </p>
+            <div class="search-link">
+                <input class="inputForm" type="hidden" name="search" id="commande_search" value="commande_dashboard">
+                <input class="inputForm" type="hidden" name="search_id" id="id_search" value="<?= $id_membre; ?>">
+
+                <select name="search-select" id="search-select">
+                    <option value="all" selected>Toutes les commandes</option>
+                    <option value="payé">Payé</option>
+                    <option value="en cours de traitement">En cours de traitement</option>
+                    <option value="envoyé">Envoyé</option>
+                    <option value="livré">Livré</option>
+                    <option value="annulé">Annulé</option>
+                </select>
+
+                <p>
+                    <a class="table-link" href="membre_commande.php">Voir tout</a>
+                </p>
+            </div>
 
             <table>
 
@@ -128,12 +146,13 @@ require_once('inc/header.inc.php');
                         <th>Référence</th>
                         <th>Client</th>
                         <th>Date</th>
-                        <th>Total</th>
+                        <th>TotalTcc</th>
                         <th>Status</th>
+                        <th>Options</th>
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody class="search">
 
                     <?php if (!empty($commandes)) : ?>
 
@@ -151,11 +170,29 @@ require_once('inc/header.inc.php');
                                 <td data-label="Référence"><?= $reference; ?></td>
                                 <td data-label="Client"><?= ($email) ? $email : 'Commande archivée' ?></td>
                                 <td data-label="Date"><?= $date_commande; ?></td>
-                                <td data-label="Total"><?= $total_ttc; ?></td>
-                                <td data-label="Status"><?= $etat; ?></td>
+                                <td data-label="TotalTcc"><?= $total_ttc; ?></td>
+
+                                <td data-label="Status">
+                                    <p class="table-etat <?php
+                                                            if ($etat === 'livré') {
+                                                                echo 'etat-livrer';
+                                                            } elseif ($etat === 'envoyé') {
+                                                                echo 'etat-envoyer';
+                                                            } elseif ($etat === 'en cours de traitement') {
+                                                                echo 'etat-pending';
+                                                            } elseif ($etat === 'annulé') {
+                                                                echo 'etat-annuler';
+                                                            } else {
+                                                                echo 'etat-payer';
+                                                            }
+                                                            ?>">
+                                        <?= ucfirst($etat); ?>
+                                    </p>
+                                </td>
+
                                 <td data-label="Option">
 
-                                    <a href="membre_commande.php" title="Voir"><i class="fa fa-eye"></i></a>
+                                    <a href="membre_detail_commande.php?commande=<?= $id_commande; ?>" title="Voir"><i class="fa fa-eye"></i></a>
 
                                 </td>
                             </tr>

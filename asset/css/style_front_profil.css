@@ -328,12 +328,29 @@ a {
     font-size: 18px;
 }
 
+.search-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+}
+
+#search-select {
+    background-color: #000;
+    color: #fff;
+    border: 1px black solid;
+    border-radius: 5px;
+    display: block;
+    font-size: 1em;
+    padding: 10px;
+    text-align: center;
+}
+
 .table-link {
     display: block;
     color: #000;
     font-size: 18px;
-    margin: 10px auto;
-    text-align: end;
+    text-align: center;
 }
 
 .table-link:hover {
@@ -349,6 +366,37 @@ a {
 .table-details-commande a:hover {
     color: #0D00A4;
     transition: 1s;
+}
+
+.table-etat {
+    color: white;
+    padding: 6px 8px;
+    border-radius: 10px;
+}
+
+.etat-livrer {
+    background: #149F00;
+}
+
+.etat-envoyer {
+    background: #FFCD0B;
+
+}
+
+.etat-pending {
+    background: #FF4800;
+}
+
+.etat-annuler {
+    background: #ff0000;
+}
+
+.etat-payer {
+    background: #0D00A4;
+}
+
+.table-responsive {
+    display: none;
 }
 
 .table-responsive {
@@ -602,9 +650,23 @@ a {
 }
 
 @media screen and (max-width: 516px) {
+
     /* 1. Compte Global */
 
     .separate-section-1 {
         width: 56%;
     }
+
+    /* Page Compte - Page Commande*/
+
+    .search-link {
+        flex-direction: column;
+    }
+
+    #search-select {
+        margin: 20px 0;
+        width: 100%;
+        order: 1;
+    }
+
 }

@@ -62,7 +62,7 @@ CREATE TABLE commande(
     adresse_livraison VARCHAR(255) NOT NULL,
     total_ht DOUBLE NOT NULL,
     total_ttc DOUBLE NOT NULL,
-    etat enum('payé','en cours de traitement','envoyé','livré') NOT NULL,
+    etat enum('payé', 'en cours de traitement', 'envoyé', 'livré', 'annulé') NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
