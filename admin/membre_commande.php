@@ -63,21 +63,6 @@ require_once('inc/header.inc.php');
             <h3>Liste des commandes des clients</h3>
             <hr>
 
-            <div class="search-link">
-                <input class="inputForm" type="hidden" name="search" id="commande_search" value="commande_client">
-                <input class="inputForm" type="hidden" name="search_id" id="id_search" value="<?= $id_membre; ?>">
-
-                <select name="search-select" id="search-select">
-                    <option value="all" selected>Toutes les commandes</option>
-                    <option value="payé">Payé</option>
-                    <option value="en cours de traitement">En cours de traitement</option>
-                    <option value="envoyé">Envoyé</option>
-                    <option value="livré">Livré</option>
-                    <option value="annulé">Annulé</option>
-                </select>
-
-            </div>
-
             <?php if (isset($_GET['send']) && ($_GET['send'] == "success")) : ?>
 
                 <?php if (isset($_SESSION['content']['valid'])) : ?>
@@ -95,6 +80,21 @@ require_once('inc/header.inc.php');
                 unset($_SESSION['content']['error']); ?>
 
             <?php endif; ?>
+
+            <div class="search-link">
+                <input class="inputForm" type="hidden" name="search" id="commande_search" value="commande_client">
+                <input class="inputForm" type="hidden" name="search_id" id="id_search" value="<?= $id_membre; ?>">
+
+                <select name="search-select" id="search-select">
+                    <option value="all" selected>Toutes les commandes</option>
+                    <option value="payé">Payé</option>
+                    <option value="en cours de traitement">En cours de traitement</option>
+                    <option value="envoyé">Envoyé</option>
+                    <option value="livré">Livré</option>
+                    <option value="annulé">Annulé</option>
+                </select>
+
+            </div>
 
             <table>
 

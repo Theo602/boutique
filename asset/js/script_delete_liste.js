@@ -1,16 +1,15 @@
 'use strict';
 
 
+import { deleteBtn } from "./modules/module-delete";
+
+
 /* Bouton supprimer */
 
 ; (function () {
 
     let btnDelete = document.querySelectorAll('.btnDelete, .btnDesabonner');
 
-    btnDelete.forEach(itemDelete => {
-        itemDelete.onclick = function () {
-            return (confirm('Etes vous sur de vouloir supprimer?'));
-        }
-    });
+    deleteBtn(btnDelete);
 
 })()

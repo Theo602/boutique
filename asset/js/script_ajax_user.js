@@ -3,26 +3,24 @@
 
 import { fetchSearch } from "./modules/module-fetch";
 
-/* Filtrages des status des commande*/
+/* Filtrages des produits */
 
 ; (function () {
 
     const selectSearch = document.querySelector('#search-select');
-    const commandeSearch = document.querySelector('#commande_search');
-    const userSearch = document.querySelector('#id_search');
+    const userSearch = document.querySelector('#role_user');
 
     selectSearch.addEventListener('change', function () {
+
         const selectValue = selectSearch.value;
-        const commandeValue = commandeSearch.value;
         const userValue = userSearch.value;
 
         let search = {
-            search: commandeValue,
-            user: userValue,
+            search: userValue,
             status: selectValue
         }
 
-        fetchSearch(search, "http://localhost/boutique/config/ajax/ajax-commande");
+        fetchSearch(search, "http://localhost/boutique/config/ajax/ajax-user");
     });
 
 })()

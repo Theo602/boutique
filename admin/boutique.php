@@ -13,6 +13,19 @@ $pageMetaDesc = 'Retrouver la liste des produits de la boutique';
 $bodyId = ADMIN_BOUTIQUE;
 
 
+/* Affichage des catégories */
+
+$dataCategorie = $bdd->prepare('SELECT DISTINCT categorie FROM produit');
+
+try {
+    $dataCategorie->execute();
+} catch (PDOException $exception) {
+    header('Location: ' . URL . 'errors/error500.php');
+    exit();
+}
+
+$categories = $dataCategorie->fetchAll();
+
 if (isset($_GET['page']) && !empty($_GET['page'])) {
     $currentPage = (int) strip_tags($_GET['page']);
 } else {
@@ -77,6 +90,22 @@ require_once('inc/header.inc.php');
 
             <?php endif; ?>
 
+            <div class="search-link">
+                <input class="inputForm" type="hidden" name="search_produit" id="produit_search" value="produit_boutique">
+
+                <select name="search-select" id="search-select">
+                    <option value="all" selected>Toutes les produits</option>
+
+                    <?php foreach ($categories as $categorie) : ?>
+
+                        <option value="<?= $categorie['categorie'] ?>"><?= ucfirst($categorie['categorie']); ?></option>
+
+                    <?php endforeach; ?>
+
+                </select>
+
+            </div>
+
             <table>
 
                 <thead>
@@ -95,7 +124,7 @@ require_once('inc/header.inc.php');
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody class="search">
 
                     <?php if (!empty($produits)) : ?>
 

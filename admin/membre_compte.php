@@ -13,13 +13,26 @@ $pageMetaDesc = 'Retrouver la liste des comptes des membres';
 $bodyId = ADMIN_COMPTE_MEMBRE;
 
 
+/* Affichage des roles des membres */
+
+$dataRoles = $bdd->prepare('SELECT DISTINCT status FROM user');
+
+try {
+    $dataRoles->execute();
+} catch (PDOException $exception) {
+    header('Location: ' . URL . 'errors/error500.php');
+    exit();
+}
+
+$roles = $dataRoles->fetchAll();
+
 if (isset($_GET['page']) && !empty($_GET['page'])) {
     $currentPage = (int) strip_tags($_GET['page']);
 } else {
     $currentPage = 1;
 }
 
-/* Affichage des produits */
+/* Affichage des membres */
 
 $url_page = "membre_compte.php?page=";
 $result = pagination($bdd, "user", $currentPage, 6);
@@ -77,6 +90,22 @@ require_once('inc/header.inc.php');
 
             <?php endif; ?>
 
+            <div class="search-link">
+                <input class="inputForm" type="hidden" name="role_user" id="role_user" value="role_user">
+
+                <select name="search-select" id="search-select">
+                    <option value="all" selected>Toutes les membres</option>
+
+                    <?php foreach ($roles as $role) : ?>
+
+                        <option value="<?= $role['status'] ?>"><?= ($role['status'] == 0) ? 'Client' : 'Administrateur'; ?></option>
+
+                    <?php endforeach; ?>
+
+                </select>
+
+            </div>
+
             <table>
 
                 <thead>
@@ -90,13 +119,13 @@ require_once('inc/header.inc.php');
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody class="search">
 
                     <?php if (!empty($users)) : ?>
 
                         <?php foreach ($users as $user) : extract($user); ?>
 
-                            <tr class="table-responsive">
+                            <tr class=" table-responsive">
 
                                 <td>Membre nᵒ <?= $id_membre; ?></td>
                                 <td><i class="fas fa-chevron-down"></td>

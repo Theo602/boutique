@@ -3,8 +3,6 @@
 import { listShow } from "./modules/module-liste";
 
 
-
-
 /* Liste - Responsive */
 
 ; (function () {

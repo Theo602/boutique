@@ -1,3 +1,6 @@
+'use strict';
+
+
 /* Fonction pour les listes responsives */
 
 function listShow(liste, btnListe, details) {

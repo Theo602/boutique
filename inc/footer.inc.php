@@ -24,13 +24,17 @@
             <script src="asset/js/script_dashboard.js"></script>
         <?php endif ?>
 
-        <?php if ($bodyId === MEMBER_COMPTE) : ?>
-            <script src="asset/js/script_delete_liste.js"></script>
+        <?php if (
+            $bodyId === PROCESS_COMMANDE || $bodyId === PANIER || $bodyId === MEMBER_DETAIL_COMMANDE || $bodyId === MEMBER_COMMANDE
+            || $bodyId === MEMBER_COMPTE
+        ) : ?>
+            <script type="module" src="asset/js/script_liste.js"></script>
         <?php endif ?>
 
-        <?php if ($bodyId === PROCESS_COMMANDE || $bodyId === PANIER || $bodyId === MEMBER_DETAIL_COMMANDE) : ?>
-            <script src="asset/js/script_liste.js"></script>
+        <?php if ($bodyId === MEMBER_COMPTE) : ?>
+            <script type="module" src="asset/js/script_delete_liste.js"></script>
         <?php endif ?>
+
 
         <?php if ($bodyId === MEMBER_COMPTE || $bodyId === MEMBER_COMMANDE) : ?>
             <script type="module" src="asset/js/script_ajax_search.js"></script>
