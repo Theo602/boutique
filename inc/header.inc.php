@@ -103,6 +103,8 @@
 
     </header>
 
+    <?php require_once('barre_de_recherche.inc.php');  ?>
+
     <div class="modal-menu">
         <div class="modal-navigation">
             <div class="btnClose"><i class="fas fa-times"></i></div>

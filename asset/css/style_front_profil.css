@@ -344,6 +344,7 @@ a {
     font-size: 1em;
     padding: 10px;
     text-align: center;
+    cursor: pointer;
 }
 
 .table-link {

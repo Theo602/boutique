@@ -44,6 +44,8 @@ require_once('inc/header.inc.php');
 
 <section class="section-1-produit">
 
+    <a href="boutique.php" class="return-boutique">Retourner sur les produits</a>
+
     <article class="fiche-produit">
 
         <div class="produit-global">

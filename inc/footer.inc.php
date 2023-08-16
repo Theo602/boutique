@@ -43,7 +43,7 @@
     <?php endif ?>
 
     <script src="asset/js/script.js"></script>
-
+    <script src="asset/js/script_search_barre.js"></script>
     </body>
 
     </html>
