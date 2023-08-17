@@ -55,7 +55,6 @@ require_once('inc/header.inc.php');
 
 <!-- Affichage de la page -->
 
-
 <div class="container-profil">
 
     <section class="section-profil-left">

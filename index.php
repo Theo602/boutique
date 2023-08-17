@@ -34,7 +34,6 @@ try {
 
 $produits = $requestProduit->fetchAll();
 
-
 /* Gestion des newsletters */
 
 if (isset($_POST['newsletter-validation'])) {
@@ -89,8 +88,6 @@ if (isset($_POST['newsletter-validation'])) {
         }
     }
 }
-
-
 
 require_once('inc/header.inc.php');
 
