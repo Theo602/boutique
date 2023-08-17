@@ -4,6 +4,7 @@
 
 * {
     box-sizing: border-box;
+    font-family: 'Roboto', Helvetica, sans-serif, sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -692,7 +693,145 @@ header>.header-top>h1 {
     transition: 1s;
 }
 
-/* Page Accueil - Page Boutique - Page inscription - Page connexion - Page Produit  - Page Panier - Page Process-order - Page Validation Commande */
+/* Page Contact */
+
+/* 1. Global */
+
+.section-3-contact {
+    background-color: #04052E;
+}
+
+.section-2-contact h2,
+.section-3-contact h2 {
+    font-size: 2.6em;
+    text-align: center;
+}
+
+.section-3-contact h2 {
+    color: #fff;
+}
+
+.fiche-localisation h3,
+.formulaire_text h3 {
+    color: #000;
+    font-size: 2em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* 2. Image */
+
+.section-1-contact figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-1-contact img {
+    width: 100%;
+}
+
+/* 3. Block Coordonnée */
+
+.localisation {
+    background-color: #fff;
+    padding: 2% 4%;
+    border-radius: 10px;
+    box-shadow: 0 0 4px 4px #000;
+    margin: 4% auto 2%;
+    width: 40%;
+}
+
+.fiche-localisation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fiche-localisation p {
+    color: #000;
+    margin: 6px 0px;
+    font-size: 1.2em;
+}
+
+.fiche-localisation i {
+    margin-right: 10px;
+}
+
+.fiche-localisation a {
+    border-bottom: 2px solid transparent;
+    color: #000;
+    padding: 4px 0px;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.fiche-localisation a:hover {
+    color: #0D00A4;
+    cursor: pointer;
+    border-bottom: 2px solid #0D00A4;
+    transition: 1s;
+}
+
+/* 3. Block Contact */
+
+.background_formulaire {
+    background-color: #fff;
+    padding: 2% 4%;
+    margin: 4% auto 2%;
+    border-radius: 10px;
+    box-shadow: 0 0 4px 4px #0D00A4;
+    width: 50%;
+}
+
+.formulaire_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.formulaire_text p {
+    color: #000;
+    margin: 6px 0px;
+    font-size: 17px;
+    text-align: center;
+}
+
+.formulaire_info,
+.formulaire_info div {
+    margin: 20px auto;
+}
+
+.messageForm {
+    display: block;
+    height: 150px;
+    border: 1px black solid;
+    border-radius: 5px;
+    font-size: 1em;
+    margin: 10px auto;
+    padding: 10px;
+    width: 100%;
+}
+
+.captcha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+}
+
+.captchaForm {
+    border-radius: 5px;
+    height: 40px;
+    border: 1px #c6c6c6 solid;
+    margin: 10px 4px 10px 0px;
+    padding: 10px;
+    width: 100%;
+}
+
+/* Page Accueil - Page Boutique - Page inscription - Page connexion - Page Produit  - Page Panier - Page Process-order - Page Validation Commande - Page Contact*/
 
 /* 1. Hr */
 
@@ -709,7 +848,11 @@ header>.header-top>h1 {
 .list-panier hr,
 .list-commande hr,
 .section-1-achat hr,
-.section-2-achat hr {
+.section-2-achat hr,
+.section-2-contact hr,
+.contact-separate,
+.fiche-localisation hr,
+.formulaire_text hr {
     margin: 20px auto;
     padding: 1px;
     background-color: #000;
@@ -721,7 +864,9 @@ header>.header-top>h1 {
 .section-1-boutique hr,
 .section-1-panier hr,
 .section-1-commande hr,
-.section-1-achat hr {
+.section-1-achat hr,
+.section-2-contact hr,
+.section-3-contact hr {
     width: 40%;
 }
 
@@ -737,7 +882,8 @@ header>.header-top>h1 {
 .section-4-accueil hr,
 .section-1-panier hr,
 .section-1-commande hr,
-.section-1-achat hr {
+.section-1-achat hr,
+.contact-separate {
     background-color: #fff;
 }
 
@@ -752,7 +898,9 @@ header>.header-top>h1 {
 .section-1-commande,
 .section-2-commande,
 .section-1-achat,
-.section-2-achat {
+.section-2-achat,
+.section-2-contact,
+.section-3-contact {
     padding: 4% 0px;
 }
 
@@ -1197,6 +1345,87 @@ footer {
     background-color: #0D00A4 !important;
 }
 
+/* Bannière cookie */
+
+.cookies {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #140152;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 4%;
+    opacity: 1;
+    transition: 0.5s;
+    z-index: 10;
+}
+
+.cookies-texte {
+    width: 58%;
+}
+
+.cookies-texte p {
+    color: #fff;
+    font-size: 17px;
+    margin: 0;
+}
+
+.cookies-texte a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+}
+
+.cookies-texte a:hover {
+    color: #d62828;
+    cursor: pointer;
+    border-bottom: 2px solid #d62828;
+    transition: 1s;
+}
+
+
+.cookies-btn {
+    display: flex;
+    justify-content: flex-end;
+    width: 42%;
+}
+
+.btn-cookies {
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin: 0 10px;
+    border: 2px solid #fff;
+}
+
+.btn-cookies.btn-accept {
+    background-color: #0D00A4;
+}
+
+.btn-cookies.btn-deny {
+    background-color: #000;
+}
+
+.btn-cookies.btn-accept:hover {
+    background-color: #000;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.btn-cookies.btn-deny:hover {
+    background-color: #0D00A4;
+    transition: 1s;
+    cursor: pointer;
+}
+
+/* flêche Scroll */
+
+.modal-scroll {
+    display: none;
+}
+
 @media screen and (max-width: 992px) {
 
     /* Header */
@@ -1451,6 +1680,54 @@ footer {
     .section-1-connexion .connexion-form {
         width: 60%;
     }
+
+    /* Bannière cookie */
+
+    .cookies {
+        flex-direction: column;
+    }
+
+    .cookies-texte,
+    .cookies-btn {
+        width: 100%;
+    }
+
+    .cookies-texte p {
+        margin: 20px 0;
+    }
+
+    .cookies-btn {
+        justify-content: center;
+    }
+
+    /* flêche Scroll */
+
+    .modal-scroll {
+        position: fixed;
+        right: 10px;
+        bottom: 50px;
+        border: 2px solid #fff;
+        background-color: #0D00A4;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        transition: 2s;
+    }
+
+    .modal-scroll i {
+        color: #fff;
+        font-size: 2em;
+    }
+
+    /* Page Contact */
+
+    .background_formulaire,
+    .localisation {
+        width: 60%;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -1473,6 +1750,13 @@ footer {
 
     .fiche-produit {
         margin: 8% auto;
+    }
+
+    /* Page Contact */
+
+    .background_formulaire,
+    .localisation {
+        width: 70%;
     }
 
     /* Page inscription - Page connexion */
@@ -1575,6 +1859,13 @@ footer {
         width: 100%;
     }
 
+    /* Page Contact */
+
+    .background_formulaire,
+    .localisation {
+        width: 90%;
+    }
+
     /* Page Process-order - Page Detail Commande*/
 
     .resume-commande {
@@ -1582,6 +1873,7 @@ footer {
     }
 
     .fiche-information {
+        margin: 20px auto;
         width: 100%;
     }
 
@@ -1604,5 +1896,32 @@ footer {
     .section-1-inscription .inscription-form,
     .section-1-connexion .connexion-form {
         width: 90%;
+    }
+
+    /* Bannière cookie */
+
+    .cookies {
+        padding: 1% 2%;
+    }
+
+    .btn-cookies {
+        padding: 12px 5px;
+    }
+
+    .cookies-texte p {
+        text-align: center;
+    }
+
+    /* flêche Scroll */
+
+    .modal-scroll {
+
+        width: 40px;
+        height: 40px;
+    }
+
+    .modal-scroll i {
+
+        font-size: 1.6em;
     }
 }

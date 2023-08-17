@@ -4,6 +4,7 @@
 
 * {
     box-sizing: border-box;
+    font-family: 'Roboto', Helvetica, sans-serif, sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -912,6 +913,12 @@ footer {
     background-color: #0D00A4 !important;
 }
 
+/* flêche Scroll */
+
+.modal-scroll {
+    display: none;
+}
+
 @media screen and (max-width: 992px) {
 
     /* Dashboard  Global */
@@ -1038,6 +1045,28 @@ footer {
         width: 50%;
     }
 
+    /* flêche Scroll */
+
+    .modal-scroll {
+        position: fixed;
+        right: 10px;
+        bottom: 50px;
+        border: 2px solid #fff;
+        background-color: #0D00A4;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        transition: 2s;
+    }
+
+    .modal-scroll i {
+        color: #fff;
+        font-size: 2em;
+    }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -1107,6 +1136,7 @@ footer {
 
     .fiche-information {
         width: 100%;
+        margin: 20px auto;
     }
 
     /* Message Erreur - Message Succès */
@@ -1156,5 +1186,18 @@ footer {
         margin: 20px 0;
         width: 100%;
         order: 1;
+    }
+
+    /* flêche Scroll */
+
+    .modal-scroll {
+
+        width: 40px;
+        height: 40px;
+    }
+
+    .modal-scroll i {
+
+        font-size: 1.6em;
     }
 }

@@ -47,8 +47,13 @@
 
                     <?php elseif ($data["search"] === 'commande_compte' || $data["search"] === 'commande_user') : ?>
 
-                        <a href="../detail-commande.php?commande=<?= $id_commande; ?>" title="Voir"><i class="fa fa-eye"></i></a>
-                        <a href="../facture-commande.php?commande=<?= $id_commande; ?>" title="Facture"><i class="fas fa-file-pdf"></i></a>
+                        <?php if (userIsAdmin()) : ?>
+                            <a href="../detail-commande.php?commande=<?= $id_commande; ?>" title="Voir"><i class="fa fa-eye"></i></a>
+                            <a href="../facture-commande.php?commande=<?= $id_commande; ?>" title="Facture"><i class="fas fa-file-pdf"></i></a>
+                        <?php else : ?>
+                            <a href="detail-commande.php?commande=<?= $id_commande; ?>" title="Voir"><i class="fa fa-eye"></i></a>
+                            <a href="facture-commande.php?commande=<?= $id_commande; ?>" title="Facture"><i class="fas fa-file-pdf"></i></a>
+                        <?php endif; ?>
 
                     <?php endif; ?>
 

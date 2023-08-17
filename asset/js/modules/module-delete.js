@@ -1,7 +1,7 @@
 'use strict';
 
 
-/* Fonction pour les bouton supprimer des listes et de la newsletter */
+/* Fonction pour les boutons supprimer des listes et de la newsletter */
 
 function deleteBtn(btn) {
 

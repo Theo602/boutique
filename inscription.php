@@ -232,7 +232,7 @@ require_once('inc/header.inc.php');
 
             <div class="code-postal">
 
-                <label for="code-postal">Code postal :</label>
+                <label for="code_postal">Code postal :</label>
                 <input class="inputForm <?= isset($error['code_postal']) ? 'border-error' : '' ?>" type="text" name="code_postal" id="code_postal" value="<?= ($code_postal) ??  '';  ?>">
 
                 <div class="message-error-input active-message"></div>

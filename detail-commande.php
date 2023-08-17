@@ -175,7 +175,7 @@ require_once('inc/header.inc.php');
 
                         <tr class="table-responsive">
 
-                            <td>Produit : <?= ucfirst($titre); ?></td>
+                            <td>Produit : <?= ucfirst($nom_produit); ?></td>
                             <td><i class="fas fa-chevron-down"></td>
 
                         </tr>

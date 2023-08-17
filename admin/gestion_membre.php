@@ -15,7 +15,6 @@ $bodyId = ADMIN_GESTION_MEMBRE;
 
 $error = [];
 
-
 if (!isset($_GET['action']) || empty($_GET['action'])) {
     header('Location: ' . URL . 'admin/membre_compte.php');
     exit();

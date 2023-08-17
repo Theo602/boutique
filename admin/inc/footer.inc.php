@@ -1,5 +1,7 @@
 </div>
 
+<?php require_once('../inc/scroll.inc.php');  ?>
+
 </main>
 
 <footer>
@@ -38,6 +40,7 @@
 
 
 <script src="../asset/js/script_dashboard.js"></script>
+<script src="../asset/js/script_scroll.js"></script>
 
 </body>
 

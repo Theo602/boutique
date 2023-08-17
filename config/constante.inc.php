@@ -7,6 +7,7 @@ const BOUTIQUE_PAGE = "boutique";
 const PRODUIT_PAGE = "produit";
 const SIGN_UP = 'signup';
 const SIGN_IN = 'signin';
+const CONTACT = "contact";
 const PANIER = "panier";
 const PROCESS_COMMANDE = "process_commande";
 const VALIDATION_COMMANDE = "validation_commande";
