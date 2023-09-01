@@ -178,7 +178,7 @@ if (isset($_POST["payer"])) {
             <p>Votre commande sera livrée par <b>' . $modeDeLivraision . '</b> à l\'adresse suivante : </p>
 
             <p><b>' . $adresseLivraison . '</b></p>
-            <p>Vous pouvez sur votre commande sur votre <a href="' . URL . '/connexion">compte</a></p>
+            <p>Vous pouvez retrouver votre commande sur votre <a href="' . URL . '/connexion">compte</a></p>
             <p>Si vous avez des questions, n\'hésitez pas à nous contacter sur support@boutique-tcommerce.fr ou bien appelez-nous au 01.36.98.52.40 du lundi au vendredi, de 10h à 18h.</p>
 
             <p>Merci pour votre confiance et à bientot sur <a href="' . URL . '">La boutique Tcommerce</a></p>
