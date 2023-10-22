@@ -27,17 +27,6 @@
 
     });
 
-    window.onresize = function () {
-
-        if (window.innerWidth > 992) {
-            btnOpen.style.display = "none";
-        }
-
-        else {
-            btnOpen.style.display = "block";
-        }
-    }
-
 })()
 
     /* MouseOver Mouseout - Block - fiche-release - fiche-band - fiche-shop - fiche-news */

@@ -58,6 +58,7 @@ header>.header-top>h1 {
 
 .link-shop {
     display: block;
+    text-decoration: none;
 }
 
 /* 2. Menu navigation */
